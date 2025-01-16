@@ -1,0 +1,12 @@
+.vertical-line {
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.vertical-line.glow {
+  filter: 
+    drop-shadow(0px 0px 60px #008957)
+    drop-shadow(0px 0px 40px #00b57f)
+    drop-shadow(0px 0px 20px #00ffcc); /* Add a lighter outer glow */
+  transform: scale(1.15);
+}
+

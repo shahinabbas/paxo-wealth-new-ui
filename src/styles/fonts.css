@@ -1,0 +1,19 @@
+/* src/styles/fonts.css */
+
+@font-face {
+  font-family: 'Meuthanies';
+  src: url('./assets/fonts/Meuthanies-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;  /* Ensures fallback font until custom font is loaded */
+}
+
+body {
+  font-family: 'Meuthanies', sans-serif;
+  font-size: 16px;  /* Default font size */
+  line-height: 1.5;  /* Adjust line-height for better readability */
+  margin: 0;
+  padding: 0;
+  background-color: #fff;  /* Optional: Set a background color */
+}
+

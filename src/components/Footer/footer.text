@@ -1,0 +1,80 @@
+<footer className="bg-black text-white pt-16 p-20 relative font-meuthanies">
+<div className="container mx-auto px-6 pb-10">
+  {/* Logo */}
+  <div className="mb-12">
+    <h1 className="text-2xl font-semibold">
+      Paxo <span className="text-emerald-400">Wealth</span>
+    </h1>
+  </div>
+
+  {/* Footer Links Grid */}
+  <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12 ">
+    {/* Column 1 */}
+    <div className="space-y-4">
+      <Link to="/" className="block hover:text-emerald-400">Home</Link>
+      <Link to="/about-us" className="block hover:text-emerald-400">About Us</Link>
+      <Link to="/business-solutions" className="block hover:text-emerald-400">Business Solutions</Link>
+    </div>
+
+    {/* Column 2 */}
+    <div className="space-y-4">
+      <Link to="/buy-and-sell" className="block hover:text-emerald-400">Buy and Sell</Link>
+      <Link to="/direct-buy" className="block hover:text-emerald-400">Direct Buy</Link>
+      <Link to="/lease" className="block hover:text-emerald-400">Lease</Link>
+    </div>
+
+    {/* Column 3 */}
+    <div className="space-y-4">
+      <Link to="/blogs" className="block hover:text-emerald-400">Blogs</Link>
+      <Link to="/faqs" className="block hover:text-emerald-400">FAQs</Link>
+      <Link to="/help-center" className="block hover:text-emerald-400">Help Center</Link>
+    </div>
+
+    {/* Column 4 */}
+    <div className="space-y-4">
+      <Link to="/terms" className="block hover:text-emerald-400">Terms & Conditions</Link>
+      <Link to="/privacy" className="block hover:text-emerald-400">Privacy Policy</Link>
+      <Link to="/contact" className="block hover:text-emerald-400">Contact Us</Link>
+    </div>
+
+    {/* Column 5 - Contact Information */}
+    <div className="space-y-4">
+      <h3 className="text-gray-400">Contact</h3>
+      <a href="mailto:info@paxowealth.com" className="block hover:text-emerald-400">info@paxowealth.com</a>
+      <p>+91-XXXXXXXXXX</p>
+      <p>Chennai, Pune, Mumbai</p>
+    </div>
+  </div>
+
+  {/* Divider */}
+  <hr className="border-gray-800 my-8" />
+
+  {/* Bottom Footer */}
+  <div className="flex flex-col md:flex-row justify-between items-start md:items-center pb-8">
+    <div className="space-y-3">
+      <p className="font-medium">Legal Disclaimer</p>
+      <p className="text-sm">Registration Number: XXXXXXXX</p>
+      <p className="text-sm text-gray-400">
+        All transactions involve market risks. Users are advised to perform due diligence.
+      </p>
+    </div>
+    
+    {/* Social Media Icons */}
+    <div className="mt-6 md:mt-0">
+      <FloatingDockDemo />
+    </div>
+  </div>
+</div>
+
+{/* City Skyline SVG */}
+<div className="w-full absolute bottom-0 left-0">
+  <svg className="w-full" viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 80L40 75C80 70 160 60 240 55C320 50 400 50 480 55C560 60 640 70 720 75C800 80 880 80 960 75C1040 70 1120 60 1200 55C1280 50 1360 50 1400 50L1440 50V100H1400C1360 100 1280 100 1200 100C1120 100 1040 100 960 100C880 100 800 100 720 100C640 100 560 100 480 100C400 100 320 100 240 100C160 100 80 100 40 100H0V80Z" fill="#101010"/>
+    <circle cx="120" cy="30" r="4" fill="#10B981"/>
+    <circle cx="420" cy="40" r="4" fill="#10B981"/>
+    <circle cx="720" cy="25" r="4" fill="#10B981"/>
+    <circle cx="1020" cy="35" r="4" fill="#10B981"/>
+    <circle cx="1320" cy="30" r="4" fill="#10B981"/>
+  </svg>
+</div>
+</footer>
