@@ -59,7 +59,7 @@ export function HeroScrollDemo() {
           {/* Play/Pause Button */}
           <button
             onClick={togglePlayPause}
-            className="absolute inset-0 m-auto bg-white text-white rounded-full p-4 flex items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+            className="absolute inset-0 m-auto bg-black text-white rounded-full p-4 flex items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100"
             style={{ width: "60px", height: "60px" }}
           >
             {isPlaying ? <FaPause size={24} /> : <CiPlay1 size={24} />}

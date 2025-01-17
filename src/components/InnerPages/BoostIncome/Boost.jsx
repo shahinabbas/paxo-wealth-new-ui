@@ -63,8 +63,6 @@ const Boost = () => {
           })),
         ];
 
-     
-
         setCategories(transformedCategories);
         setProperties(propertiesResponse.data);
       } catch (error) {

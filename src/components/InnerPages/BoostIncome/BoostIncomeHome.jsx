@@ -5,7 +5,7 @@ import { MdArrowOutward } from "react-icons/md";
 function BoostIncomeHome() {
   return (
     <div className="bg-white h-screen md:px-10 px-4">
-      <div className="bg-customBlue rounded-xl mt-16 md:flex  gap-60 items-center p-6">
+      <div className="bg-customBlue rounded-xl mt-20 md:flex  gap-60 items-center p-6">
         <div className="text-center md:text-left">
           <h1 className="md:text-5xl text-3xl text-white font-meuthanies">
             Boost Income -

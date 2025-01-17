@@ -23,7 +23,7 @@ function Combined() {
       transition: {
         duration: 2,
         ease: "easeInOut",
-        delay: 12,
+        delay: 11,
       },
     },
   };
@@ -122,7 +122,7 @@ function Combined() {
         </div>
 
         {/* Direct Save Section */}
-        <motion.div
+        <div
           initial="hidden"
           animate="visible"
           variants={videoVariants}
@@ -161,7 +161,7 @@ function Combined() {
               <RxArrowTopRight />
             </div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Mobile View */}
