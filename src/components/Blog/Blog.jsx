@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Values from "./Values";
 
 function Blog() {
   useEffect(() => {
@@ -39,36 +40,41 @@ function Blog() {
   ];
 
   return (
-    <div className="bg-black font-sf-pro">
-      <div className="flex flex-col p-5 lg:px-48 lg:py-11">
-        <h1 className="text-white text-center font-meuthanies text-4xl mt-16">
-          Smarter Insights for Smarter Earnings
-        </h1>
-        <h1 className="text-white text-lg text-center mt-2">
-          Stay ahead with expert guidance, actionable tips, and the latest
-          <br />
-          updates to unlock your earning potential.
-        </h1>
-        <div className="mt-20">
-          {articles.map((article, index) => (
+    <div>
+      {" "}
+      <Values />
+      <div className="bg-white font-sf-pro">
+        <div className="flex flex-col p-5 ">
+          <div>
+            <h1 className="text-black text-center font-meuthanies text-4xl mt-16">
+              Smarter Insights for Smarter Earnings
+            </h1>
+            <h1 className="text-black text-lg text-center mt-2">
+              Stay ahead with expert guidance, actionable tips, and the latest
+              <br />
+              updates to unlock your earning potential.
+            </h1>
+          </div>
+          <div className="mt-20">
+            {articles.map((article, index) => (
               <div className="max-w-screen-md mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-between">
-                  <ul className="">
-                    <li className="text-left mb-10">
-                      <div className="flex flex-row items-start">
-                        
-                        <div className="bg-gray-900 p-5 pb-10 ">
-                          <h4 className="text-xl leading-6 font-meuthanies text-customGreen">
-                            {article.title}
-                          </h4>
-                          <p className="mt-2 text-md leading-6 text-white">
-                            {article.description}
-                          </p>
-                        </div>
+                <ul className="">
+                  <li className="text-left mb-10 bg-customYellow">
+                    <div className="flex flex-row items-start">
+                      <div className="p-5 pb-10 ">
+                        <h4 className="text-xl leading-6 font-meuthanies text-customBlue ">
+                          {article.title}
+                        </h4>
+                        <p className="mt-2 text-md leading-6 text-black">
+                          {article.description}
+                        </p>
                       </div>
-                    </li>
-                  </ul>
-                </div>
-          ))}
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

@@ -10,14 +10,14 @@ function PrivacyPolicy() {
     });
   }, []);
   return (
-    <div className="min-h-screen bg-black p-4 sm:p-8">
-      <div className="max-w-4xl text-white mx-auto bg-gray-900 p-6 rounded-lg shadow-lg mt-20">
-        <h1 class="text-5xl font-meuthanies text-center mt-2">
+    <div className="min-h-screen bg-[#F5F9FF] p-4 sm:p-8">
+      <div className="max-w-4xl text-black font-sf-pro mx-auto bg-white p-6 rounded-lg shadow-lg mt-20">
+        <h1 className="text-5xl font-meuthanies text-center mt-2">
           Privacy Policy{" "}
         </h1>
 
-        <h2 class="text-2xl font-meuthanies text-customGreen mt-10">1. Introduction</h2>
-        <p class="text-md mb-4">
+        <h2 className="text-2xl font-meuthanies text-customBlue mt-10">1. Introduction</h2>
+        <p className="text-md mb-4">
           Any information provided by you while accessing or using the website
           (“Website”) or our mobile application (“Application”), both
           collectively referred to as the “Platform”, shall be handled as per
@@ -30,15 +30,15 @@ function PrivacyPolicy() {
           should immediately stop accessing the Platform.
         </p>
 
-        <h2 class="text-2xl font-meuthanies text-customGreen mt-10">
+        <h2 className="text-2xl font-meuthanies text-customBlue mt-10">
           2. Applicability & Type of Information Collected
         </h2>
-        <p class="text-md mt-2">
+        <p className="text-md mt-2">
           Please read and understand the policy carefully. If you do not agree
           with our practices, stop accessing the Platform immediately. The
           information we collect (“Information”) may include:
         </p>
-        <ul class="list-disc list-inside text-md mb-4">
+        <ul className="list-disc list-inside text-md mb-4">
           <li>
             <strong>Personal Information:</strong> Name, email, phone number,
             address, nationality, and date of birth.
@@ -57,18 +57,18 @@ function PrivacyPolicy() {
             behavior patterns to enhance user experience.
           </li>
         </ul>
-        <p class="text-md mb-4">
+        <p className="text-md mb-4">
           Note: This policy does not apply to any information collected by third
           parties using the Platform or through links or advertisements on the
           Platform. Paxo Wealth does not control third-party activities and is
           not responsible for their data practices.
         </p>
 
-        <h2 class="text-2xl font-meuthanies text-customGreen mt-10">
+        <h2 className="text-2xl font-meuthanies text-customBlue mt-10">
           3. Nature and Manner of Collecting Information
         </h2>
-        <p class="text-md mt-2">We may collect information in the following ways:</p>
-        <ul class="list-disc list-inside text-md mb-4">
+        <p className="text-md mt-2">We may collect information in the following ways:</p>
+        <ul className="list-disc list-inside text-md mb-4">
           <li>
             <strong>Direct Input:</strong> Information you provide during
             registration, KYC verification, or while using our services.
@@ -90,14 +90,14 @@ function PrivacyPolicy() {
           </li>
         </ul>
 
-        <h2 class="text-2xl font-meuthanies text-customGreen mt-10">
+        <h2 className="text-2xl font-meuthanies text-customBlue mt-10">
           4. Purpose and Use of Information Collected
         </h2>
-        <p class="text-md mt-2">
+        <p className="text-md mt-2">
           The information collected will be used for legitimate business
           interests, including:
         </p>
-        <ul class="list-disc list-inside text-md mb-4">
+        <ul className="list-disc list-inside text-md mb-4">
           <li>
             <strong>Identity Verification:</strong> Ensuring compliance with
             applicable laws and KYC requirements.
@@ -123,7 +123,7 @@ function PrivacyPolicy() {
             authorized regulatory bodies as required under applicable laws.
           </li>
         </ul>
-        <p class="text-md mb-4">
+        <p className="text-md mb-4">
           If we rely on your consent to process your information, you may
           withdraw it at any time by contacting us at{" "}
           <a href="mailto:privacy@paxowealth.com">privacy@paxowealth.com</a>.
@@ -131,14 +131,14 @@ function PrivacyPolicy() {
           Platform.
         </p>
 
-        <h2 class="text-2xl font-meuthanies text-customGreen mt-10">
+        <h2 className="text-2xl font-meuthanies text-customBlue mt-10">
           5. Disclosure of Information
         </h2>
-        <p class="text-md mt-2">
+        <p className="text-md mt-2">
           Paxo Wealth does not disclose or share your personally identifiable
           information without your explicit consent, except:
         </p>
-        <ul class="list-disc list-inside text-md mb-4">
+        <ul className="list-disc list-inside text-md mb-4">
           <li>
             To agents, employees, and third-party service providers for
             operational purposes.
@@ -152,27 +152,27 @@ function PrivacyPolicy() {
           </li>
         </ul>
 
-        <h2 class="text-2xl font-meuthanies text-customGreen mt-10">
+        <h2 className="text-2xl font-meuthanies text-customBlue mt-10">
           6. Data Security & Retention
         </h2>
-        <p class="text-md mt-2">
+        <p className="text-md mt-2">
           <strong>Security:</strong> We implement robust security measures,
           including SSL encryption, secure servers, and restricted access to
           sensitive data. However, no system is entirely secure, and we cannot
           guarantee impenetrability.
         </p>
-        <p class="text-md mb-4">
+        <p className="text-md mb-4">
           <strong>Retention:</strong> We retain personal information as long as
           required for the purposes outlined in this Privacy Policy unless
           otherwise mandated by law.
         </p>
 
-        <h2 class="text-2xl font-meuthanies text-customGreen mt-10">7. User Rights</h2>
-        <p class="text-md mt-2">
+        <h2 className="text-2xl font-meuthanies text-customBlue mt-10">7. User Rights</h2>
+        <p className="text-md mt-2">
           In accordance with applicable data protection laws, you have the right
           to:
         </p>
-        <ul class="list-disc list-inside text-md mb-4">
+        <ul className="list-disc list-inside text-md mb-4">
           <li>Request access to your personal data.</li>
           <li>Request corrections or updates to inaccurate information.</li>
           <li>Request deletion of your data (subject to legal obligations).</li>
@@ -181,18 +181,18 @@ function PrivacyPolicy() {
             circumstances.
           </li>
         </ul>
-        <p class="text-md mb-4">
+        <p className="text-md mb-4">
           To exercise these rights, contact us at{" "}
           <a href="mailto:privacy@paxowealth.com">privacy@paxowealth.com</a>.
           Requests will be handled promptly in compliance with applicable laws.
         </p>
 
-        <h2 class="text-2xl font-meuthanies text-customGreen mt-10">8. Policy Updates</h2>
-        <p class="text-md mt-2">
+        <h2 className="text-2xl font-meuthanies text-customBlue mt-10">8. Policy Updates</h2>
+        <p className="text-md mt-2">
           This Privacy Policy may be updated periodically. Significant changes
           will be communicated through platform notifications or email.
         </p>
-        <p class="text-md mb-4">
+        <p className="text-md mb-4">
           For queries, contact us at{" "}
           <a href="mailto:privacy@paxowealth.com">privacy@paxowealth.com</a>.
         </p>

@@ -26,6 +26,7 @@ import Blog from "./components/Blog/Blog";
 import HowItWork from "./components/HowItWorks/HowItWork";
 import RentRise from "./components/InnerPages/RentRise/RentRise";
 import DirectSave from "./components/InnerPages/DirectSave/DirectSave";
+import Earnings from "./components/Earnings/Earnings";
 
 function App() {
   
@@ -53,7 +54,7 @@ function AppWithNavigation() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/faq" element={<FaqCombined />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
-        <Route path="/boost-income" element={<Boost />} />
+        <Route path="/boost-income" element={<BoostIncomePage />} />
         <Route path="/rent-rise" element={<RentRise />} />
         <Route path="/direct-save" element={<DirectSave />} />
         <Route path="/property-detail/:slug" element={<PropertyDetail />} />

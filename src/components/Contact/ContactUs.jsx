@@ -10,55 +10,55 @@ const ContactUs = () => {
     });
   }, []);
   return (
-    <div class="container mx-auto px-2 md:px-4 pt-28 py-20 bg-black">
-      <section class="text-white">
-        <div class="flex justify-center">
-          <div class="text-center md:max-w-xl lg:max-w-3xl">
-            <h2 class="mb-12 px-6 text-3xl font-meuthanies">Contact us</h2>
+    <div className="container mx-auto px-2 md:px-4 pt-28 py-20 bg-white">
+      <section className="text-black">
+        <div className="flex justify-center">
+          <div className="text-center md:max-w-xl lg:max-w-3xl">
+            <h2 className="mb-12 px-6 text-3xl font-meuthanies">Contact us</h2>
           </div>
         </div>
 
-        <div class="flex flex-wrap">
-          <form class="mb-12 w-full shrink-0 grow-0 basis-auto px-5 md:px-3 lg:mb-0 lg:w-5/12 lg:px-6">
-            <div class="mb-3 w-full">
+        <div className="flex flex-wrap">
+          <form className="mb-12 w-full shrink-0 grow-0 basis-auto px-5 md:px-3 lg:mb-0 lg:w-5/12 lg:px-6">
+            <div className="mb-3 w-full">
               <label
-                class="block font-medium mb-[2px] text-customGreen"
+                className="block font-medium mb-[2px] text-customBlue"
                 htmlFor="paxowealthInput90"
               >
                 Name
               </label>
               <input
                 type="text"
-                class="px-2 py-2  bg-gray-900 w-full outline-none rounded-md"
+                className="px-2 py-2 border border-black bg-white w-full outline-none rounded-md"
                 id="paxowealthInput90"
                 placeholder="Enter Name"
               />
             </div>
 
-            <div class="mb-3 w-full">
+            <div className="mb-3 w-full">
               <label
-                class="block font-medium mb-[2px] text-customGreen"
+                className="block font-medium mb-[2px] text-customBlue"
                 htmlFor="paxowealthInput90"
               >
                 Email
               </label>
               <input
                 type="email"
-                class="px-2 py-2 bg-gray-900  w-full outline-none rounded-md"
+                className="px-2 py-2 bg-white border border-black w-full outline-none rounded-md"
                 id="paxowealthInput90"
                 placeholder="Enter your email address"
               />
             </div>
 
-            <div class="mb-3 w-full">
+            <div className="mb-3 w-full">
               <label
-                class="block font-medium mb-[2px] text-customGreen"
+                className="block font-medium mb-[2px] text-customBlue"
                 htmlFor="paxowealthInput90"
               >
                 Message
               </label>
               <textarea
-                class="px-2 py-2 bg-gray-900  rounded-[5px] w-full outline-none"
+                className="px-2 py-2 bg-white border border-black rounded-[5px] w-full outline-none"
                 name=""
                 id=""
               ></textarea>
@@ -66,25 +66,25 @@ const ContactUs = () => {
 
             <button
               type="button"
-              class="mb-6 inline-block w-full rounded bg-customGreen px-6 py-2.5 font-medium uppercase leading-normal text-white hover:shadow-md "
+              className="mb-6 inline-block w-full rounded bg-customBlue px-6 py-2.5 font-medium uppercase leading-normal text-white hover:shadow-md "
             >
               Send
             </button>
           </form>
 
-          <div class="w-full shrink-0 grow-0 basis-auto lg:w-7/12">
-            <div class="flex flex-wrap">
-              <div class="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">
-                <div class="flex items-start">
-                  <div class="shrink-0">
-                    <div class="inline-block rounded-md bg-teal-400-100 p-4 text-customGreen">
+          <div className="w-full shrink-0 grow-0 basis-auto lg:w-7/12">
+            <div className="flex flex-wrap">
+              <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">
+                <div className="flex items-start">
+                  <div className="shrink-0">
+                    <div className="inline-block rounded-md bg-teal-400-100 p-4 text-customBlue">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke-width="2"
                         stroke="currentColor"
-                        class="h-6 w-6"
+                        className="h-6 w-6"
                       >
                         <path
                           stroke-linecap="round"
@@ -94,24 +94,24 @@ const ContactUs = () => {
                       </svg>
                     </div>
                   </div>
-                  <div class="ml-6 grow">
-                    <p class="mb-2 font-bold">Technical support</p>
-                    <p class="text-neutral-500 ">support@paxowealth.com</p>
-                    <p class="text-neutral-500 ">+1 234-567-89</p>
+                  <div className="ml-6 grow">
+                    <p className="mb-2 font-bold">Technical support</p>
+                    <p className="text-neutral-500 ">support@paxowealth.com</p>
+                    <p className="text-neutral-500 ">+1 234-567-89</p>
                   </div>
                 </div>
               </div>
-              <div class="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">
-                <div class="flex items-start">
-                  <div class="shrink-0">
-                    <div class="inline-block rounded-md bg-teal-400-100 p-4 text-customGreen">
+              <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">
+                <div className="flex items-start">
+                  <div className="shrink-0">
+                    <div className="inline-block rounded-md bg-teal-400-100 p-4 text-customBlue">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke-width="2"
                         stroke="currentColor"
-                        class="h-6 w-6"
+                        className="h-6 w-6"
                       >
                         <path
                           stroke-linecap="round"
@@ -121,24 +121,24 @@ const ContactUs = () => {
                       </svg>
                     </div>
                   </div>
-                  <div class="ml-6 grow">
-                    <p class="mb-2 font-bold ">Sales questions</p>
-                    <p class="text-neutral-500 ">sales@paxowealth.com</p>
-                    <p class="text-neutral-500 ">+1 234-567-89</p>
+                  <div className="ml-6 grow">
+                    <p className="mb-2 font-bold ">Sales questions</p>
+                    <p className="text-neutral-500 ">sales@paxowealth.com</p>
+                    <p className="text-neutral-500 ">+1 234-567-89</p>
                   </div>
                 </div>
               </div>
-              <div class="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">
-                <div class="align-start flex">
-                  <div class="shrink-0">
-                    <div class="inline-block rounded-md bg-teal-400-100 p-4 text-customGreen">
+              <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">
+                <div className="align-start flex">
+                  <div className="shrink-0">
+                    <div className="inline-block rounded-md bg-teal-400-100 p-4 text-customBlue">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke-width="2"
                         stroke="currentColor"
-                        class="h-6 w-6"
+                        className="h-6 w-6"
                       >
                         <path
                           stroke-linecap="round"
@@ -148,24 +148,24 @@ const ContactUs = () => {
                       </svg>
                     </div>
                   </div>
-                  <div class="ml-6 grow">
-                    <p class="mb-2 font-bold ">Press</p>
-                    <p class="text-neutral-500 ">press@paxowealth.com</p>
-                    <p class="text-neutral-500 ">+1 234-567-89</p>
+                  <div className="ml-6 grow">
+                    <p className="mb-2 font-bold ">Press</p>
+                    <p className="text-neutral-500 ">press@paxowealth.com</p>
+                    <p className="text-neutral-500 ">+1 234-567-89</p>
                   </div>
                 </div>
               </div>
-              <div class="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">
-                <div class="align-start flex">
-                  <div class="shrink-0">
-                    <div class="inline-block rounded-md bg-teal-400-100 p-4 text-customGreen">
+              <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">
+                <div className="align-start flex">
+                  <div className="shrink-0">
+                    <div className="inline-block rounded-md bg-teal-400-100 p-4 text-customBlue">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke-width="2"
                         stroke="currentColor"
-                        class="h-6 w-6"
+                        className="h-6 w-6"
                       >
                         <path
                           stroke-linecap="round"
@@ -175,10 +175,10 @@ const ContactUs = () => {
                       </svg>
                     </div>
                   </div>
-                  <div class="ml-6 grow">
-                    <p class="mb-2 font-bold">Bug report</p>
-                    <p class="text-neutral-500 ">bugs@paxowealth.com</p>
-                    <p class="text-neutral-500">+1 234-567-89</p>
+                  <div className="ml-6 grow">
+                    <p className="mb-2 font-bold">Bug report</p>
+                    <p className="text-neutral-500 ">bugs@paxowealth.com</p>
+                    <p className="text-neutral-500">+1 234-567-89</p>
                   </div>
                 </div>
               </div>

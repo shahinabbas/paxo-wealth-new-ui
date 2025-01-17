@@ -154,10 +154,8 @@ function KYC() {
   };
 
   return (
-    <div className="relative bg-black h-screen overflow-hidden font-sf-pro">
-      <div className="absolute top-60 md:left-32 left-80 w-96 h-96 bg-blue-800 rounded-full opacity-40 blur-3xl"></div>
-      <div className="absolute md:-top-20 md:left-[700px] -left-[200px] w-80 h-80 bg-emerald-900 rounded-full opacity-60 blur-3xl"></div>
-
+    <div className="relative bg-white h-screen overflow-hidden font-sf-pro">
+     
       <div className="flex flex-col items-center justify-start h-full pt-20 p-5">
         <div className="border border-gray-600 rounded-xl flex p-6 w-full max-w-4xl">
           <div className="md:flex justify-center items-center w-[700px] hidden">
@@ -169,8 +167,8 @@ function KYC() {
           </div>
 
           <div className="w-full">
-            <h1 className="text-xl text-center text-customGreen">PW</h1>
-            <h1 className="text-white text-center text-xl font-meuthanies">
+            <h1 className="text-xl text-center text-customBlue">PW</h1>
+            <h1 className="text-black text-center text-xl font-meuthanies">
               KYC Verification
             </h1>
 
@@ -186,15 +184,15 @@ function KYC() {
               </div>
             )}
 
-            <div className="mt-6 md:px-4">
+            <div className="mt-6 md:px-4 font-sf-pro">
               <div>
-                <h1 className="text-white mt-4">Full Name*</h1>
+                <h1 className="text-black mt-4">Full Name*</h1>
                 <input
                   type="text"
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleChange}
-                  className={`bg-black text-white p-2 w-full mt-2 rounded border ${
+                  className={`bg-white text-black p-2 w-full mt-2 rounded border ${
                     errors.fullName ? "border-red-500" : "border-gray-700"
                   }`}
                   placeholder="Full Name"
@@ -205,13 +203,13 @@ function KYC() {
 
                 <div className="md:flex gap-4">
                   <div className="flex-1">
-                    <h1 className="text-white mt-4">Aadhar Number*</h1>
+                    <h1 className="text-black mt-4">Aadhar Number*</h1>
                     <input
                       type="text"
                       name="adhaarNumber"
                       value={formData.adhaarNumber}
                       onChange={handleChange}
-                      className={`bg-black text-white p-2 w-full mt-2 rounded border ${
+                      className={`bg-white text-black p-2 w-full mt-2 rounded border ${
                         errors.adhaarNumber
                           ? "border-red-500"
                           : "border-gray-700"
@@ -225,13 +223,13 @@ function KYC() {
                     )}
                   </div>
                   <div className="flex-1">
-                    <h1 className="text-white mt-4">PAN Number*</h1>
+                    <h1 className="text-black mt-4">PAN Number*</h1>
                     <input
                       type="text"
                       name="panNumber"
                       value={formData.panNumber}
                       onChange={handleChange}
-                      className={`bg-black text-white p-2 w-full mt-2 rounded border ${
+                      className={`bg-white text-black p-2 w-full mt-2 rounded border ${
                         errors.panNumber ? "border-red-500" : "border-gray-700"
                       }`}
                       placeholder="Enter PAN Number"
@@ -248,7 +246,7 @@ function KYC() {
                 <div className="md:flex gap-4">
                   <div className="flex-1">
                     <div
-                      className={`flex items-center bg-black text-white p-2 w-full mt-6 rounded border ${
+                      className={`flex items-center bg-white text-black p-2 w-full mt-6 rounded border ${
                         errors.adhaarFile ? "border-red-500" : "border-gray-700"
                       }`}
                     >
@@ -301,7 +299,7 @@ function KYC() {
 
                   <div className="flex-1">
                     <div
-                      className={`flex items-center bg-black text-white p-2 w-full mt-6 rounded border ${
+                      className={`flex items-center bg-white text-black p-2 w-full mt-6 rounded border ${
                         errors.panFile ? "border-red-500" : "border-gray-700"
                       }`}
                     >
@@ -354,7 +352,7 @@ function KYC() {
                 </div>
 
                 <button
-                  className={`rounded-full bg-customGreen mt-5 w-52 p-2 mx-auto ${
+                  className={`rounded-full font-semibold bg-customYellow mt-5 w-52 p-2 mx-auto ${
                     isLoading
                       ? "opacity-50 cursor-not-allowed"
                       : "cursor-pointer"

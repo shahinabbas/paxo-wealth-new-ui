@@ -78,15 +78,14 @@ function Login() {
   };
 
   return (
-    <div className="relative bg-black h-screen overflow-hidden font-sf-pro">
-      <div className="absolute top-60 md:left-32 left-60 w-96 h-96 bg-blue-800 rounded-full opacity-40 blur-3xl"></div>
-      <div className="absolute md:-top-20 md:left-[700px] -left-[120px] w-80 h-80 bg-emerald-900 rounded-full opacity-60 blur-3xl"></div>
+    <div className="relative bg-white h-screen overflow-hidden font-sf-pro">
+      <div className="absolute top-60 md:left-32 left-60 w-96 h-96  rounded-full opacity-40 blur-3xl"></div>
 
       <div className="flex justify-center items-center h-full">
         <div className="border border-gray-600 rounded-xl md:w-2/6 md:h-5/6 p-6">
-          <h1 className="text-xl text-center text-customGreen font-meuthanies">PW</h1>
-          <h1 className="text-white text-center font-meuthanies text-xl">
-            Welcome to <span className="text-customGreen">Paxo Wealth</span>
+          <h1 className="text-xl text-center text-customBlue  font-meuthanies">PW</h1>
+          <h1 className="text-black text-center font-meuthanies text-xl">
+            Welcome to <span className="text-customBlue ">Paxo Wealth</span>
           </h1>
           <div className="mt-6 px-4">
             <div>
@@ -102,10 +101,10 @@ function Login() {
                 </div>
               )}
 
-              <h1 className="text-white">Mobile Number</h1>
+              <h1 className="text-black">Mobile Number</h1>
               <input
                 type="text"
-                className={`bg-black text-white p-2 w-full mt-2 rounded border ${
+                className={`bg-white text-black p-2 w-full mt-2 rounded border ${
                   errors.phone ? 'border-red-500' : 'border-gray-700'
                 }`}
                 placeholder="Mobile Number"
@@ -119,10 +118,10 @@ function Login() {
                 <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
               )}
               
-              <h1 className="text-white mt-4">One Time Password</h1>
+              <h1 className="text-black mt-4">One Time Password</h1>
               <input
                 type="text"
-                className={`bg-black text-white p-2 w-full mt-2 rounded border ${
+                className={`bg-white text-black p-2 w-full mt-2 rounded border ${
                   errors.otp ? 'border-red-500' : 'border-gray-700'
                 }`}
                 placeholder="Enter OTP"
@@ -147,16 +146,16 @@ function Login() {
               </div>
 
               <p className="text-gray-600 text-center mt-2">Or</p>
-              <div className="rounded-full border border-customGreen mt-2 justify-center items-center flex w-48 p-2 mx-auto text-white">
+              <div className="rounded-full border border-customGreen mt-2 justify-center items-center flex w-48 p-2 mx-auto text-black">
                 <FcGoogle />
-                <h1 className="text-center text-sm ml-2 text-white">
+                <h1 className="text-center text-sm ml-2 text-black">
                   SignIn with Google
                 </h1>
               </div>
               
-              <p className="text-white text-[10px] text-center mt-4">
+              <p className="text-black text-[10px] text-center mt-4">
                 Don't have an account?
-                <Link to="/signup" className="text-customGreen ml-1">
+                <Link to="/signup" className="text-customBlue ml-1">
                   SignUp
                 </Link>
               </p>

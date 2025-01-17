@@ -10,12 +10,12 @@ const Terms = () => {
     });
   }, []);
   return (
-    <div className="min-h-screen bg-black p-4 sm:p-8">
-      <div className="max-w-4xl mx-auto bg-gray-900 p-6 rounded-lg shadow-lg mt-14">
-        <h1 className="text-5xl font-meuthanies   text-center text-white mb-6">
+    <div className="min-h-screen bg-white p-4 sm:p-8">
+      <div className="max-w-4xl mx-auto bg-[#F5F9FF]  p-6 rounded-lg shadow-lg mt-14">
+        <h1 className="text-5xl font-meuthanies   text-center text-balck mb-6">
           Terms and Conditions
         </h1>
-        <p className="text-md text-white">
+        <p className="text-md text-black">
           This document is an electronic record in terms of the Information
           Technology Act, 2000, and rules thereunder as applicable and the
           amended provisions pertaining to electronic records in various
@@ -24,8 +24,8 @@ const Terms = () => {
           require any physical or digital signatures.
         </p>
         <div>
-          <h2 className="text-2xl  font-meuthanies text-customGreen mt-10">1. Terms</h2>
-          <p className="text-md text-white mt-2">
+          <h2 className="text-2xl  font-meuthanies text-customBlue mt-10">1. Terms</h2>
+          <p className="text-md text-black mt-2">
             By accessing or using the website www.paxowealth.com (“Website”) or
             the mobile application (“Application”), both collectively referred
             to as the “Platform”, you agree to be bound by these terms of
@@ -40,8 +40,8 @@ const Terms = () => {
           </p>{" "}
         </div>
         <div>
-          <div className="bg-gray-900  rounded-lg shadow-lg text-white">
-            <h2 className="text-2xl  font-meuthanies text-customGreen mt-10">2. Use License</h2>
+          <div className="  text-black">
+            <h2 className="text-2xl  font-meuthanies text-customBlue mt-10">2. Use License</h2>
             <p className="text-md mt-2">
               The Platform is owned, administered, and monitored by PWPL having
               CIN UXXXXXXXXXXXXX and its registered office at [Company Address].
@@ -80,10 +80,10 @@ const Terms = () => {
           </div>
         </div>
         <div>
-          <h2 className="text-2xl  font-meuthanies text-customGreen  mt-10">
+          <h2 className="text-2xl  font-meuthanies text-customBlue  mt-10">
             3. Disclaimer
           </h2>
-          <p className="text-md text-white mt-2">
+          <p className="text-md  mt-2">
             The materials on the Platform are provided on an “as is” basis. PWPL
             makes no warranties, expressed or implied, and hereby disclaims and
             negates all other warranties including, without limitation, implied
@@ -91,7 +91,7 @@ const Terms = () => {
             particular purpose, or non-infringement of intellectual property or
             other violation of rights.
           </p>
-          <p className="text-md text-white mt-2">
+          <p className="text-md  mt-2">
             Further, PWPL does not warrant or make any representations
             concerning the accuracy, likely results, or reliability of the use
             of the materials on the Platform or otherwise relating to such
@@ -99,8 +99,8 @@ const Terms = () => {
           </p>{" "}
         </div>
         <div>
-          <h2 className="text-2xl  font-meuthanies text-customGreen  mt-4">4. Services</h2>
-          <p className="text-md text-white mt-2">
+          <h2 className="text-2xl  font-meuthanies text-customBlue  mt-4">4. Services</h2>
+          <p className="text-md  mt-2">
             If you choose to avail any services from PWPL, you agree and
             acknowledge that you may be required to execute an agreement with
             PWPL, and subject to you being successfully onboarded as a client,
@@ -109,10 +109,10 @@ const Terms = () => {
           </p>{" "}
         </div>
         <div>
-          <h2 className="text-2xl  font-meuthanies text-customGreen  mt-10">
+          <h2 className="text-2xl  font-meuthanies text-customBlue  mt-10">
             5. Limitations
           </h2>
-          <p className="text-md text-white mt-2">
+          <p className="text-md  mt-2">
             In no event shall PWPL be liable for any damages (including, without
             limitation, damages for loss of data or profit, or due to business
             interruption) arising out of the use or inability to use the
@@ -122,7 +122,7 @@ const Terms = () => {
             computer, software, or other equipment due to the use of the
             Platform.
           </p>
-          <p className="text-md text-white mt-2">
+          <p className="text-md  mt-2">
             PWPL shall have the right to be indemnified against all suits,
             actions, costs, and damages that may arise on account of the misuse
             or misrepresentation of the contents of the Platform by you.
@@ -130,10 +130,10 @@ const Terms = () => {
         </div>
 
         <div>
-          <h2 className="text-2xl  font-meuthanies text-customGreen  mt-10">
+          <h2 className="text-2xl  font-meuthanies text-customBlue  mt-10">
             6. Accuracy of Materials
           </h2>
-          <p className="text-md text-white mt-2">
+          <p className="text-md  mt-2">
             The materials appearing on the Platform could include technical,
             typographical, or photographic errors. PWPL does not warrant that
             any of the materials on its Platform are accurate, complete, or
@@ -143,10 +143,10 @@ const Terms = () => {
           </p>
         </div>
         <div>
-          <h2 className="text-2xl  font-meuthanies text-customGreen mt-10">
+          <h2 className="text-2xl  font-meuthanies text-customBlue mt-10">
             7. External Links
           </h2>
-          <p className="text-md text-white mt-2">
+          <p className="text-md  mt-2">
             PWPL has not reviewed all of the sites linked to the Platform and is
             not responsible for the contents of any such third-party linked
             site. The inclusion of any link does not imply endorsement by PWPL
@@ -158,10 +158,10 @@ const Terms = () => {
           </p>
         </div>
         <div>
-          <h2 className="text-2xl  font-meuthanies text-customGreen mt-10">
+          <h2 className="text-2xl  font-meuthanies text-customBlue mt-10">
             8. Modifications
           </h2>
-          <p className="text-md text-white mt-2">
+          <p className="text-md  mt-2">
             PWPL may revise these terms of service for the Platform at any time
             without notice. By using the Platform, you agree to be bound by the
             version of these terms of service appearing on the Platform as on
@@ -169,10 +169,10 @@ const Terms = () => {
           </p>
         </div>
         <div>
-          <h2 className="text-2xl  font-meuthanies text-customGreen mt-10">
+          <h2 className="text-2xl  font-meuthanies text-customBlue mt-10">
             9. Governing Law{" "}
           </h2>
-          <p className="text-md text-white mt-2">
+          <p className="text-md  mt-2">
             These terms and conditions are governed by and construed in
             accordance with the laws of India. Any dispute arising out of these
             Terms of Service shall be referred to arbitration under the
@@ -184,10 +184,10 @@ const Terms = () => {
           </p>
         </div>
         <div>
-          <h2 className="text-2xl  font-meuthanies text-customGreen mt-10">
+          <h2 className="text-2xl  font-meuthanies text-customBlue mt-10">
             10. Confidentiality
           </h2>
-          <p className="text-md text-white mt-2">
+          <p className="text-md  mt-2">
             PWPL agrees to handle all information provided by you with utmost
             care and confidentiality in accordance with applicable regulations
             and prescribed industry standards. Similarly, you agree to treat all
@@ -199,10 +199,10 @@ const Terms = () => {
           </p>
         </div>
         <div>
-          <h2 className="text-2xl  font-meuthanies text-customGreen mt-10">
+          <h2 className="text-2xl  font-meuthanies text-customBlue mt-10">
             11. Privacy Policy
           </h2>
-          <p className="text-md text-white mt-2">
+          <p className="text-md  mt-2">
             Please review our Privacy Policy to understand what kind of
             information we gather from you and the specific measures we take to
             protect your personal information. The Privacy Policy is hereby
@@ -210,20 +210,20 @@ const Terms = () => {
           </p>
         </div>
         <div>
-          <h2 className="text-2xl  font-meuthanies text-customGreen mt-10">
+          <h2 className="text-2xl  font-meuthanies text-customBlue mt-10">
             12. Miscellaneous
           </h2>
-          <p className="text-md text-white mt-2">
+          <p className="text-md  mt-2">
             PWPL’s failure to enforce any provision of these Terms of Service
             shall not be deemed to be a waiver of such provision nor of the
             right to enforce such provision.
           </p>
         </div>
         <div>
-          <h2 className="text-2xl  font-meuthanies text-customGreen mt-10">
+          <h2 className="text-2xl  font-meuthanies text-customBlue mt-10">
             13. Contact Us
           </h2>
-          <p className="text-md text-white mt-2">
+          <p className="text-md  mt-2">
             If you have any questions regarding these Terms of Service, please
             write to us at{" "}
             <a href="mailto:support@paxowealth.com" className="text-blue-500">

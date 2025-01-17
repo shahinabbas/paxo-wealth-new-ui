@@ -11,7 +11,7 @@ const Hand = () => (
     xmlns="http://www.w3.org/2000/svg"
     initial={{ strokeDasharray: "0, 500" }}
     animate={{ strokeDasharray: "600, 500" }}
-    transition={{ duration: 2, delay: 2, ease: "linear" }}
+    transition={{ duration: 3, delay: 3, ease: "linear" }}
   >
     <rect
       x="4.75"
@@ -81,7 +81,7 @@ const Graph = () => (
     xmlns="http://www.w3.org/2000/svg"
     initial={{ strokeDasharray: "0, 500" }}
     animate={{ strokeDasharray: "600, 500" }}
-    transition={{ duration: 2, delay: 6, ease: "linear" }}
+    transition={{ duration: 3, delay: 9, ease: "linear" }}
   >
     <g opacity="0.1" filter="url(#filter0_f_0_1)">
       <rect x="26" y="24" width="126" height="126" rx="16" fill="#0056E0" />
@@ -152,7 +152,7 @@ const Bar = () => (
     xmlns="http://www.w3.org/2000/svg"
     initial={{ strokeDasharray: "0, 500" }}
     animate={{ strokeDasharray: "600, 500" }}
-    transition={{ duration: 2, delay: 4, ease: "linear" }}
+    transition={{ duration: 3, delay: 6, ease: "linear" }}
   >
     <rect
       x="0.75"
@@ -203,7 +203,7 @@ const Bulb = () => (
     xmlns="http://www.w3.org/2000/svg"
     initial={{ strokeDasharray: "0, 500" }}
     animate={{ strokeDasharray: "600, 500" }}
-    transition={{ duration: 2, delay: 0, ease: "linear" }}
+    transition={{ duration: 3, delay: 0, ease: "linear" }}
   >
     <rect
       x="0.75"
@@ -275,7 +275,7 @@ const BulbLine = () => (
       stroke: ["#444444", "#0056E0", "#444444"], // Animation sequence for color change
     }}
     transition={{
-      duration: 2,
+      duration: 3,
       ease: "linear",
     }}
   >
@@ -299,9 +299,9 @@ const HandLine = () => (
       stroke: ["#444444", "#0056E0", "#444444"], // Color transition
     }}
     transition={{
-      duration: 2,
+      duration: 3,
       ease: "linear",
-      delay: 2, // Starts after BulbLine finishes
+      delay: 3, // Starts after BulbLine finishes
     }}
   >
     <motion.path
@@ -324,9 +324,9 @@ const BarLine = () => (
       stroke: ["#444444", "#0056E0", "#444444"], // Color transition
     }}
     transition={{
-      duration: 2,
+      duration: 3,
       ease: "linear",
-      delay: 4, // Starts after HandLine finishes
+      delay: 6, // Starts after HandLine finishes
     }}
   >
     <motion.path
@@ -349,9 +349,9 @@ const GraphLine = () => (
       stroke: ["#444444", "#0056E0", "#444444"], // Color transition
     }}
     transition={{
-      duration: 2,
+      duration: 3,
       ease: "linear",
-      delay: 6, // Starts after BarLine finishes
+      delay: 9, // Starts after BarLine finishes
     }}
   >
     <motion.path d="M1 165V25C1 11.7452 11.7452 1 25 1H180" strokeWidth="2" />
