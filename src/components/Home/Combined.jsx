@@ -1,14 +1,7 @@
 import React from "react";
-import Video1 from "/Income.mp4";
-import Video2 from "/DirectSave.mp4";
-import Video3 from "/Rent.mp4";
 import { RxArrowTopRight } from "react-icons/rx";
 import { motion } from "framer-motion"; // Import motion from framer-motion
 import { useNavigate } from "react-router-dom";
-import BoostIncomeIcon from "./BoostIncomeIcon";
-import RentRiseIcon from "./RentRiseIcon";
-import DirectSave from "./DirectSave";
-import DirectSaveIcon from "./DirectSaveIcon";
 import IncomeGif from "/Income_2.gif";
 import DirectSaveGif from "/DirectSave.gif";
 import RentRiseGif from "/Rent.gif";
