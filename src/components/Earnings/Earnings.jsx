@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import image2 from "/earn.png";
 import { Link } from "react-router-dom";
@@ -6,9 +6,22 @@ import { Link } from "react-router-dom";
 function Earnings() {
   const [hovered, setHovered] = useState(false);
   const [animationDone, setAnimationDone] = useState(false); // Track if animation is done
+  const [isMobile, setIsMobile] = useState(false); // Check for mobile screen
+
+  // Check screen size on component mount
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Adjust the breakpoint as needed
+    };
+
+    handleResize(); // Initial check
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize); // Cleanup on unmount
+  }, []);
 
   const handleMouseEnter = () => {
-    if (!animationDone) {
+    if (!animationDone && !isMobile) {
       setHovered(true);
     }
   };
@@ -27,7 +40,7 @@ function Earnings() {
 
         {/* Animated "Start Earning" Text */}
         <div className="absolute inset-0 flex items-center justify-center">
-          {(hovered || animationDone) && ( // Show after animation is complete
+          {(!isMobile && (hovered || animationDone)) && ( // Show animation only on non-mobile
             <motion.div
               initial="hidden"
               animate="visible"
@@ -71,6 +84,11 @@ function Earnings() {
                 Start Earning
               </motion.h1>
             </motion.div>
+          )}
+          {isMobile && ( // Display static content on mobile
+            <h1 className="text-[#6200EE] font-meuthanies text-[40px] md:text-[113px]">
+              Start Earning
+            </h1>
           )}
         </div>
       </div>

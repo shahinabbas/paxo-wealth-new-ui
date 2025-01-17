@@ -1,5 +1,5 @@
 import React from "react";
-import Video from "/DirectSave.mp4";
+import DirectSaveGif from "/DirectSave.gif";
 const Icon = () => (
   <svg
     width="700"
@@ -246,17 +246,15 @@ const Icon = () => (
 function DirectSave() {
   return (
     <div className="h-screen bg-white md:flex items-center ">
-      {/* <video
-        src={Video}
-        className="w-[700px] h-[550px]"
-        autoPlay
-        loop
-        muted
-        playsInline
-      /> */}
-      <Icon/>
-      <div className="md:-ml-20 ml-14 md:mt-0 -mt-28">
-        <h1 className=" text-5xl font-meuthanies">
+      <div className="md:w-[700px] md:h-[550px] flex items-center justify-center">
+        <img
+          src={DirectSaveGif}
+          alt="Direct Save"
+          className="max-w-full max-h-full md:mt-0 mt-20"
+        />
+      </div>
+      <div className="md:-ml-20 ml-14 md:mt-0 -mt-10">
+        <h1 className=" text-5xl font-meuthanies ">
           Direct <span className="text-customBlue">Save</span>
         </h1>
         <p className="text-black opacity-50 mt-4 font-sf-pro">

@@ -132,38 +132,38 @@ const RentRise = () => {
     });
   }, []);
   return (
-    <div className="bg-gradient-to-b from-gray-900 to-gray-800 text-white min-h-screen font-sans pb-16 ">
+    <div className="bg-white text-black min-h-screen font-sans pb-16 ">
       {/* Hero Section */}
-      <div className="bg-gradient-to-b from-gray-900 to-gray-800">
-        <section className="px-4 py-16  text-center bg-gradient-to-b from-gray-900 to-gray-800 ">
+      <div className="bg-white">
+        <section className="px-4 py-16  text-center bg-white">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-5xl mt-10 mb-6 font-meuthanies">
               RentRise – Earn Consistent Rental Income Hassle-Free
             </h1>
-            <p className=" mb-8 text-gray-300 font-sf-pro">
+            <p className=" mb-8  text-black opacity-50 font-sf-pro">
               Explore RentRise opportunities for earning steady rental income of
               up to 30% per annum. Let Paxo Wealth manage tenants and leases for
               you.
             </p>
             <div className="md:flex justify-center gap-4 font-sf-pro">
-              <button className="bg-customGreen text-black hover:bg-green-600 px-8 py-3 rounded-lg font-semibold">
+              <button className="bg-customBlue text-white  px-8 py-3 rounded-lg font-semibold">
                 Explore Rental Options{" "}
               </button>
-              <button className="border md:mt-0 mt-5 border-customGreen hover:bg-customGreen/10 md:px-8 px-16 py-3 rounded-lg font-semibold">
+              <button className="border md:mt-0 mt-5 border-customBlue md:px-8 px-16 py-3 rounded-lg font-semibold">
                 Learn How It Works
               </button>
             </div>
             {/* <div className="flex justify-center gap-16 mt-16 font-sf-pro">
             <div className="text-center">
-              <IoShieldCheckmark className="w-12 h-12 text-customGreen mx-auto mb-2" />
+              <IoShieldCheckmark className="w-12 h-12 text-customBlue mx-auto mb-2" />
               <p>Stress-Free <br/>Property Management</p>
             </div>
             <div className="text-center">
-              <FaMoneyBillTrendUp className="w-12 h-12 text-customGreen mx-auto mb-2" />
+              <FaMoneyBillTrendUp className="w-12 h-12 text-customBlue mx-auto mb-2" />
               <p>Earn Consistent Income</p>
             </div>
             <div className="text-center">
-              <FaChartLine className="w-12 h-12 text-customGreen mx-auto mb-2" />
+              <FaChartLine className="w-12 h-12 text-customBlue mx-auto mb-2" />
               <p>Real-time Monitoring</p>
             </div>
           </div> */}
@@ -171,7 +171,7 @@ const RentRise = () => {
         </section>
 
         {/* Trading Dashboard Section */}
-        <section className="px-4 bg-gray-800">
+        <section className="px-4 bg-white">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl  text-center font-meuthanies ">
               Your Property, Hassle-Free Income.
@@ -189,8 +189,8 @@ const RentRise = () => {
                     onClick={() => setActiveCategory(category.value)}
                     className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
                       activeCategory === category.value
-                        ? "bg-customGreen text-black"
-                        : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                        ? "bg-customYellow text-black"
+                        : "bg-customBlue text-gray-300 "
                     }`}
                   >
                     {category.name}
@@ -203,7 +203,7 @@ const RentRise = () => {
                 ))}
               </div>
               {/* Category Description */}
-              <div className="text-gray-400 text-sm">
+              <div className=" text-sm">
                 {
                   categories.find((cat) => cat.value === activeCategory)
                     ?.description
@@ -212,10 +212,10 @@ const RentRise = () => {
             </div>
 
             {/* Filters */}
-            <div className="bg-gray-900 p-6 rounded-lg mb-8">
+            <div className="bg-gray-300 p-6 rounded-lg mb-8">
               <div className="flex flex-wrap gap-6 items-center">
                 <div className="flex items-center gap-2">
-                  <FaFilter className="text-customGreen" />
+                  <FaFilter className="text-customBlue" />
                   <span className="font-semibold">Filters:</span>
                 </div>
 
@@ -230,7 +230,7 @@ const RentRise = () => {
               </select> */}
 
                 <select
-                  className="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-sm"
+                  className="bg-customBlue text-white rounded-lg px-4 py-2 text-sm"
                   onChange={(e) => setPropertyTypeFilter(e.target.value)}
                 >
                   <option value="all">All Property Types</option>
@@ -246,7 +246,7 @@ const RentRise = () => {
               {filteredProperties.map((property) => (
                 <div
                   key={property.id}
-                  className="bg-gray-900 rounded-lg overflow-hidden"
+                  className="bg-gray-300 rounded-lg overflow-hidden"
                 >
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-4">
@@ -257,7 +257,7 @@ const RentRise = () => {
                       </div>
                       <div className="flex items-center">
                         {property.demand === "high" ? (
-                          <FaArrowUp className="text-customGreen" />
+                          <FaArrowUp className="text-customBlue" />
                         ) : (
                           <FaArrowDown className="text-yellow-500" />
                         )}
@@ -266,25 +266,25 @@ const RentRise = () => {
 
                     <div className="space-y-3">
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-400">Category:</span>
-                        <span className="font-semibold text-customGreen">
+                        <span className="">Category:</span>
+                        <span className="font-semibold text-customBlue">
                           {property.category}
                         </span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-400">Market Value:</span>
+                        <span className="">Market Value:</span>
                         <span className="font-semibold">
                           {property.tradeValue}
                         </span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-400">Growth Potential:</span>
-                        <span className="font-semibold text-customGreen">
+                        <span className="">Growth Potential:</span>
+                        <span className="font-semibold text-customBlue">
                           {property.growthPotential}%
                         </span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-400">
+                        <span className="">
                           Pre-Listed Buyers:
                         </span>
                         <span className="font-semibold">
@@ -296,8 +296,8 @@ const RentRise = () => {
                     <button
                       className={`w-full mt-6 py-2 rounded-lg font-semibold transition-colors ${
                         property.soldOut
-                          ? "bg-gray-700 text-gray-400 cursor-not-allowed"
-                          : "bg-customGreen text-black"
+                          ? "bg-gray-700 text-white opacity-50 cursor-not-allowed"
+                          : "bg-customBlue text-white"
                       }`}
                       onClick={!property.soldOut ? onClick : undefined}
                       disabled={property.soldOut}

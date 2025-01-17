@@ -9,15 +9,14 @@ import EarningsSteps from "../EarningsSteps/EarningsSteps";
 import Earnings from "../Earnings/Earnings";
 import Premium from "../Premium/Premium";
 import Explore from "../Explore/Explore";
-import BoostIncome from "../Home/BoostIncome";
 import DirectSave from "../Home/DirectSave";
 import RentRise from "../Home/RentRise";
-import Combined from "../Home/Combined";
 
 
 const HomePage = () => {
   return (
     <div>
+  
       <Home />
       <Features />
       <HeroScrollDemo />

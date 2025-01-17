@@ -9,6 +9,9 @@ import BoostIncomeIcon from "./BoostIncomeIcon";
 import RentRiseIcon from "./RentRiseIcon";
 import DirectSave from "./DirectSave";
 import DirectSaveIcon from "./DirectSaveIcon";
+import IncomeGif from "/Income_2.gif";
+import DirectSaveGif from "/DirectSave.gif";
+import RentRiseGif from "/Rent.gif";
 
 function Combined() {
   const navigate = useNavigate(); // Initialize the navigate hook
@@ -27,14 +30,14 @@ function Combined() {
       transition: {
         duration: 2,
         ease: "easeInOut",
-        delay: 11,
+        delay: 12,
       },
     },
   };
 
   // Define animation variants for the video
   const videoVariants = {
-    hidden: { opacity: 0, x: "-100%", y: "-30%" }, // Start from top-left
+    hidden: { opacity: 0, x: "-100%", y: "-5%" },
     visible: {
       opacity: 1,
       x: 0,
@@ -51,7 +54,7 @@ function Combined() {
     <div>
       <div className="hidden bg-white md:flex min-h-screen mt-14 gap-10  px-10 items-center text-center justify-center">
         {/* Boost Income Section */}
-        <div className=" bg-[#AED1FF] bg-opacity-20 p-8">
+        <div className=" bg-[#AED1FF] bg-opacity-20 p-8 w-[380px]">
           <motion.h1
             className=" text-4xl font-meuthanies"
             initial="hidden"
@@ -60,21 +63,24 @@ function Combined() {
           >
             Boost <span className="text-customGreen">Income</span>
           </motion.h1>
-          <p className="opacity-50 text-sm mt-4 font-sf-pro">
+          <motion.h1
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+            className="opacity-50 text-sm mt-4 font-sf-pro"
+          >
             Experience immediate 48% growth with <br />
             secure payouts
-          </p>
-          {/* <video
-            src={Video1}
-            alt="Boost Income"
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-80 h-72"
-          /> */}
-          <BoostIncomeIcon />
-          <div className="bottom-5  cursor-pointer">
+          </motion.h1>
+
+          <img src={IncomeGif} alt="Boost Income" className="w-full" />
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+            className="bottom-5  cursor-pointer"
+          >
+            {" "}
             <div
               className="border bg-customYellow rounded-full  inline-flex items-center justify-center space-x-2 p-2 px-8 transition-all duration-300 ease-in-out"
               onClick={() => handleClick("/boost-income")}
@@ -82,11 +88,11 @@ function Combined() {
               <p className=" text-xl font-semibold font-sf-pro">Unlock</p>
               <RxArrowTopRight />
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Rent Rise Section */}
-        <div className=" bg-[#89DDBF] bg-opacity-20 p-8">
+        <div className=" bg-[#89DDBF] bg-opacity-20 p-8 w-[380px]">
           <motion.h1
             className=" text-4xl font-meuthanies"
             initial="hidden"
@@ -95,21 +101,23 @@ function Combined() {
           >
             Rent <span className="text-customGreen">Rise</span>
           </motion.h1>
-          <p className="opacity-50 text-sm mt-4 font-sf-pro">
+          <motion.h1
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+            className="opacity-50 text-sm mt-4 font-sf-pro"
+          >
             Turn properties into a steady income <br />
             source effortlessly.
-          </p>
-          {/* <video
-            src={Video3}
-            alt="Rent Rise"
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-80 h-72"
-          /> */}
-          <DirectSaveIcon />
-          <div className="bottom-5  cursor-pointer">
+          </motion.h1>
+
+          <img src={RentRiseGif} alt="Rent Rise" className="w-full" />
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+            className="bottom-5  cursor-pointer"
+          >
             <div
               className="border bg-customYellow rounded-full  inline-flex items-center justify-center space-x-2 p-2 px-8 transition-all duration-300 ease-in-out"
               onClick={() => handleClick("/rent-rise")}
@@ -117,11 +125,16 @@ function Combined() {
               <p className=" text-xl font-semibold font-sf-pro">Unlock</p>
               <RxArrowTopRight />
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Direct Save Section */}
-        <div className="bg-[#CAB5F5] bg-opacity-20 p-8">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={videoVariants}
+          className="bg-[#CAB5F5] bg-opacity-20 p-8 w-[380px]"
+        >
           <motion.h1
             className=" text-4xl font-meuthanies"
             initial="hidden"
@@ -130,26 +143,23 @@ function Combined() {
           >
             Direct <span className="text-customGreen">Save</span>
           </motion.h1>
-          <p className="opacity-50 text-sm mt-4 font-sf-pro">
+          <motion.h1
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+            className="opacity-50 text-sm mt-4 font-sf-pro"
+          >
             Save big with exclusive discounts <br />
             on premium properties
-          </p>
+          </motion.h1>
+
+          <img src={DirectSaveGif} alt="" />
           <motion.div
             initial="hidden"
             animate="visible"
-            variants={videoVariants} // Apply the video animation variants
+            variants={textVariants}
+            className="bottom-5  cursor-pointer"
           >
-            {/* <video
-              src={Video2}
-              className="w-80 h-72"
-              autoPlay
-              loop
-              muted
-              playsInline
-            /> */}
-            <RentRiseIcon />
-          </motion.div>
-          <div className="bottom-5 cursor-pointer">
             <div
               className="border bg-customYellow rounded-full  inline-flex items-center justify-center space-x-2 p-2 px-8 transition-all duration-300 ease-in-out"
               onClick={() => handleClick("/direct-save")}
@@ -157,50 +167,46 @@ function Combined() {
               <p className=" text-xl font-semibold font-sf-pro">Unlock</p>
               <RxArrowTopRight />
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Mobile View */}
-      <div className="flex h-[10rem] lg:hidden flex-col min-h-screen mt-14 gap-10  items-center text-center overflow-y-auto">
+      <div className="flex h-[10rem] lg:hidden flex-col min-h-screen md:mt-14 md:gap-10  items-center text-center overflow-y-auto">
         {[
           {
             title: "Boost Income",
-            video: Video1,
-            icon: BoostIncomeIcon,
+            icon: IncomeGif,
             desc: "Experience immediate 48% growth with secure payouts",
             link: "/boost-income",
           },
           {
             title: "Rent Rise",
-            video: Video3,
-            icon: RentRiseIcon,
+            icon: RentRiseGif,
             desc: "Turn properties into a steady income source effortlessly.",
             link: "/rent-rise",
           },
           {
             title: "Direct Save",
-            video: Video2,
-            icon: DirectSaveIcon,
+            icon: DirectSaveGif,
             desc: "Save big with exclusive discounts on premium properties",
             link: "/direct-save",
           },
         ].map((section, index) => (
-          <div key={index} className="bg-white w-full flex flex-col items-center py-4">
-            <div className=" text-2xl font-meuthanies">{section.title}</div>
-            <p className="opacity-50 text-xs mt-2 font-sf-pro">
+          <div
+            key={index}
+            className="bg-white w-full flex flex-col items-center py-4"
+          >
+            <div className=" text-2xl font-meuthanies mt-14">{section.title}</div>
+            <p className="opacity-50 text-xs mt-2 -mb-10 font-sf-pro">
               {section.desc}
             </p>
-            {/* <video
-              src={section.video}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-11/12 h-60 mt-4"
-            /> */}
-            <section.icon />
-            <div className=" cursor-pointer">
+            <img
+              src={section.icon}
+              alt={`${section.title} GIF`}
+              className="w-full h-full"
+            />
+            <div className=" cursor-pointer -mt-8">
               <div
                 className="border rounded-full  inline-flex items-center justify-center space-x-2 py-1 px-5  bg-customYellow"
                 onClick={() => handleClick(section.link)}

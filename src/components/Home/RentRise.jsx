@@ -1,5 +1,5 @@
 import React from "react";
-import Video from "/Rent.mp4";
+import RentRiseGif from "/Rent.gif";
 const Icon = () => (
   <svg
     width="700"
@@ -336,17 +336,15 @@ const Icon = () => (
 function RentRise() {
   return (
     <div className="h-screen bg-white md:flex items-center">
-      {/* <video
-        src={Video}
-        className="w-[700px] h-[550px]"
-        autoPlay
-        loop
-        muted
-        playsInline
-      />{" "} */}
-      <Icon />
-      <div className="md:-ml-20 ml-14 md:mt-0 -mt-28">
-        <h1 className=" text-5xl font-meuthanies">
+      <div className="md:w-[700px] md:h-[550px] md:mt-0 mt-10 flex items-center justify-center">
+        <img
+          src={RentRiseGif}
+          alt="Direct Save"
+          className="max-w-full max-h-full"
+        />
+      </div>
+      <div className="md:-ml-20 ml-14 md:mt-0 -mt-10">
+        <h1 className=" text-5xl font-meuthanies md:mt-0 mt-10">
           Rent <span className="text-customBlue">Rise</span>
         </h1>
         <p className="text-black opacity-50 mt-4 font-sf-pro">

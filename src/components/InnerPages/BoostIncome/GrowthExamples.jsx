@@ -109,14 +109,14 @@ function GrowthExamples() {
         </div>
         <div className="md:ml-60">
           <h1 className="font-meuthanies  mt-5">Returns on Investments</h1>
-          <div className="-mt-20 md:-ml-8 md:-mb-0 -mb-40">
-            <PieChart width={250} height={550}>
+          <div className="-mt-10 md:-ml-8 md:-mb-0 -mb-40">
+            <PieChart width={300} height={750}>
               <Pie
                 data={currentData}
                 cx={120}
                 cy={200}
-                innerRadius={60}
-                outerRadius={80}
+                innerRadius={80}
+                outerRadius={120}
                 fill="#8884d8"
                 paddingAngle={0}
                 dataKey="value"

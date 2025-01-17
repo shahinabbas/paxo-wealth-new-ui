@@ -15,40 +15,40 @@ function Footer() {
       <div className="md:flex gap-36 items-center justify-center font-sf-pro">
         <div className="flex gap-20 md:ml-0 ml-5  md:items-center md:justify-center">
           <div className="text-sm grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 gap-x-14 mb-10">
-            <Link to="/" className="hover:text-customGreen">
+            <Link to="/" className="hover:text-customBlue">
               Home
             </Link>
-            <Link to="/boost-income" className="hover:text-customGreen">
+            <Link to="/boost-income" className="hover:text-customBlue">
               Boost Income
             </Link>
-            <Link to="/disclaimer" className="hover:text-customGreen">
+            <Link to="/disclaimer" className="hover:text-customBlue">
               Disclaimer
             </Link>
-            <Link to="/terms" className="hover:text-customGreen">
+            <Link to="/terms" className="hover:text-customBlue">
               Terms & Conditions
             </Link>
-            <Link to="/about-us" className="hover:text-customGreen">
+            <Link to="/about-us" className="hover:text-customBlue">
               About Us
             </Link>
-            <Link to="/rent-rise" className="hover:text-customGreen">
+            <Link to="/rent-rise" className="hover:text-customBlue">
               Rent Rise
             </Link>
-            <Link to="/blog" className="hover:text-customGreen">
+            <Link to="/blog" className="hover:text-customBlue">
               Blog{" "}
             </Link>
-            <Link to="/faq" className="hover:text-customGreen">
+            <Link to="/faq" className="hover:text-customBlue">
               FAQs
             </Link>
-            <Link to="/contact-us" className="hover:text-customGreen">
+            <Link to="/contact-us" className="hover:text-customBlue">
               Contact Us
             </Link>
-            <Link to="/direct-save" className="hover:text-customGreen">
+            <Link to="/direct-save" className="hover:text-customBlue">
               Direct Save{" "}
             </Link>
-            <Link to="/how-it-works" className="hover:text-customGreen">
+            <Link to="/how-it-works" className="hover:text-customBlue">
               How It Works
             </Link>
-            <Link to="/privacy-policy" className="hover:text-customGreen">
+            <Link to="/privacy-policy" className="hover:text-customBlue">
               Privacy Policy
             </Link>
           </div>
@@ -85,12 +85,12 @@ function Footer() {
       <div className="md:mt-20 mt-4 font-sf-pro">
         <img src={FooterImage} alt="Footer Image" />
         <div className="justify-between mt-2 md:flex md:px-40 text-sm font-light">
-          <div>
+          <div className="cursor-pointer">
             <p>Copyright2025@paxowealth.all rights reserved.</p>{" "}
           </div>
           <div className="md:flex hidden gap-10">
-            <p>Privacy Policy</p>
-            <p>Terms & Conditions</p>
+            <Link to="/privacy-policy">Privacy Policy</Link>
+            <Link to="/terms">Terms & Conditions</Link>
           </div>
         </div>
       </div>
