@@ -154,7 +154,7 @@ export default function DirectSaveFeatures() {
       icon: <Verified />,
       title: (
         <>
-          Verified <span className="block">Properties</span>{" "}
+          Verified properties
           <span className="block">& Documentation</span>
         </>
       ),
@@ -208,26 +208,23 @@ export default function DirectSaveFeatures() {
       {features.map((feature, index) => (
         <div
           key={index}
-          className="bg-white shadow-lg rounded-lg p-6 flex flex-col h-full"
+          className="bg-white shadow-lg rounded-lg p-4 flex flex-col h-full"
         >
           {/* Icon */}
           <div className="text-customBlue text-4xl">{feature.icon}</div>
-          <div className="flex-grow"></div>
-
-
+  
           {/* Title */}
           <div className="mt-4">
-            <h2 className="text-sm mt-auto font-bold text-gray-800">
-              {feature.title}
-            </h2>
+            <h2 className="text-sm font-bold text-gray-800">{feature.title}</h2>
           </div>
-
+    
           {/* Description */}
           <div className="mt-3">
-            <h2 className="text-[12px] text-black">{feature.description}</h2>
+            <p className="text-[12px] text-black">{feature.description}</p>
           </div>
         </div>
       ))}
     </div>
   );
+  
 }

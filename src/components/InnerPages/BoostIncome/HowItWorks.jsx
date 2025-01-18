@@ -1,5 +1,6 @@
 import React from "react";
 import Works from "/HowItWorks.png";
+import { motion } from "framer-motion";
 
 const Logo = () => (
   <svg
@@ -67,40 +68,81 @@ const Logo = () => (
   </svg>
 );
 const LeftLine = () => (
-  <svg
+  <motion.svg
     width="265"
     height="144"
     viewBox="0 0 265 144"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path d="M1 144V25C1 11.7452 11.7452 1 25 1H265" stroke="#444444" />
-  </svg>
-);
-const RightLine = () => (
-  <svg
-    width="265"
-    height="144"
-    viewBox="0 0 265 144"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M264 144V25C264 11.7452 253.255 1 240 1H-1.29651e-05"
-      stroke="#444444"
+    <motion.path
+      d="M1 144V25C1 11.7452 11.7452 1 25 1H265"
+      strokeWidth="2"
+      initial={{
+        strokeDasharray: 420,
+        strokeDashoffset: 420,
+        stroke: "#444444",
+      }}
+      animate={{
+        strokeDashoffset: 0,
+        stroke: ["#444444", "#0056E0", "#444444"], // Color transition
+      }}
+      transition={{
+        duration: 3,
+        ease: "linear",
+        delay: 3, // Adjust delay if needed
+      }}
     />
-  </svg>
+  </motion.svg>
+);
+
+const RightLine = () => (
+  <motion.svg
+    width="265"
+    height="144"
+    viewBox="0 0 265 144"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    initial={{ strokeDasharray: 420, strokeDashoffset: 420, stroke: "#444444" }}
+    animate={{
+      strokeDashoffset: 0,
+      stroke: ["#444444", "#0056E0", "#444444"], // Color transition
+    }}
+    transition={{
+      duration: 3,
+      ease: "linear",
+      delay: 3, // Adjust delay if needed
+    }}
+  >
+    <motion.path
+      d="M0 1H240C253.255 1 264 11.7452 264 25V144"
+      strokeWidth="2"
+    />
+  </motion.svg>
 );
 const CenterLine = () => (
-  <svg
+  <motion.svg
     width="2"
     height="148"
     viewBox="0 0 2 148"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    initial={{ strokeDasharray: 148, strokeDashoffset: 148, stroke: "#444444" }}
+    animate={{
+      strokeDashoffset: 0,
+      stroke: ["#444444", "#0056E0", "#444444"], // Color transition
+    }}
+    transition={{
+      duration: 3,
+      ease: "linear",
+      delay: 3, // Adjust delay if needed
+    }}
   >
-    <path d="M1 148L1.00001 -4.76837e-07" stroke="#444444" />
-  </svg>
+    <motion.path
+      d="M1 0L1 148" // Changed the path to go from top to bottom
+      strokeWidth="2"
+    />
+  </motion.svg>
 );
 
 const StepRounds = () => (

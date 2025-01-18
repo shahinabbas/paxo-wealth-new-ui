@@ -1,7 +1,8 @@
 import React from "react";
 import { StickyScrollRevealDemo } from "./StickyScrollRevealDemo";
 import { BackgroundBeamsDemo } from "./BackgroundBeamsDemo";
-import Image from "/explore1.png"
+import Image from "/explore1.png";
+
 const Icon = () => (
   <svg
     width="1920"
@@ -780,7 +781,7 @@ const Icon = () => (
 
 function Explore() {
   return (
-    <div className="relative h-[950px] md:h-[750px] bg-[#006FFF]" >
+    <div className="relative h-[950px] md:h-[750px] bg-[#006FFF]">
       <div className="absolute top-0 left-0 w-full z-20 flex flex-col items-center justify-center h-full">
         <h1 className="relative z-10 text-2xl md:text-5xl mt-28 md:mb-10 text-white text-center font-meuthanies">
           Explore Our Core
@@ -792,7 +793,11 @@ function Explore() {
           </span>
           <br /> Designed for You
         </h1>
-
+        <img
+          src={Image}
+          alt=""
+          className="absolute w-full h-[300px] md:h-[500px] bottom-0 object-left"
+        />
         <div className="relative z-30">
           <StickyScrollRevealDemo />
         </div>
