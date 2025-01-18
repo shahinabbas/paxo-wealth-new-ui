@@ -40,7 +40,7 @@ function DirectSaveHome() {
             </div>
           </div>
         </div>
-        <div className="mt-40">
+        <div className=" mt-5 md:mt-40">
           <DirectSaveIcon />
         </div>
       </div>

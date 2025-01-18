@@ -137,6 +137,7 @@ const Assistance = () => (
     />
   </svg>
 );
+
 export default function DirectSaveFeatures() {
   const features = [
     {
@@ -203,22 +204,28 @@ export default function DirectSaveFeatures() {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 p-6 md:px-10 px-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3 p-4 md:mt-0 mt-48 md:px-10 px-4">
       {features.map((feature, index) => (
         <div
           key={index}
-          className="bg-white shadow-lg rounded-lg p-6 flex flex-col space-y-4"
+          className="bg-white shadow-lg rounded-lg p-6 flex flex-col h-full"
         >
           {/* Icon */}
           <div className="text-customBlue text-4xl">{feature.icon}</div>
+          <div className="flex-grow"></div>
+
 
           {/* Title */}
-          <h2 className="text-sm font-bold text-gray-800 flex flex-col align-sub ">
-            {feature.title}
-          </h2>
+          <div className="mt-4">
+            <h2 className="text-sm mt-auto font-bold text-gray-800">
+              {feature.title}
+            </h2>
+          </div>
 
           {/* Description */}
-          {/* <p className="text-gray-600">{feature.description}</p> */}
+          <div className="mt-3">
+            <h2 className="text-[12px] text-black">{feature.description}</h2>
+          </div>
         </div>
       ))}
     </div>

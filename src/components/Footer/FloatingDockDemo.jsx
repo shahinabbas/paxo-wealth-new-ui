@@ -13,7 +13,7 @@ export function FloatingDockDemo() {
     {
       title: "Instagram",
       icon: <IconBrandInstagram className="h-full w-full " />,
-      href: "#",
+      href: "https://www.instagram.com/paxowealth/",
     },
 
     {
@@ -35,7 +35,7 @@ export function FloatingDockDemo() {
     {
       title: "Youtube",
       icon: <IconBrandYoutube className="h-full w-full " />,
-      href: "#",
+      href: "https://www.youtube.com/@paxowealth",
     },
   ];
   return (

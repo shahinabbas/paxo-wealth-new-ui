@@ -9,7 +9,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 
 export const FloatingDock = ({ items, desktopClassName, mobileClassName }) => {
   return (
@@ -100,7 +100,11 @@ function IconContainer({ mouseX, title, icon, href }) {
   let heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
 
   let widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
-  let heightTransformIcon = useTransform(distance,[-150, 0, 150], [20, 40, 20]);
+  let heightTransformIcon = useTransform(
+    distance,
+    [-150, 0, 150],
+    [20, 40, 20]
+  );
 
   let width = useSpring(widthTransform, {
     mass: 0.1,
@@ -126,8 +130,18 @@ function IconContainer({ mouseX, title, icon, href }) {
 
   const [hovered, setHovered] = useState(false);
 
+  const handleClick = (e, title, href) => {
+    e.preventDefault(); 
+    window.open(href, "_blank"); 
+  };
+
   return (
-    <Link href={href}>
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={(e) => handleClick(e, title, href)}
+    >
       <motion.div
         ref={ref}
         style={{ width, height }}
@@ -154,6 +168,6 @@ function IconContainer({ mouseX, title, icon, href }) {
           {icon}
         </motion.div>
       </motion.div>
-    </Link>
+    </a>
   );
 }
