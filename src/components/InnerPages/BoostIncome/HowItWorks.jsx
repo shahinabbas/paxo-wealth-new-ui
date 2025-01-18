@@ -77,20 +77,16 @@ const LeftLine = () => (
   >
     <motion.path
       d="M1 144V25C1 11.7452 11.7452 1 25 1H265"
+      stroke="#444444"
       strokeWidth="2"
-      initial={{
-        strokeDasharray: 420,
-        strokeDashoffset: 420,
-        stroke: "#444444",
-      }}
+      initial={{ strokeDasharray: 420, strokeDashoffset: 420 }}
       animate={{
         strokeDashoffset: 0,
         stroke: ["#444444", "#0056E0", "#444444"], // Color transition
       }}
       transition={{
-        duration: 3,
-        ease: "linear",
-        delay: 3, // Adjust delay if needed
+        strokeDashoffset: { duration: 2, ease: "linear", delay: 0 },
+        stroke: { duration: 3, ease: "linear", repeat: Infinity, delay: 3 },
       }}
     />
   </motion.svg>
@@ -109,9 +105,10 @@ const RightLine = () => (
       stroke: ["#444444", "#0056E0", "#444444"], // Color transition
     }}
     transition={{
-      duration: 3,
+      duration: 2,
       ease: "linear",
-      delay: 3, // Adjust delay if needed
+      delay: 2, // Adjust delay if needed
+      stroke: { duration: 3, ease: "linear", repeat: Infinity, delay: 3 },
     }}
   >
     <motion.path
@@ -120,6 +117,7 @@ const RightLine = () => (
     />
   </motion.svg>
 );
+
 const CenterLine = () => (
   <motion.svg
     width="2"
@@ -133,9 +131,10 @@ const CenterLine = () => (
       stroke: ["#444444", "#0056E0", "#444444"], // Color transition
     }}
     transition={{
-      duration: 3,
+      duration: 2,
       ease: "linear",
-      delay: 3, // Adjust delay if needed
+      delay: 2, // Adjust delay if needed
+      stroke: { duration: 3, ease: "linear", repeat: Infinity, delay: 3 },
     }}
   >
     <motion.path
@@ -192,8 +191,11 @@ const steps = [
 ];
 
 function HowItWorks() {
+ 
   return (
-    <div className="bg-[#F5F9FF] min-h-screen pt-20 pb-10  md:overflow-hidden ">
+    <div
+      className="bg-[#F5F9FF] min-h-screen pt-20 pb-10  md:overflow-hidden "
+    >
       <div className="md:px-20 px-5">
         <h1 className="font-meuthanies text-4xl pt-10">How it works!</h1>
         <div className="md:flex justify-center mt-10 items-center relative hidden">
@@ -271,7 +273,9 @@ function HowItWorks() {
             {steps.map((step, index) => (
               <div key={index} className="flex items-start">
                 <div className="flex flex-col">
-                  <h3 className="md:text-[15px] text-xl font-meuthanies">{step.title}</h3>
+                  <h3 className="md:text-[15px] text-xl font-meuthanies">
+                    {step.title}
+                  </h3>
                   <p className="font-sf-pro mt-2 text-[12px] md:w-56">
                     {step.description}
                   </p>
