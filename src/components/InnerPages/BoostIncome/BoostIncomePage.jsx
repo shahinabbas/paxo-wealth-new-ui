@@ -23,7 +23,9 @@ function BoostIncomePage() {
       <BoostIncomeHome />
       <ScrollingStrip />
       <Unlock />
-      <Highlighted />
+      <div id="highlighted">
+        <Highlighted />
+      </div>
       <HowItWork />
       <GrowthExamples />
       <WhyChoose />

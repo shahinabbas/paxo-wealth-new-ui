@@ -84,8 +84,8 @@ export function ThreeDCardDemo() {
       >
         {cardData.map((card) => (
           <CardContainer key={card.id} className="inter-var">
-            <CardBody className="relative group/card dark:hover:shadow-2xl border-gray-800 w-[20rem] md:w-[25rem] lg:w-[25rem] h-auto rounded-xl p-6 border">
-              <CardItem translatez="100" className="w-full mt-4">
+            <CardBody className="relative group/card dark:hover:shadow-2xl border-gray-[#B6B6B6] w-[20rem] md:w-[25rem] lg:w-[25rem] h-auto rounded-xl p-6 border">
+              <CardItem translatez="100" className="w-full mt-1">
                 <img
                   src={card.imageSrc}
                   height="1000"

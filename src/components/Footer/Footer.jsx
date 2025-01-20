@@ -3,6 +3,7 @@ import { FloatingDockDemo } from "./FloatingDockDemo";
 import Logo from "/paxowealth.png";
 import FooterImage from "/Footer.png";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function Footer() {
   return (
@@ -83,7 +84,14 @@ function Footer() {
         </div>
       </div>
       <div className="md:mt-20 mt-4 font-sf-pro">
-        <img src={FooterImage} alt="Footer Image" />
+        {/* <img src={FooterImage} alt="Footer Image" /> */}
+        <div className="overflow-hidden">
+          <div className="flex animate-marquee">
+            <img src={FooterImage} alt="Footer Image" className=" " />
+            <img src={FooterImage} alt="Footer Image" className="" />
+            <img src={FooterImage} alt="Footer Image" className="" />
+          </div>
+        </div>
         <div className="justify-between mt-2 md:flex md:px-40 text-sm font-light">
           <div className="cursor-pointer">
             <p>Copyright2025@paxowealth.all rights reserved.</p>{" "}

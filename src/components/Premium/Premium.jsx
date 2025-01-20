@@ -475,7 +475,7 @@ function Premium() {
               Deals
             </motion.h1>
             <motion.div
-              className="bg-customYellow md:p-2 rounded-full flex items-center justify-center mt-2 sm:mt-4 cursor-pointer"
+              className="bg-customYellow text-black md:p-2 rounded-full flex items-center justify-center mt-2 sm:mt-4 cursor-pointer"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6, ease: "easeInOut" }}

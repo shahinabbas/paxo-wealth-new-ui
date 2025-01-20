@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setAuth } from "../../ReduxConfig/authSlice"; // Adjust path if necessary
 
 function Login() {
   const [mobileNumber, setMobileNumber] = useState("");
@@ -62,12 +64,15 @@ function Login() {
         phone: mobileNumber, 
         otp 
       });
-      
       if (response.data && response.data.token) {
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('name', response.data.name);
-        navigate('/');
+        dispatch(setAuth({ token: response.data.token, name: response.data.name }));
+        navigate("/");
       }
+      // if (response.data && response.data.token) {
+      //   localStorage.setItem('token', response.data.token);
+      //   localStorage.setItem('name', response.data.name);
+      //   navigate('/');
+      // }
     } catch (error) {
       setErrors({
         api: error.response?.data?.message || "Invalid OTP"

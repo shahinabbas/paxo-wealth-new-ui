@@ -1,14 +1,19 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom"; 
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-import HomePage from "./components/HomePage/HomePage"; 
+import HomePage from "./components/HomePage/HomePage";
 import Properties from "./components/Properties/Properties";
 import FaqCombined from "./components/Faq/FaqCombined";
 import ComingSoon from "./components/ComingSoon/ComingSoon";
 import Login from "./components/Authentication/Login/Login";
 import SignUp from "./components/Authentication/Signup/SignUp";
-import './App.css'
+import "./App.css";
 import KYC from "./components/Authentication/KYC/KYC";
 import BoostIncome from "./components/Home/BoostIncome";
 import BoostIncomePage from "./components/InnerPages/BoostIncome/BoostIncomePage";
@@ -27,9 +32,9 @@ import HowItWork from "./components/HowItWorks/HowItWork";
 import RentRise from "./components/InnerPages/RentRise/RentRise";
 import DirectSave from "./components/InnerPages/DirectSave/DirectSave";
 import Earnings from "./components/Earnings/Earnings";
-
+import { Provider } from "react-redux";
+import store from "./components/ReduxConfig/store"
 function App() {
-  
   return (
     <Router>
       <AppWithNavigation />
@@ -38,14 +43,17 @@ function App() {
 }
 
 function AppWithNavigation() {
-  const location = useLocation();  // This should now be inside the Router context
-  const isAuthPage = location.pathname === "/login" || location.pathname === "/signup" ||  location.pathname === "/kyc"; // Check if the route is login or signup
-  const isDashboard = location.pathname.startsWith('/dashboard');
+  const location = useLocation(); // This should now be inside the Router context
+  const isAuthPage =
+    location.pathname === "/login" ||
+    location.pathname === "/signup" ||
+    location.pathname === "/kyc"; // Check if the route is login or signup
+  const isDashboard = location.pathname.startsWith("/dashboard");
   return (
-    <>
+    <Provider store={store}>
       {/* Conditionally render Navbar and Footer */}
       {!isAuthPage && <Navbar />}
-      
+
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/properties" element={<Properties />} />
@@ -55,7 +63,8 @@ function AppWithNavigation() {
         <Route path="/faq" element={<FaqCombined />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route path="/boost-income" element={<BoostIncomePage />} />
-        <Route path="/rent-rise" element={<RentRise />} />
+        {/* <Route path="/rent-rise" element={<RentRise />} /> */}
+        <Route path="/rent-rise" element={<ComingSoon />} />
         <Route path="/direct-save" element={<DirectSave />} />
         <Route path="/property-detail/:slug" element={<PropertyDetail />} />
         <Route path="/payment-page" element={<PaymentPage />} />
@@ -72,7 +81,7 @@ function AppWithNavigation() {
 
       {/* Conditionally render Footer */}
       {!isAuthPage && !isDashboard && <Footer />}
-    </>
+    </Provider>
   );
 }
 

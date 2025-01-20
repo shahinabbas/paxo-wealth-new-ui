@@ -1,11 +1,12 @@
 import React from "react";
 import BoostIncomeIcon from "../../Home/BoostIncomeIcon";
 import { MdArrowOutward } from "react-icons/md";
+import { Link } from "react-scroll"; // Import react-scroll Link
 
 function BoostIncomeHome() {
   return (
     <div className="bg-white h-screen md:px-10 px-4">
-      <div className="bg-customBlue rounded-xl mt-20 md:flex  gap-60 items-center p-6">
+      <div className="bg-customBlue rounded-xl mt-20 md:flex gap-60 items-center p-6">
         <div className="text-center md:text-left">
           <h1 className="md:text-5xl text-3xl text-white font-meuthanies">
             Boost Income -
@@ -27,10 +28,16 @@ function BoostIncomeHome() {
               <h1>Learn How It Works</h1>
               <MdArrowOutward />
             </div>
-            <div className="bg-customYellow rounded-full text-black flex items-center p-2 px-4">
+            {/* Use Link from react-scroll for smooth scrolling */}
+            <Link
+              to="highlighted" // Target the id of the Highlighted component
+              smooth={true}
+              duration={500}
+              className="bg-customYellow rounded-full text-black flex items-center p-2 px-4 cursor-pointer"
+            >
               <h1>Activate Boost Income Now</h1>
               <MdArrowOutward />
-            </div>
+            </Link>
           </div>
         </div>
         <div className="md:mt-36 mt-10">

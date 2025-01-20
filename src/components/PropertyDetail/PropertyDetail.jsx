@@ -25,6 +25,8 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const PropertyDetail = () => {
   const { slug } = useParams();
+  const [isChecked, setIsChecked] = useState(false);
+
   const [activeTab, setActiveTab] = useState("overview");
   const [quantity, setQuantity] = useState(1);
   const [showTermsModal, setShowTermsModal] = useState(false);
@@ -68,6 +70,9 @@ const PropertyDetail = () => {
     fetchPropertyBySlug();
   }, [apiURL]);
 
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked); // Toggle checkbox state
+  };
   // Sample chart data with bull and bear trends
   const propertyGrowthData = [
     { month: "Jan", value: 4000, bullTrend: 4000, bearTrend: 4000 },
@@ -82,7 +87,7 @@ const PropertyDetail = () => {
 
   // Calculate values
   const availableArea = propertyDetails.available_unit;
-  const totalArea = quantity * 100; 
+  const totalArea = quantity * 100;
   const totalPrice = quantity * propertyDetails.property_unit_price * 100;
 
   const handleQuantityChange = (e) => {
@@ -97,37 +102,33 @@ const PropertyDetail = () => {
     const orderSummary = {
       quantity: quantity,
       propertySlug: slug,
-      timestamp: new Date().getTime()
+      timestamp: new Date().getTime(),
     };
-  
-    sessionStorage.setItem('orderSummary', JSON.stringify(orderSummary));
+
+    sessionStorage.setItem("orderSummary", JSON.stringify(orderSummary));
     navigate("/payment-page");
   };
 
   return (
-    <div className="bg-gray-900 min-h-screen p-6 py-12">
+    <div className="bg-gray-50 min-h-screen p-6 py-12">
       {/* Property Header */}
-      <div className="max-w-7xl mx-auto bg-gray-800 rounded-lg p-6 mb-6 mt-20">
+      <div className="max-w-7xl mx-auto bg-white rounded-lg p-6 mb-6 mt-20 shadow-lg border border-gray-200">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h1 className="text-3xl font-bold text-white mb-2 font-meuthanies">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2 font-meuthanies">
               {propertyDetails.property_name}
             </h1>
-            {/* <div className="flex items-center text-gray-400 mb-4 font-sf-pro">
-              <FaLocationDot className="mr-2" />
-              {propertyDetails.location}
-            </div> */}
             <div className="grid grid-cols-2 gap-4 font-sf-pro">
-              <div className="bg-gray-700 p-4 rounded-lg">
-                <div className="text-gray-400 text-sm">Property Type</div>
-                <div className="text-white font-semibold flex items-center">
-                  <FaBuilding className="mr-2" />
+              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <div className="text-gray-600 text-sm">Property Type</div>
+                <div className="text-gray-900 font-semibold flex items-center">
+                  <FaBuilding className="mr-2 text-customBlue" />
                   {propertyDetails.property_type}
                 </div>
               </div>
-              <div className="bg-gray-700 p-4 rounded-lg">
-                <div className="text-gray-400 text-sm">Growth Rate</div>
-                <div className="text-customGreen font-semibold flex items-center">
+              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <div className="text-gray-600 text-sm">Growth Rate</div>
+                <div className="text-customBlue font-semibold flex items-center">
                   <FaChartLine className="mr-2" />
                   {propertyDetails.capital_appreciation}%
                 </div>
@@ -137,7 +138,7 @@ const PropertyDetail = () => {
           <div className="space-y-4 font-sf-pro">
             <div className="flex gap-3">
               {[
-                { value: "value", label: "Current", color: "#4ade80" },
+                { value: "value", label: "Current", color: "#0056E0" },
                 { value: "bullTrend", label: "Bull Trend", color: "#22c55e" },
                 { value: "bearTrend", label: "Bear Trend", color: "#ef4444" },
               ].map((trend) => (
@@ -146,8 +147,8 @@ const PropertyDetail = () => {
                   onClick={() => setSelectedTrend(trend.value)}
                   className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
                     selectedTrend === trend.value
-                      ? "bg-gray-700 text-white"
-                      : "text-gray-400 hover:bg-gray-700"
+                      ? "bg-customBlue text-white"
+                      : "text-gray-600 hover:bg-gray-100"
                   }`}
                 >
                   {trend.label}
@@ -158,6 +159,16 @@ const PropertyDetail = () => {
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={propertyGrowthData}>
                   <defs>
+                    <linearGradient
+                      id="customBlueGradient"
+                      x1="0"
+                      y1="0"
+                      x2="0"
+                      y2="1"
+                    >
+                      <stop offset="5%" stopColor="#0056E0" stopOpacity={0.2} />
+                      <stop offset="95%" stopColor="#0056E0" stopOpacity={0} />
+                    </linearGradient>
                     <linearGradient
                       id="bullGradient"
                       x1="0"
@@ -178,45 +189,27 @@ const PropertyDetail = () => {
                       <stop offset="5%" stopColor="#ef4444" stopOpacity={0.2} />
                       <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
                     </linearGradient>
-                    <linearGradient
-                      id="currentGradient"
-                      x1="0"
-                      y1="0"
-                      x2="0"
-                      y2="1"
-                    >
-                      <stop offset="5%" stopColor="#4ade80" stopOpacity={0.2} />
-                      <stop offset="95%" stopColor="#4ade80" stopOpacity={0} />
-                    </linearGradient>
                   </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                  <XAxis
-                    dataKey="month"
-                    stroke="#9ca3af"
-                    tick={{ fill: "#9ca3af" }}
-                  />
-                  <YAxis
-                    stroke="#9ca3af"
-                    tick={{ fill: "#9ca3af" }}
-                    domain={["dataMin - 500", "dataMax + 500"]}
-                  />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                  <XAxis dataKey="month" stroke="#6b7280" />
+                  <YAxis stroke="#6b7280" />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: "#1f2937",
-                      borderColor: "#374151",
+                      backgroundColor: "#ffffff",
+                      borderColor: "#e5e7eb",
                       borderRadius: "0.5rem",
-                      color: "#fff",
+                      color: "#111827",
                     }}
                   />
                   {selectedTrend === "value" && (
                     <Area
                       type="monotone"
                       dataKey="value"
-                      stroke="#4ade80"
+                      stroke="#0056E0"
                       strokeWidth={2}
-                      fill="url(#currentGradient)"
-                      dot={{ stroke: "#4ade80", strokeWidth: 2 }}
-                      activeDot={{ r: 6, stroke: "#4ade80", strokeWidth: 2 }}
+                      fill="url(#customBlueGradient)"
+                      dot={{ stroke: "#0056E0", strokeWidth: 2 }}
+                      activeDot={{ r: 6, stroke: "#0056E0", strokeWidth: 2 }}
                     />
                   )}
                   {selectedTrend === "bullTrend" && (
@@ -244,24 +237,24 @@ const PropertyDetail = () => {
                 </AreaChart>
               </ResponsiveContainer>
             </div>
-            <div className="flex justify-between px-4 py-2 bg-gray-700 rounded-lg">
+            <div className="flex justify-between px-4 py-2 bg-gray-50 rounded-lg border border-gray-200">
               <div>
-                <p className="text-sm text-gray-400">Lowest</p>
-                <p className="font-semibold text-red-400">
+                <p className="text-sm text-gray-600">Lowest</p>
+                <p className="font-semibold text-red-600">
                   ₹
                   {Math.min(...propertyGrowthData.map((d) => d[selectedTrend]))}
                 </p>
               </div>
               <div>
-                <p className="text-sm text-gray-400">Highest</p>
-                <p className="font-semibold text-customGreen">
+                <p className="text-sm text-gray-600">Highest</p>
+                <p className="font-semibold text-customBlue">
                   ₹
                   {Math.max(...propertyGrowthData.map((d) => d[selectedTrend]))}
                 </p>
               </div>
               <div>
-                <p className="text-sm text-gray-400">Change</p>
-                <p className="font-semibold text-customGreen">
+                <p className="text-sm text-gray-600">Change</p>
+                <p className="font-semibold text-customBlue">
                   {Math.round(
                     ((propertyGrowthData[propertyGrowthData.length - 1][
                       selectedTrend
@@ -279,12 +272,12 @@ const PropertyDetail = () => {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 font-sf-pro ">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 font-sf-pro">
         {/* Left Column - Tabs Content */}
         <div className="lg:col-span-2">
           {/* Tabs */}
-          <div className="bg-gray-800 rounded-lg p-4 mb-6">
-            <div className="flex space-x-4 border-b border-gray-700 pb-4">
+          <div className="bg-white rounded-lg p-4 mb-6 shadow-lg border border-gray-200">
+            <div className="flex space-x-4 border-b border-gray-200 pb-4">
               {[
                 { id: "overview", label: "Overview", icon: FaChartLine },
                 { id: "legal", label: "Legal Documents", icon: FaFileContract },
@@ -299,8 +292,8 @@ const PropertyDetail = () => {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
                     activeTab === tab.id
-                      ? "bg-customGreen text-black"
-                      : "text-gray-400 hover:bg-gray-700"
+                      ? "bg-customBlue text-white"
+                      : "text-gray-600 hover:bg-gray-100"
                   }`}
                 >
                   <tab.icon />
@@ -310,38 +303,38 @@ const PropertyDetail = () => {
             </div>
 
             {/* Tab Content */}
-            <div className="mt-6 font-sf-pro">
+            <div className="mt-6">
               {activeTab === "overview" && (
                 <div className="space-y-4">
-                  <h3 className="text-xl font-semibold text-white font-meuthanies">
+                  <h3 className="text-xl font-semibold text-gray-900 font-meuthanies">
                     Property Overview
                   </h3>
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-gray-700 p-4 rounded-lg">
-                      <div className="text-gray-400 text-sm">Total Area</div>
-                      <div className="text-white font-semibold">
+                    <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                      <div className="text-gray-600 text-sm">Total Area</div>
+                      <div className="text-gray-900 font-semibold">
                         {propertyDetails.total_unit} sqft
                       </div>
                     </div>
-                    <div className="bg-gray-700 p-4 rounded-lg">
-                      <div className="text-gray-400 text-sm">
+                    <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                      <div className="text-gray-600 text-sm">
                         Available Area
                       </div>
-                      <div className="text-white font-semibold">
+                      <div className="text-gray-900 font-semibold">
                         {availableArea} sqft
                       </div>
                     </div>
-                    <div className="bg-gray-700 p-4 rounded-lg">
-                      <div className="text-gray-400 text-sm">
+                    <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                      <div className="text-gray-600 text-sm">
                         Completion Date
                       </div>
-                      <div className="text-white font-semibold">
+                      <div className="text-gray-900 font-semibold">
                         {propertyDetails.completion_date}
                       </div>
                     </div>
-                    <div className="bg-gray-700 p-4 rounded-lg">
-                      <div className="text-gray-400 text-sm">Monthly Yield</div>
-                      <div className="text-customGreen font-semibold">
+                    <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                      <div className="text-gray-600 text-sm">Monthly Yield</div>
+                      <div className="text-customBlue font-semibold">
                         {propertyDetails.capital_appreciation}%
                       </div>
                     </div>
@@ -350,8 +343,8 @@ const PropertyDetail = () => {
               )}
 
               {activeTab === "legal" && (
-                <div className="space-y-4 font-sf-pro">
-                  <h3 className="text-xl font-semibold text-white">
+                <div className="space-y-4">
+                  <h3 className="text-xl font-semibold text-gray-900">
                     Legal Documents
                   </h3>
                   <div className="space-y-3">
@@ -363,13 +356,13 @@ const PropertyDetail = () => {
                     ].map((doc, index) => (
                       <div
                         key={index}
-                        className="flex items-center justify-between bg-gray-700 p-4 rounded-lg"
+                        className="flex items-center justify-between bg-gray-50 p-4 rounded-lg border border-gray-200"
                       >
                         <div className="flex items-center">
-                          <FaRegCircleCheck className="text-customGreen mr-2" />
-                          <span className="text-white">{doc}</span>
+                          <FaRegCircleCheck className="text-customBlue mr-2" />
+                          <span className="text-gray-900">{doc}</span>
                         </div>
-                        <button className="text-customGreen hover:text-customGreen">
+                        <button className="text-customBlue hover:text-blue-700">
                           View
                         </button>
                       </div>
@@ -379,30 +372,30 @@ const PropertyDetail = () => {
               )}
 
               {activeTab === "calculator" && (
-                <div className="space-y-4 font-sf-pro">
-                  <h3 className="text-xl font-semibold text-white">
+                <div className="space-y-4">
+                  <h3 className="text-xl font-semibold text-gray-900">
                     ROI Calculator
                   </h3>
-                  <div className="rounded-md border border-customGreen p-5">
+                  <div className="rounded-md border border-customBlue p-5">
                     <div className="flex flex-col gap-y-4">
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-400 font-semibold">
+                        <span className="text-gray-600 font-semibold">
                           One Square Feet Price
                         </span>
-                        <span className="text-white flex items-center">
+                        <span className="text-gray-900 flex items-center">
                           <MdCurrencyRupee />
                           {propertyDetails.property_unit_price}
                         </span>
                       </div>
 
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-400 font-semibold">
+                        <span className="text-gray-600 font-semibold">
                           Quantity
                         </span>
                         <div className="flex items-center">
                           <button
                             onClick={handleDecrease}
-                            className="px-2 border border-gray-600 text-white rounded-md mr-2 hover:bg-gray-700"
+                            className="px-2 border border-gray-300 text-gray-700 rounded-md mr-2 hover:bg-gray-100"
                           >
                             -
                           </button>
@@ -410,11 +403,11 @@ const PropertyDetail = () => {
                             type="number"
                             value={quantity}
                             onChange={handleQuantityChange}
-                            className="w-12 pl-2 text-center bg-gray-700 text-white border border-gray-600 rounded-md font-semibold"
+                            className="w-12 pl-2 text-center bg-white text-gray-900 border border-gray-300 rounded-md font-semibold"
                           />
                           <button
                             onClick={handleIncrease}
-                            className="px-2 border border-gray-600 text-white rounded-md ml-2 hover:bg-gray-700"
+                            className="px-2 border border-gray-300 text-gray-700 rounded-md ml-2 hover:bg-gray-100"
                           >
                             +
                           </button>
@@ -422,24 +415,24 @@ const PropertyDetail = () => {
                       </div>
 
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-400 font-semibold">
+                        <span className="text-gray-600 font-semibold">
                           Area Per Quantity
                         </span>
-                        <span className="text-white flex items-center">
+                        <span className="text-gray-900 flex items-center">
                           {totalArea} sqft
                         </span>
                       </div>
 
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-400 font-semibold">
+                        <span className="text-gray-600 font-semibold">
                           Total Price
                         </span>
-                        <span className="text-white flex items-center">
+                        <span className="text-gray-900 flex items-center">
                           <MdCurrencyRupee /> {totalPrice}
                         </span>
                       </div>
 
-                      <div className="bg-green-900/30 text-customGreen p-4 rounded-lg">
+                      <div className="bg-blue-50 text-customBlue p-4 rounded-lg">
                         <div className="flex justify-between items-center">
                           <span className="font-semibold">
                             Monthly Earnings
@@ -463,69 +456,46 @@ const PropertyDetail = () => {
         </div>
 
         {/* Right Column - Order Summary */}
-        <div className="bg-gray-800 rounded-lg font-sf-pro">
-          <div className="rounded-md border border-customGreen p-5">
-            {/* Step Indicator */}
-            {/* <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center">
-                <div className="w-8 h-8 rounded-full bg-customGreen flex items-center justify-center text-white font-bold">
-                  1
-                </div>
-                <div className="ml-2">
-                  <p className="text-sm text-customGreen font-semibold">Step 1</p>
-                  <p className="text-xs text-gray-400">Review Order</p>
-                </div>
-              </div>
-              <div className="h-0.5 w-12 bg-gray-600"></div>
-              <div className="flex items-center">
-                <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center text-white font-bold">
-                  2
-                </div>
-                <div className="ml-2">
-                  <p className="text-sm text-gray-400 font-semibold">Step 2</p>
-                  <p className="text-xs text-gray-400">Payment</p>
-                </div>
-              </div>
-            </div> */}
-
-            <h1 className="text-xl font-semibold text-customGreen mb-4 font-meuthanies">
+        <div className="bg-white rounded-lg shadow-lg border border-gray-200">
+          <div className="rounded-md border border-customBlue p-5">
+            <h1 className="text-xl font-semibold text-customBlue mb-4 font-meuthanies">
               Order Summary
             </h1>
 
             {/* Property Details */}
             <div className="flex flex-col gap-y-4 mb-6">
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-400 font-semibold">
+                <span className="text-sm text-gray-600 font-semibold">
                   Property Name
                 </span>
-                <span className="text-sm text-white flex items-center">
+                <span className="text-sm text-gray-900 flex items-center">
                   {propertyDetails.property_name}
                 </span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-400 font-semibold">
+                <span className="text-sm text-gray-600 font-semibold">
                   One Square Feet Price
                 </span>
-                <span className="text-sm text-white flex items-center">
+                <span className="text-sm text-gray-900 flex items-center">
                   <MdCurrencyRupee /> {propertyDetails.property_unit_price}
                 </span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-400 font-semibold">
+                <span className="text-sm text-gray-600 font-semibold">
                   Area Per Quantity
                 </span>
-                <span className="text-sm text-white flex items-center">
+                <span className="text-sm text-gray-900 flex items-center">
                   <IoHomeOutline className="mr-1" /> {totalArea} sqft
                 </span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-400 font-semibold">
+                <span className="text-sm text-gray-600 font-semibold">
                   Quantity
                 </span>
                 <div className="flex items-center">
                   <button
                     onClick={handleDecrease}
-                    className="px-2 border border-gray-600 text-white rounded-md mr-2 hover:bg-gray-700"
+                    className="px-2 border border-gray-300 text-gray-700 rounded-md mr-2 hover:bg-gray-100"
                   >
                     -
                   </button>
@@ -533,74 +503,69 @@ const PropertyDetail = () => {
                     type="number"
                     value={quantity}
                     onChange={handleQuantityChange}
-                    className="w-12 pl-2 text-center bg-gray-700 text-white border border-gray-600 rounded-md font-semibold"
+                    className="w-12 pl-2 text-center bg-white text-gray-900 border border-gray-300 rounded-md font-semibold"
                   />
                   <button
                     onClick={handleIncrease}
-                    className="px-2 border border-gray-600 text-white rounded-md ml-2 hover:bg-gray-700"
+                    className="px-2 border border-gray-300 text-gray-700 rounded-md ml-2 hover:bg-gray-100"
                   >
                     +
                   </button>
                 </div>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-400 font-semibold">
+                <span className="text-sm text-gray-600 font-semibold">
                   Growth Rate
                 </span>
-                <span className="text-sm text-customGreen flex items-center">
+                <span className="text-sm text-customBlue flex items-center">
                   <BsGraphUp className="mr-1" />
                   {propertyDetails.capital_appreciation}%
                 </span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-400 font-semibold">
+                <span className="text-sm text-gray-600 font-semibold">
                   Total Investment
                 </span>
-                <span className="text-sm text-white flex items-center font-bold">
+                <span className="text-sm text-gray-900 flex items-center font-bold">
                   <MdCurrencyRupee /> {totalPrice}
                 </span>
               </div>
             </div>
 
             {/* Monthly Earnings Card */}
-            <div className="bg-green-900/30 text-customGreen p-4 rounded-lg mb-6">
+            <div className="bg-blue-50 text-customBlue p-4 rounded-lg mb-6">
               <div className="flex justify-between items-center">
                 <span className="font-semibold">Monthly Earnings</span>
                 <span className="flex items-center font-bold text-lg">
                   <MdCurrencyRupee />
                   {Math.ceil(
-                  ((propertyDetails?.capital_appreciation / 100) * totalPrice) /
-                    12
-                )}
+                    ((propertyDetails.capital_appreciation / 100) *
+                      totalPrice) /
+                      12
+                  )}
                 </span>
               </div>
-              <div className="mt-2 text-xs text-customGreen/80">
+              <div className="mt-2 text-xs text-customBlue/80">
                 Based on {propertyDetails.capital_appreciation}% annual returns
               </div>
             </div>
 
-            {/* KYC Status */}
-            {/* <div className="bg-yellow-900/30 text-yellow-400 p-4 rounded-lg mb-6">
-              <div className="flex items-center justify-between">
-                <span className="font-semibold">KYC Status</span>
-                <span className="text-sm">Pending</span>
-              </div>
-              <p className="text-xs mt-1">
-                Complete KYC to proceed with investment
-              </p>
-            </div> */}
-
             {/* Terms & Conditions */}
             <div className="mb-6">
               <label className="flex items-start gap-2 cursor-pointer">
-                <input type="checkbox" className="mt-1.5" />
-                <span className="text-sm text-gray-400">
+                <input
+                  type="checkbox"
+                  className="mt-1.5"
+                  checked={isChecked}
+                  onChange={handleCheckboxChange}
+                />
+                <span className="text-sm text-gray-600">
                   I agree to the{" "}
-                  <button className="text-customGreen">
+                  <button className="text-customBlue hover:text-blue-700">
                     Terms & Conditions
                   </button>{" "}
                   and
-                  <button className="text-customGreen">
+                  <button className="text-customBlue hover:text-blue-700">
                     {" "}
                     Privacy Policy
                   </button>{" "}
@@ -611,8 +576,13 @@ const PropertyDetail = () => {
 
             {/* CTA Button */}
             <button
-              className="w-full bg-customGreen hover:bg-green-600 text-black py-3 rounded-lg font-bold transition-colors"
+              className={`w-full py-3 rounded-lg font-bold transition-colors ${
+                isChecked
+                  ? "bg-customBlue hover:bg-blue-700 text-white"
+                  : "bg-gray-400 cursor-not-allowed text-gray-600"
+              }`}
               onClick={handlePayment}
+              disabled={!isChecked} // Disable the button when not checked
             >
               PROCEED TO PAYMENT
             </button>

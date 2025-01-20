@@ -42,6 +42,8 @@ const Opportunities = () => {
         const response = await axios.get(`${apiURL}/order/my-confirm-orders`, {
           headers: { Authorization: `Bearer ${token}` }
         });
+        console.log(response.data.orders);
+        
         setOrders(response.data.orders || []);
       } catch (error) {
         console.error("Error fetching orders:", error);
@@ -74,10 +76,10 @@ const Opportunities = () => {
 
   return (
     <div className="space-y-6 font-sf-pro">
-      <h2 className="text-3xl font-bold mb-8 font-meuthanies">Portfolio</h2>
+      <h2 className="text-3xl font-bold mb-8 font-meuthanies text-gray-900">Portfolio</h2>
       <h1>
         Welcome,{" "}
-        <span className="font-bold text-[18px] text-customGreen">
+        <span className="font-bold text-[18px] text-black">
           {userName}
         </span>{" "}
         Here's a snapshot of your Paxo Wealth portfolio.

@@ -7,7 +7,7 @@ import DirectSaveGif from "/DirectSave.gif";
 import RentRiseGif from "/Rent.gif";
 
 function Combined() {
-  const navigate = useNavigate(); // Initialize the navigate hook
+  const navigate = useNavigate(); 
 
   const handleClick = (link) => {
     if (link) {
@@ -23,7 +23,7 @@ function Combined() {
       transition: {
         duration: 2,
         ease: "easeInOut",
-        delay: 11,
+        delay: 18.5,
       },
     },
   };
@@ -45,7 +45,7 @@ function Combined() {
 
   return (
     <div>
-      <div className="hidden bg-white md:flex min-h-screen mt-14 gap-10  px-10 items-center text-center justify-center">
+      <div className="hidden bg-white md:flex min-h-screen mt-10 gap-10 px-10 items-center text-center justify-center">
         {/* Boost Income Section */}
         <div className=" bg-[#AED1FF] bg-opacity-20 p-8 w-[380px]">
           <motion.h1
@@ -188,9 +188,9 @@ function Combined() {
         ].map((section, index) => (
           <div
             key={index}
-            className="bg-white w-full flex flex-col items-center py-4"
+            className="bg-white w-full flex flex-col items-center"
           >
-            <div className=" text-2xl font-meuthanies mt-14">{section.title}</div>
+            <div className=" text-2xl font-meuthanies ">{section.title}</div>
             <p className="opacity-50 text-xs mt-2 -mb-10 font-sf-pro">
               {section.desc}
             </p>

@@ -127,13 +127,14 @@ const Profile = () => {
         },
       });
 
-      setUserData(response.data);
+
       setEditStates((prev) => ({ ...prev, kyc: false }));
       setSelectedFiles((prev) => ({
         ...prev,
         adhaarFile: null,
         panFile: null,
       }));
+      fetchUserData()
     } catch (error) {
       console.error("Failed to update KYC details:", error);
     } finally {
@@ -159,8 +160,8 @@ const Profile = () => {
         }
       );
 
-      setUserData(response.data);
       setEditStates((prev) => ({ ...prev, bank: false }));
+      fetchUserData()
     } catch (error) {
       console.error("Failed to update bank details:", error);
     } finally {
@@ -204,32 +205,32 @@ const Profile = () => {
   }
 
   return (
-    <div className="max-w-2xl mx-auto space-y-6 font-sf-pro">
-      <h2 className="text-3xl font-bold mb-8 font-meuthanies">Profile</h2>
+<div className="max-w-2xl mx-auto space-y-6 font-sf-pro">
+      <h2 className="text-3xl font-bold mb-8 font-meuthanies text-gray-900">Profile</h2>
 
       {/* Personal Information Section */}
-      <div className="bg-gray-800 p-6 rounded-lg">
+      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-xl font-semibold font-meuthanies">
+          <h3 className="text-xl font-semibold font-meuthanies text-gray-900">
             Personal Information
           </h3>
           <button
             onClick={() =>
               setEditStates((prev) => ({ ...prev, personal: !prev.personal }))
             }
-            className="text-gray-400 hover:text-white"
+            className="text-gray-500 hover:text-customBlue"
           >
             <FaEdit size={20} />
           </button>
         </div>
         <div className="space-y-4">
           <div>
-            <label className="block text-sm text-gray-400 mb-1">
+            <label className="block text-sm text-gray-600 mb-1">
               Full Name
             </label>
             <input
               type="text"
-              className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2"
+              className="w-full bg-white border border-gray-300 rounded-lg px-4 py-2 focus:border-customBlue focus:ring-1 focus:ring-customBlue"
               value={userData.username}
               onChange={(e) =>
                 handleInputChange("personal", "username", e.target.value)
@@ -238,12 +239,12 @@ const Profile = () => {
             />
           </div>
           <div>
-            <label className="block text-sm text-gray-400 mb-1">
+            <label className="block text-sm text-gray-600 mb-1">
               Email Address
             </label>
             <input
               type="email"
-              className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2"
+              className="w-full bg-white border border-gray-300 rounded-lg px-4 py-2 focus:border-customBlue focus:ring-1 focus:ring-customBlue"
               value={userData.email}
               onChange={(e) =>
                 handleInputChange("personal", "email", e.target.value)
@@ -252,12 +253,12 @@ const Profile = () => {
             />
           </div>
           <div>
-            <label className="block text-sm text-gray-400 mb-1">
+            <label className="block text-sm text-gray-600 mb-1">
               Phone Number
             </label>
             <input
               type="tel"
-              className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2"
+              className="w-full bg-white border border-gray-300 rounded-lg px-4 py-2 focus:border-customBlue focus:ring-1 focus:ring-customBlue"
               value={userData.phone}
               onChange={(e) =>
                 handleInputChange("personal", "phone", e.target.value)
@@ -268,7 +269,7 @@ const Profile = () => {
           {editStates.personal && (
             <>
               <div>
-                <label className="block text-sm text-gray-400 mb-1">
+                <label className="block text-sm text-gray-600 mb-1">
                   Profile Image
                 </label>
                 <input
@@ -280,12 +281,12 @@ const Profile = () => {
                 />
                 <button
                   onClick={() => profileImageRef.current?.click()}
-                  className="px-4 py-2 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600"
+                  className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
                 >
                   Choose Profile Image
                 </button>
                 {selectedFiles.profileImage && (
-                  <span className="ml-2 text-sm text-gray-400">
+                  <span className="ml-2 text-sm text-gray-600">
                     {selectedFiles.profileImage.name}
                   </span>
                 )}
@@ -294,7 +295,7 @@ const Profile = () => {
                 <button
                   onClick={handlePersonalInfoUpdate}
                   disabled={isLoading.personal}
-                  className="flex items-center px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:bg-gray-600"
+                  className="flex items-center px-6 py-2 bg-customBlue text-white rounded-lg hover:bg-blue-700 transition-colors disabled:bg-gray-300"
                 >
                   {isLoading.personal ? (
                     "Processing..."
@@ -311,12 +312,12 @@ const Profile = () => {
       </div>
 
       {/* KYC Details Section */}
-      <div className="bg-gray-800 p-6 rounded-lg">
+      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-xl font-semibold font-meuthanies">
+          <h3 className="text-xl font-semibold font-meuthanies text-gray-900">
             KYC Details
             {userData.isKycVerified && (
-              <span className="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-900 text-green-400">
+              <span className="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                 Verified
               </span>
             )}
@@ -325,7 +326,7 @@ const Profile = () => {
             onClick={() =>
               setEditStates((prev) => ({ ...prev, kyc: !prev.kyc }))
             }
-            className="text-gray-400 hover:text-white"
+            className="text-gray-500 hover:text-customBlue"
           >
             {userData.kyc?.adhaarNumber ? (
               <FaEdit size={20} />
@@ -336,12 +337,12 @@ const Profile = () => {
         </div>
         <div className="space-y-4">
           <div>
-            <label className="block text-sm text-gray-400 mb-1">
+            <label className="block text-sm text-gray-600 mb-1">
               Aadhaar Number
             </label>
             <input
               type="text"
-              className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2"
+              className="w-full bg-white border border-gray-300 rounded-lg px-4 py-2 focus:border-customBlue focus:ring-1 focus:ring-customBlue"
               value={userData.kyc?.adhaarNumber || ""}
               onChange={(e) =>
                 handleInputChange("kyc", "adhaarNumber", e.target.value)
@@ -351,7 +352,7 @@ const Profile = () => {
           </div>
           {(userData.kyc?.adhaarFile || editStates.kyc) && (
             <div>
-              <label className="block text-sm text-gray-400 mb-1">
+              <label className="block text-sm text-gray-600 mb-1">
                 Aadhaar Document
               </label>
               {editStates.kyc && (
@@ -365,22 +366,22 @@ const Profile = () => {
                   />
                   <button
                     onClick={() => adhaarFileRef.current?.click()}
-                    className="px-4 py-2 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600"
+                    className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
                   >
                     Choose Aadhaar File
                   </button>
                   {selectedFiles.adhaarFile && (
-                    <span className="ml-2 text-sm text-gray-400">
+                    <span className="ml-2 text-sm text-gray-600">
                       {selectedFiles.adhaarFile.name}
                     </span>
                   )}
                 </>
               )}
               {userData.kyc?.adhaarFile && !editStates.kyc && (
-                <div className="flex items-center justify-between bg-gray-700 p-2 rounded-lg">
+                <div className="flex items-center justify-between bg-gray-50 p-2 rounded-lg border border-gray-200">
                   <div className="flex items-center">
-                    <FaFileAlt className="text-gray-400 mr-2" />
-                    <span className="text-sm">Aadhaar Document</span>
+                    <FaFileAlt className="text-gray-500 mr-2" />
+                    <span className="text-sm text-gray-700">Aadhaar Document</span>
                   </div>
                   <button
                     onClick={() =>
@@ -391,7 +392,7 @@ const Profile = () => {
                         )}`
                       )
                     }
-                    className="text-blue-400 hover:text-blue-300"
+                    className="text-customBlue hover:text-blue-700"
                   >
                     <FaEye size={20} />
                   </button>
@@ -400,12 +401,12 @@ const Profile = () => {
             </div>
           )}
           <div>
-            <label className="block text-sm text-gray-400 mb-1">
+            <label className="block text-sm text-gray-600 mb-1">
               PAN Number
             </label>
             <input
               type="text"
-              className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2"
+              className="w-full bg-white border border-gray-300 rounded-lg px-4 py-2 focus:border-customBlue focus:ring-1 focus:ring-customBlue"
               value={userData.kyc?.panNumber || ""}
               onChange={(e) =>
                 handleInputChange("kyc", "panNumber", e.target.value)
@@ -415,7 +416,7 @@ const Profile = () => {
           </div>
           {(userData.kyc?.panFile || editStates.kyc) && (
             <div>
-              <label className="block text-sm text-gray-400 mb-1">
+              <label className="block text-sm text-gray-600 mb-1">
                 PAN Document
               </label>
               {editStates.kyc && (
@@ -429,22 +430,22 @@ const Profile = () => {
                   />
                   <button
                     onClick={() => panFileRef.current?.click()}
-                    className="px-4 py-2 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600"
+                    className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
                   >
                     Choose PAN File
                   </button>
                   {selectedFiles.panFile && (
-                    <span className="ml-2 text-sm text-gray-400">
+                    <span className="ml-2 text-sm text-gray-600">
                       {selectedFiles.panFile.name}
                     </span>
                   )}
                 </>
               )}
               {userData.kyc?.panFile && !editStates.kyc && (
-                <div className="flex items-center justify-between bg-gray-700 p-2 rounded-lg">
+                <div className="flex items-center justify-between bg-gray-50 p-2 rounded-lg border border-gray-200">
                   <div className="flex items-center">
-                    <FaFileAlt className="text-gray-400 mr-2" />
-                    <span className="text-sm">PAN Document</span>
+                    <FaFileAlt className="text-gray-500 mr-2" />
+                    <span className="text-sm text-gray-700">PAN Document</span>
                   </div>
                   <button
                     onClick={() =>
@@ -452,7 +453,7 @@ const Profile = () => {
                         `${apiImg}/${userData.kyc.panFile.replace(/\\/g, "/")}`
                       )
                     }
-                    className="text-blue-400 hover:text-text-blue-300"
+                    className="text-customBlue hover:text-blue-700"
                   >
                     <FaEye size={20} />
                   </button>
@@ -465,7 +466,7 @@ const Profile = () => {
               <button
                 onClick={handleKycUpdate}
                 disabled={isLoading.kyc}
-                className="flex items-center px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:bg-gray-600"
+                className="flex items-center px-6 py-2 bg-customBlue text-white rounded-lg hover:bg-blue-700 transition-colors disabled:bg-gray-300"
               >
                 {isLoading.kyc ? (
                   "Processing..."
@@ -481,16 +482,16 @@ const Profile = () => {
       </div>
 
       {/* Bank Details Section */}
-      <div className="bg-gray-800 p-6 rounded-lg">
+      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-xl font-semibold font-meuthanies">
+          <h3 className="text-xl font-semibold font-meuthanies text-gray-900">
             Bank Account Details
           </h3>
           <button
             onClick={() =>
               setEditStates((prev) => ({ ...prev, bank: !prev.bank }))
             }
-            className="text-gray-400 hover:text-white"
+            className="text-gray-500 hover:text-customBlue"
           >
             {userData.bankDetails?.accountNumber ? (
               <FaEdit size={20} />
@@ -501,12 +502,12 @@ const Profile = () => {
         </div>
         <div className="space-y-4">
           <div>
-            <label className="block text-sm text-gray-400 mb-1">
+            <label className="block text-sm text-gray-600 mb-1">
               Account Number
             </label>
             <input
               type="text"
-              className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2"
+              className="w-full bg-white border border-gray-300 rounded-lg px-4 py-2 focus:border-customBlue focus:ring-1 focus:ring-customBlue"
               value={userData.bankDetails?.accountNumber}
               onChange={(e) =>
                 handleInputChange("bank", "accountNumber", e.target.value)
@@ -520,12 +521,12 @@ const Profile = () => {
             />
           </div>
           <div>
-            <label className="block text-sm text-gray-400 mb-1">
+            <label className="block text-sm text-gray-600 mb-1">
               IFSC Code
             </label>
             <input
               type="text"
-              className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2"
+              className="w-full bg-white border border-gray-300 rounded-lg px-4 py-2 focus:border-customBlue focus:ring-1 focus:ring-customBlue"
               value={userData.bankDetails?.ifscCode || ""}
               onChange={(e) =>
                 handleInputChange("bank", "ifscCode", e.target.value)
@@ -537,12 +538,12 @@ const Profile = () => {
             />
           </div>
           <div>
-            <label className="block text-sm text-gray-400 mb-1">
+            <label className="block text-sm text-gray-600 mb-1">
               Bank Name
             </label>
             <input
               type="text"
-              className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2"
+              className="w-full bg-white border border-gray-300 rounded-lg px-4 py-2 focus:border-customBlue focus:ring-1 focus:ring-customBlue"
               value={userData.bankDetails?.bankName || ""}
               onChange={(e) =>
                 handleInputChange("bank", "bankName", e.target.value)
@@ -558,7 +559,7 @@ const Profile = () => {
               <button
                 onClick={handleBankDetailsUpdate}
                 disabled={isLoading.bank}
-                className="flex items-center px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:bg-gray-600"
+                className="flex items-center px-6 py-2 bg-customBlue text-white rounded-lg hover:bg-blue-700 transition-colors disabled:bg-gray-300"
               >
                 {isLoading.bank ? (
                   "Processing..."
@@ -576,11 +577,11 @@ const Profile = () => {
       {/* File Preview Modal */}
       {previewFile && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-gray-800 p-4 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-auto">
+          <div className="bg-white p-4 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-auto">
             <div className="flex justify-end mb-2">
               <button
                 onClick={() => setPreviewFile(null)}
-                className="text-gray-400 hover:text-white"
+                className="text-gray-600 hover:text-customBlue"
               >
                 Close
               </button>

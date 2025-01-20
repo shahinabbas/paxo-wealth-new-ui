@@ -427,7 +427,7 @@ function EarningsSteps() {
     triggerOnce: false,
   });
   return (
-    <div className=" text-black md:pt-10 pt-14 ">
+    <div className="bg-[#F5F9FF] text-black md:pt-10 pt-14 ">
       <div className="max-w-4xl md:mx-20 mx-5">
         <div className="md:flex justify-between">
           <div className="font-meuthanies">

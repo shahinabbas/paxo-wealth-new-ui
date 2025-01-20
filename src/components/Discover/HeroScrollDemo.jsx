@@ -21,7 +21,7 @@ export function HeroScrollDemo() {
   };
 
   return (
-    <div className="flex md:mt-0 -mt-10 flex-col bg-white text-black md:-mb-64 -mb-48">
+    <div className="flex md:mt-0 -mt-10 flex-col bg-white text-black md:-mb-72 -mb-48">
       <ContainerScroll
         titleComponent={
           <div className="mb-10">

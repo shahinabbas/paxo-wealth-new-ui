@@ -238,7 +238,7 @@ function HowItWorks() {
                 className="rounded-lg h-[188px] object-cover object-left"
               />
               <h1 className="font-meuthanies mt-4">
-                Shobha Apartments - Sarjapur
+              Prestige Group - Jayanagar{" "}
               </h1>
               <div className="bg-black rounded-full p-3 mt-4">
                 <h1 className="text-white text-center">Activate Your Plan</h1>
@@ -254,8 +254,8 @@ function HowItWorks() {
                 alt=""
                 className="rounded-lg h-[188px] object-cover object-left"
               />
-              <h1 className="font-meuthanies mt-4">
-                Shobha Apartments - Sarjapur
+           <h1 className="font-meuthanies mt-4">
+                Provident Sunworth City -<br /> Mysore Road{" "}
               </h1>
               <div className="bg-black rounded-full p-3 mt-4">
                 <h1 className="text-white text-center">Activate Your Plan</h1>

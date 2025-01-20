@@ -74,7 +74,7 @@ function Navbar() {
   };
 
   return (
-    <div className="fixed top-2 left-0 w-full flex h-16 bg-transparent items-center justify-between px-4 z-50">
+    <div className="fixed top-0 left-0 w-full flex h-16 items-center justify-between px-4 z-50 bg-[#FFFFFF99] rounded-md bg-clip-padding backdrop-filter backdrop-blur-[10px] bg-opacity-10 ">
       <div
         className="flex justify-center items-center mt-2 cursor-pointer"
         onClick={handleClick}
@@ -86,9 +86,7 @@ function Navbar() {
 
       <div className="relative hidden lg:flex">
         <div
-          className={`relative flex  border w-[540px] h-12 border-gray-700 gap-8 px-6 rounded-xl justify-center items-center bg-transparent transition-all duration-300 ${
-            openDropdown ? "border-b-0 rounded-b-none" : "rounded-xl"
-          }`}
+          className="relative flex   w-[540px] h-12 gap-8 px-6 rounded-xl justify-center items-center bg-transparent transition-all duration-300"
         >
           <div className="flex flex-col items-center cursor-pointer relative">
             <Link to="/boost-income" className="flex items-center">
@@ -120,14 +118,10 @@ function Navbar() {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className={`absolute w-[540px] top-[33px] -right-[154.5px] bg-white border border-gray-700 p-4 ${
-                    openDropdown === "company"
-                      ? "border-t-0 rounded-b-xl"
-                      : "rounded-xl"
-                  }`}
+                  className="absolute w-[540px] top-[42px] -right-[154.5px]  p-4 bg-[#FFFFFF99]  bg-clip-padding backdrop-filter backdrop-blur-[10px] bg-opacity-10"
                   ref={dropdownRef}
-                  onMouseEnter={() => setOpenDropdown("company")} // Keep open when hovering over the dropdown
-                  onMouseLeave={() => setOpenDropdown(null)} // Close when mouse leaves the dropdown
+                  onMouseEnter={() => setOpenDropdown("company")} 
+                  onMouseLeave={() => setOpenDropdown(null)} 
                 >
                   <div className="flex gap-5">
                     <GlowingStarsBackgroundCardPreview />
@@ -164,9 +158,9 @@ function Navbar() {
 
       {/* Location and Login */}
       <div className="gap-10 justify-center items-center text-white hidden lg:flex font-sf-pro">
-        <div>
+        {/* <div>
           <p className="text-sm">EN</p>
-        </div>
+        </div> */}
         {renderAuthButton()}
       </div>
 
@@ -180,7 +174,9 @@ function Navbar() {
             animate={{ rotate: isMobileMenuOpen ? 180 : 0 }}
             transition={{ duration: 0.3 }}
           >
-            {!isMobileMenuOpen && <RxHamburgerMenu className="text-2xl text-black" />}
+            {!isMobileMenuOpen && (
+              <RxHamburgerMenu className="text-2xl text-black" />
+            )}
           </motion.div>
         </div>
       </div>

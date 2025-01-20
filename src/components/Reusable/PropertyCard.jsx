@@ -3,6 +3,7 @@ import { FaBuilding, FaChartLine, FaCalendarAlt, FaFileDownload } from "react-ic
 import { MdCurrencyRupee } from "react-icons/md";
 
 const PropertyCard = ({ property }) => {
+  
   const handleDownloadReceipt = async () => {
     // Implement download functionality
   };
@@ -16,18 +17,18 @@ const PropertyCard = ({ property }) => {
   };
 
   return (
-    <div className="bg-gray-800 rounded-lg p-6">
+    <div className="bg-white rounded-lg p-6 shadow-lg border border-gray-200">
       <div className="flex flex-col md:flex-row justify-between gap-6">
         {/* Left Section */}
         <div className="flex-1 space-y-4">
           <div className="flex items-start gap-4">
-            <div className="p-3 bg-gray-700 rounded-lg">
-              <FaBuilding className="text-2xl text-customGreen" />
+            <div className="p-3 bg-blue-50 rounded-lg">
+              <FaBuilding className="text-2xl text-customBlue" />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-white">{property.name}</h3>
-              <p className="text-gray-400">{property.type}</p>
-              <div className="mt-2 flex items-center text-customGreen">
+              <h3 className="text-xl font-bold text-gray-900">{property.name}</h3>
+              <p className="text-gray-600">{property.type}</p>
+              <div className="mt-2 flex items-center text-customBlue">
                 <FaChartLine className="mr-2" />
                 <span>{property.growth}% Growth</span>
               </div>
@@ -38,15 +39,15 @@ const PropertyCard = ({ property }) => {
         {/* Middle Section */}
         <div className="flex-1 space-y-3">
           <div>
-            <p className="text-gray-400">Invested Amount</p>
-            <p className="text-xl font-bold flex items-center">
+            <p className="text-gray-600">Invested Amount</p>
+            <p className="text-xl font-bold flex items-center text-gray-900">
               <MdCurrencyRupee />
               {formatCurrency(property.investedAmount).replace('₹', '')}
             </p>
           </div>
           <div>
-            <p className="text-gray-400">Current Value</p>
-            <p className="text-xl font-bold text-customGreen flex items-center">
+            <p className="text-gray-600">Current Value</p>
+            <p className="text-xl font-bold text-customBlue flex items-center">
               <MdCurrencyRupee />
               {formatCurrency(property.currentValue).replace('₹', '')}
             </p>
@@ -56,27 +57,27 @@ const PropertyCard = ({ property }) => {
         {/* Right Section */}
         <div className="flex-1 space-y-3">
           <div>
-            <p className="text-gray-400">Monthly Payout</p>
-            <p className="text-xl font-bold text-customGreen flex items-center">
+            <p className="text-gray-600">Monthly Payout</p>
+            <p className="text-xl font-bold text-customBlue flex items-center">
               <MdCurrencyRupee />
               {formatCurrency(property.monthlyPayout).replace('₹', '')}
             </p>
           </div>
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-400">Next Payout</p>
-              <p className="flex items-center text-white">
-                <FaCalendarAlt className="mr-2 text-customGreen" />
+              <p className="text-gray-600">Next Payout</p>
+              <p className="flex items-center text-gray-900">
+                <FaCalendarAlt className="mr-2 text-customBlue" />
                 {new Date(property.nextPayout).toLocaleDateString()}
               </p>
             </div>
             {property.paymentStatus === 'completed' && (
               <button
                 onClick={handleDownloadReceipt}
-                className="p-2 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors"
+                className="p-2 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
                 title="Download Receipt"
               >
-                <FaFileDownload className="text-customGreen" />
+                <FaFileDownload className="text-customBlue" />
               </button>
             )}
           </div>
@@ -84,25 +85,25 @@ const PropertyCard = ({ property }) => {
       </div>
 
       {/* Additional Details */}
-      <div className="mt-4 pt-4 border-t border-gray-700 grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-2 md:grid-cols-4 gap-4">
         <div>
-          <p className="text-gray-400">Units Owned</p>
-          <p className="text-white font-bold">{property.units}</p>
+          <p className="text-gray-600">Units Owned</p>
+          <p className="text-gray-900 font-bold">{property.units}</p>
         </div>
         <div>
-          <p className="text-gray-400">Price Per Unit</p>
-          <p className="text-white font-bold flex items-center">
+          <p className="text-gray-600">Price Per Unit</p>
+          <p className="text-gray-900 font-bold flex items-center">
             <MdCurrencyRupee />
             {formatCurrency(property.priceDetails?.pricePerUnit).replace('₹', '')}
           </p>
         </div>
         <div>
-          <p className="text-gray-400">Total Area</p>
-          <p className="text-white font-bold">{property.priceDetails?.totalArea} sqft</p>
+          <p className="text-gray-600">Total Area</p>
+          <p className="text-gray-900 font-bold">{property.priceDetails?.totalArea} sqft</p>
         </div>
         <div>
-          <p className="text-gray-400">Status</p>
-          <p className="text-customGreen font-bold capitalize">{property.orderStatus}</p>
+          <p className="text-gray-600">Status</p>
+          <p className="text-customBlue font-bold capitalize">{property.orderStatus}</p>
         </div>
       </div>
     </div>

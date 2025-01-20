@@ -7,7 +7,7 @@ const DashboardLayout = ({ children }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white pt-16"> {/* Added pt-16 for navbar space */}
+    <div className="min-h-screen bg-white text-customBlue pt-16"> {/* Added pt-16 for navbar space */}
       <MobileMenuButton 
         isOpen={isMobileMenuOpen} 
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 

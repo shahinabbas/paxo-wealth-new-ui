@@ -14,7 +14,7 @@ function Explore() {
         <h1 className="md:text-5xl md:mt-3 mb-2 md:mb-6 font-meuthanies text-center">
           Take the Smart Step with <br />
           <span className="relative inline-block text-center">
-            <span className="absolute inset-0 bg-[#0056E0] transform rotate-[-2deg]"></span>
+            <span className="absolute inset-0 bg-[#6200EE] transform rotate-[-2deg]"></span>
             <span className="relative text-white z-10 block text-center">
               Paxo Wealth
             </span>

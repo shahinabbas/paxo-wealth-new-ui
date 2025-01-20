@@ -781,9 +781,9 @@ const Icon = () => (
 
 function Explore() {
   return (
-    <div className="relative h-[950px] md:h-[750px] bg-[#006FFF]">
+    <div className="relative h-[950px]  md:h-[750px] bg-[#006FFF]">
       <div className="absolute top-0 left-0 w-full z-20 flex flex-col items-center justify-center h-full">
-        <h1 className="relative z-10 text-2xl md:text-5xl mt-28 md:mb-10 text-white text-center font-meuthanies">
+        <h1 className="relative z-10 text-2xl md:text-5xl mt-36 md:mb-10 text-white text-center font-meuthanies">
           Explore Our Core
           <span className="relative inline-block text-center ml-2">
             <span className="absolute inset-0 bg-white transform rotate-[-2deg]"></span>

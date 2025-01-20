@@ -4,31 +4,24 @@ import BoostIncome from "./BoostIncome";
 import DirectSave from "./DirectSave";
 import RentRise from "./RentRise";
 import Combined from "./Combined";
+import Introduction from "./Introduction";
 
 function Home() {
   const variants = {
-    hidden: { x: "100vw" }, // Start off-screen (for sliding components)
+    hidden: { x: "100vw" },
     visible: (i) => ({
-      x: 0, // Move to the center (for sliding components)
+      x: 0,
       transition: {
-        delay: i * 3.5, // Delay between components for slower effect
-        duration: 4.5, // Duration for smoother, slower animation
+        delay: i * 4.5,
+        duration: 5.5,
         type: "spring",
-        stiffness: 40, // Slightly reduce stiffness for a gentler motion
+        stiffness: 40,
       },
     }),
     exit: {
-      x: "-100vw", // Exit to the left (for sliding components)
+      x: "-100vw", 
       transition: { duration: 0.8 },
     },
-  };
-
-  const firstComponentVariants = {
-    visible: {
-      opacity: 1, // Just fade in for the first component
-      transition: { duration: 1.5 }, // Slight fade-in effect for the first component
-    },
-    hidden: { opacity: 0 }, // Start invisible
   };
 
   return (
@@ -39,10 +32,26 @@ function Home() {
         position: "relative",
       }}
     >
+      {/* Introduction component */}
       <motion.div
         initial="hidden"
         animate="visible"
-        variants={firstComponentVariants}
+        variants={variants}
+        custom={0}
+        style={{
+          position: "absolute",
+          width: "100%",
+        }}
+      >
+        <Introduction />
+      </motion.div>
+
+      {/* BoostIncome component */}
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={variants}
+        custom={1}
         style={{
           position: "absolute",
           width: "100%",
@@ -51,12 +60,13 @@ function Home() {
         <BoostIncome />
       </motion.div>
 
+      {/* RentRise component */}
       <motion.div
-        custom={1}
         initial="hidden"
         animate="visible"
         exit="exit"
         variants={variants}
+        custom={2}
         style={{
           position: "absolute",
           width: "100%",
@@ -65,12 +75,13 @@ function Home() {
         <RentRise />
       </motion.div>
 
+      {/* DirectSave component */}
       <motion.div
-        custom={2}
         initial="hidden"
         animate="visible"
         exit="exit"
         variants={variants}
+        custom={3}
         style={{
           position: "absolute",
           width: "100%",
@@ -79,12 +90,13 @@ function Home() {
         <DirectSave />
       </motion.div>
 
+      {/* Combined component */}
       <motion.div
-        custom={3}
         initial="hidden"
         animate="visible"
         exit="exit"
         variants={variants}
+        custom={4}
         style={{
           position: "absolute",
           width: "100%",
