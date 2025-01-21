@@ -72,7 +72,6 @@ const LeftLine = ({ classname }) => (
     // width="265"
     // height="144"
     className={classname}
-
     viewBox="0 0 265 144"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -99,7 +98,6 @@ const RightLine = ({ classname }) => (
     // width="265"
     // height="144"
     className={classname}
-
     viewBox="0 0 265 144"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -200,68 +198,70 @@ function HowItWorks() {
   return (
     <div className="bg-[#F5F9FF] min-h-screen pt-20 pb-10  md:overflow-hidden ">
       <div className="md:px-20 px-5">
-        <h1 className="font-meuthanies xl:text-6xl text-4xl pt-10 xl:ml-20">How it works!</h1>
-        <div className="md:flex justify-center mt-10 items-center relative hidden">
-          <Logo />
-          <div className="absolute top-[60px] md:left-[224px] xl:left-[417px] w-full">
-            <LeftLine classname="w-[265px] h-[144px]" />
-          </div>
-          <div className="absolute md:top-[125px] md:left-0 xl:top-[125px] xl:left-0 w-full md:flex justify-center ">
-            <CenterLine classname="w-[2px] h-[144px]" />
-          </div>
-          <div className="absolute top-[60px] md:-right-[614px] xl:-right-[806px] w-full ">
-            <RightLine classname="w-[265px] h-[144px]" />
-          </div>
-        </div>
-        {/* Aligning the cards */}
-        <div className="flex justify-center relative mt-10 flex-col md:flex-row">
-          {/* Card aligned with the left line */}
-          <div className="md:absolute top-[35px] md:left-[64px] xl:left-[270px] mb-6 md:mb-0">
-            <div className="bg-white md:w-[290px] h-80 p-3 rounded-lg">
-              <img
-                src={Works}
-                alt=""
-                className="rounded-lg h-[188px] object-cover object-left"
-              />
-              <h1 className="font-meuthanies mt-4">
-                Shobha Apartments - Sarjapur
-              </h1>
-              <div className="bg-black rounded-full p-3 mt-4">
-                <h1 className="text-white text-center">Activate Your Plan</h1>
-              </div>
+        <h1 className="font-meuthanies xl:text-6xl text-4xl pt-10 xl:ml-20">
+          How it works!
+        </h1>
+        <div className="md:w-[1100px] xl:w-[1100px]">
+          <div className="md:flex justify-center mt-10 items-center relative hidden">
+            <Logo />
+            <div className="absolute top-[60px] md:left-[224px]  w-full">
+              <LeftLine classname="w-[265px] h-[144px]" />
+            </div>
+            <div className="absolute md:top-[125px] md:left-0  w-full md:flex justify-center ">
+              <CenterLine classname="w-[2px] h-[144px]" />
+            </div>
+            <div className="absolute top-[60px] md:-right-[610px]  w-full ">
+              <RightLine classname="w-[265px] h-[144px]" />
             </div>
           </div>
 
-          {/* Card aligned with the center line */}
-          <div className="md:absolute md:top-[105px] md:left-[50%] xl:top-[105px] xl:left-[50%] md:transform md:-translate-x-[50%] mb-6 md:mb-0">
-            <div className="bg-white md:w-[290px] h-80 p-3 rounded-lg">
-              <img
-                src={Works}
-                alt=""
-                className="rounded-lg h-[188px] object-cover object-left"
-              />
-              <h1 className="font-meuthanies mt-4">
-                Prestige Group - Jayanagar{" "}
-              </h1>
-              <div className="bg-black rounded-full p-3 mt-4">
-                <h1 className="text-white text-center">Activate Your Plan</h1>
+          <div className="flex justify-center relative mt-10 flex-col md:flex-row">
+            <div className="md:absolute md:top-[25px] md:left-[20%]  md:transform md:-translate-x-[50%] mb-6 md:mb-0">
+              <div className="bg-white md:w-[290px] h-80 p-3 rounded-lg">
+                <img
+                  src={Works}
+                  alt=""
+                  className="rounded-lg h-[188px] object-cover object-left"
+                />
+                <h1 className="font-meuthanies mt-4">
+                  Shobha Apartments - Sarjapur
+                </h1>
+                <div className="bg-black rounded-full p-3 mt-4">
+                  <h1 className="text-white text-center">Activate Your Plan</h1>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Card aligned with the right line */}
-          <div className="md:absolute top-[35px] md:left-[750px]  xl:left-[930px] mb-6 md:mb-0">
-            <div className="bg-white md:w-[290px] h-80 p-3 rounded-lg">
-              <img
-                src={Works}
-                alt=""
-                className="rounded-lg h-[188px] object-cover object-left"
-              />
-              <h1 className="font-meuthanies mt-4">
-                Provident Sunworth City -<br /> Mysore Road{" "}
-              </h1>
-              <div className="bg-black rounded-full p-3 mt-4">
-                <h1 className="text-white text-center">Activate Your Plan</h1>
+            <div className="md:absolute md:top-[105px] md:left-[50%]  md:transform md:-translate-x-[50%] mb-6 md:mb-0">
+              <div className="bg-white md:w-[290px] h-80 p-3 rounded-lg">
+                <img
+                  src={Works}
+                  alt=""
+                  className="rounded-lg h-[188px] object-cover object-left"
+                />
+                <h1 className="font-meuthanies mt-4">
+                  Prestige Group - Jayanagar{" "}
+                </h1>
+                <div className="bg-black rounded-full p-3 mt-4">
+                  <h1 className="text-white text-center">Activate Your Plan</h1>
+                </div>
+              </div>
+            </div>
+
+            {/* Card aligned with the right line */}
+            <div className="md:absolute top-[35px] md:left-[744px]  mb-6 md:mb-0">
+              <div className="bg-white md:w-[290px] h-80 p-3 rounded-lg">
+                <img
+                  src={Works}
+                  alt=""
+                  className="rounded-lg h-[188px] object-cover object-left"
+                />
+                <h1 className="font-meuthanies mt-4">
+                  Provident Sunworth City -<br /> Mysore Road{" "}
+                </h1>
+                <div className="bg-black rounded-full p-3 mt-4">
+                  <h1 className="text-white text-center">Activate Your Plan</h1>
+                </div>
               </div>
             </div>
           </div>

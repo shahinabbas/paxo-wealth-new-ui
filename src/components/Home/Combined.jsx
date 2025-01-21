@@ -165,7 +165,7 @@ function Combined() {
       </div>
 
       {/* Mobile View */}
-      <div className="flex h-[10rem] pt-8 lg:hidden flex-col min-h-screen md:mt-14 md:gap-10  items-center text-center overflow-y-auto">
+      <div className="flex h-[40rem] pt-8 lg:hidden flex-col min-h-screen md:mt-14 md:gap-10  items-center text-center overflow-y-auto scrollbar-hide">
         {[
           {
             title: "Boost Income",

@@ -19,15 +19,16 @@ import Combined from "../Home/Combined";
 const HomePage = () => {
   return (
     <div> 
+      {/* <Combined/> */}
       <Home />
-      <Features />
-      <HeroScrollDemo />
-      <Explore />
-      <EarningsSteps />
-      <Earnings />
-      <Premium />
-      <Properties />
-      <FaqCombined />
+        <Features />
+        <HeroScrollDemo />
+        <Explore />
+        <EarningsSteps />
+        <Earnings />
+        <Premium />
+        <Properties />
+        <FaqCombined />
     </div>
   );
 };

@@ -1,61 +1,145 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+// Secure Icon Component
+const SecureIcon = () => (
+  <svg
+    width="48"
+    height="48"
+    viewBox="0 0 48 48"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="inline-block mr-2"
+  >
+    <path
+      d="M35.4375 13.1013C30.2483 13.1013 24.8706 8.29123 24.8173 8.24305C24.4599 7.91898 23.9151 7.91898 23.5577 8.24305C23.5041 8.29161 18.1405 13.1013 12.9375 13.1013C12.4198 13.1013 12 13.521 12 14.0388V25.2662C12 34.3614 18.7648 37.9958 23.8531 39.9384C23.9608 39.9795 24.0741 40 24.1875 40C24.3009 40 24.4142 39.9794 24.5219 39.9384C31.6565 37.2146 36.375 32.9659 36.375 25.2662V14.0388C36.375 13.521 35.9553 13.1013 35.4375 13.1013Z"
+      fill="#0056E0"
+    />
+    <path
+      d="M24.1875 17.4375C20.5689 17.4375 17.625 20.3814 17.625 24C17.625 27.6186 20.5689 30.5625 24.1875 30.5625C27.8061 30.5625 30.75 27.6186 30.75 24C30.75 20.3814 27.8061 17.4375 24.1875 17.4375ZM26.7254 23.7254L23.9129 26.5379C23.7299 26.7209 23.4899 26.8125 23.25 26.8125C23.0101 26.8125 22.7701 26.721 22.5871 26.5379L21.6496 25.6004C21.2835 25.2343 21.2835 24.6407 21.6496 24.2746C22.0157 23.9084 22.6093 23.9084 22.9754 24.2746L23.2501 24.5491L25.3997 22.3996C25.7658 22.0334 26.3594 22.0334 26.7255 22.3996C27.0916 22.7657 27.0916 23.3593 26.7254 23.7254Z"
+      fill="white"
+    />
+  </svg>
+);
+const PayoutsIcon = () => (
+  <svg
+    width="32"
+    height="32"
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="inline-block mr-2"
+
+  >
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M23.5326 2.6001H24.0116C27.3976 2.6001 30.1516 5.3541 30.1526 8.7401V11.7501V24.7611C30.1526 28.1471 27.3976 30.9021 24.0116 30.9021H7.99156C4.60556 30.9021 1.85156 28.1471 1.85156 24.7611V11.7511V8.7411C1.85156 5.3551 4.60556 2.6001 7.99156 2.6001H8.47056V2.0001C8.47056 1.5031 8.87356 1.1001 9.37056 1.1001C9.86756 1.1001 10.2706 1.5031 10.2706 2.0001V2.6001H21.7326V2.0001C21.7326 1.5031 22.1356 1.1001 22.6326 1.1001C23.1296 1.1001 23.5326 1.5031 23.5326 2.0001V2.6001ZM3.65156 10.8501H28.3516L28.3506 8.7401C28.3506 6.3461 26.4046 4.4001 24.0106 4.4001H23.5316V4.9981C23.5316 5.4951 23.1286 5.8981 22.6316 5.8981C22.1346 5.8981 21.7316 5.4951 21.7316 4.9981V4.4001H10.2706V4.9981C10.2706 5.4951 9.86756 5.8981 9.37056 5.8981C8.87356 5.8981 8.47056 5.4951 8.47056 4.9981V4.4001H7.99156C5.59856 4.4001 3.65156 6.3461 3.65156 8.7401V10.8501ZM10 20C10 16.6916 12.6921 14 16 14C19.3079 14 22 16.6916 22 20C22 23.3084 19.3079 26 16 26C12.6921 26 10 23.3084 10 20ZM17.0899 17.2727H18.7273V16.1818H13.2727V17.2727H14.9091C15.6193 17.2727 16.2191 17.7301 16.445 18.3636H13.2727V19.4545H16.445C16.2191 20.0881 15.6193 20.5455 14.9091 20.5455H13.1555L16.6744 24.7152L17.5075 24.0121L15.4567 21.581C16.522 21.3631 17.3586 20.52 17.5766 19.4545H18.7273V18.3636H17.5753C17.4931 17.9616 17.328 17.5893 17.0899 17.2727Z"
+      fill="#0056E0"
+    />
+  </svg>
+);
+const MonitoringIcon = () => (
+  <svg
+    width="32"
+    height="32"
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="inline-block mr-2"
+
+  >
+    <path
+      d="M16 2C8.26901 2 2 8.26885 2 16C2 23.7311 8.26885 30 16 30C23.7311 30 30 23.7311 30 16C30 8.26885 23.7311 2 16 2ZM19.0177 19.0177C18.8 19.2511 18.5044 19.3599 18.1934 19.3599C17.8978 19.3599 17.6022 19.2511 17.3688 19.0177L15.1755 16.8244C14.9577 16.6066 14.8331 16.3111 14.8331 15.9998V9.0154C14.8331 8.3775 15.3621 7.84869 15.9998 7.84869C16.6376 7.84869 17.1666 8.3775 17.1666 9.0154V15.5176L19.0176 17.3687C19.4842 17.8353 19.4843 18.5666 19.0177 19.0177Z"
+      fill="#0056E0"
+    />
+  </svg>
+);
+const GrowthIcon = () => (
+  <svg
+    width="27"
+    height="32"
+    viewBox="0 0 27 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="inline-block mr-2"
+
+  >
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M0 4.51986L13.4258 0L26.8516 4.51993V15.742C26.8516 23.7912 21.0566 30.5291 13.4258 32C5.79496 30.529 0 23.7912 0 15.742V4.51986ZM15.3122 9.04514C14.92 8.36592 14.2102 7.95605 13.4258 7.95605C12.6414 7.95605 11.9315 8.36592 11.5393 9.04514L6.76928 17.3071C6.37708 17.9864 6.37708 18.8061 6.76928 19.4853C7.16147 20.1646 7.87134 20.5745 8.65572 20.5745H18.1958C18.9802 20.5745 19.6901 20.1646 20.0823 19.4853C20.4745 18.8061 20.4745 17.9864 20.0823 17.3071L15.3122 9.04514ZM13.4258 17.1476C13.0233 17.1476 12.6969 17.4739 12.6969 17.8764C12.6969 18.2789 13.0233 18.6053 13.4258 18.6053C13.8283 18.6053 14.1546 18.2789 14.1546 17.8764C14.1546 17.4739 13.8283 17.1476 13.4258 17.1476ZM13.4258 16.2651C13.7455 16.2651 14.008 16.012 14.0196 15.6924L14.1698 11.533C14.1758 11.3657 14.1198 11.2195 14.0036 11.0991C13.8875 10.9786 13.7434 10.9174 13.576 10.9174C13.3636 10.9174 13.4879 10.9174 13.2755 10.9174C13.1081 10.9174 12.964 10.9786 12.8478 11.0991C12.7317 11.2195 12.6756 11.3657 12.6817 11.533L12.8319 15.6924C12.8435 16.0119 13.106 16.2651 13.4258 16.2651ZM2.90316 6.60412V15.742C2.90316 18.9198 4.01373 21.897 5.89773 24.2556C7.76044 26.5874 10.3784 28.3146 13.4258 29.033C16.4731 28.3145 19.0911 26.5874 20.9538 24.2556C22.8378 21.897 23.9484 18.9198 23.9484 15.742V6.60412L13.4258 3.06161L2.90316 6.60412ZM1.8709 15.742C1.8709 19.1588 3.06522 22.3602 5.09128 24.8967C7.11895 27.435 9.98062 29.3075 13.3128 30.0633C13.3946 30.0817 13.4762 30.0795 13.5522 30.0601C16.8786 29.3023 19.7353 27.4316 21.7601 24.8967C23.7862 22.3602 24.9805 19.1588 24.9805 15.742V6.23496C24.9805 5.99283 24.8138 5.78973 24.5889 5.73399L13.5889 2.03077C13.4787 1.99387 13.3647 1.99645 13.2623 2.03077L2.22374 5.74709C2.00845 5.81915 1.87238 6.01979 1.87245 6.23502H1.87096L1.8709 15.742Z"
+      fill="#0056E0"
+    />
+  </svg>
+);
+const ActivationIcon = () => (
+  <svg
+    width="33"
+    height="32"
+    viewBox="0 0 33 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="inline-block mr-2"
+
+  >
+    <path
+      d="M31.7222 14.1142L29.5398 11.9321C29.0218 11.4141 28.5974 10.3905 28.5974 9.65647V6.57049C28.5974 5.1025 27.3981 3.90327 25.9305 3.90249H22.8433C22.1101 3.90249 21.0853 3.47725 20.5673 2.95966L18.3852 0.777607C17.3484 -0.259202 15.6508 -0.259202 14.614 0.777607L12.4319 2.96123C11.9135 3.4792 10.8875 3.90327 10.1559 3.90327H7.0699C5.60387 3.90327 4.40308 5.1025 4.40308 6.57049V9.65654C4.40308 10.3877 3.97869 11.4145 3.46064 11.9322L1.27819 14.1143C0.240602 15.1511 0.240602 16.8487 1.27819 17.8871L3.46064 20.0692C3.97901 20.5871 4.40308 21.6136 4.40308 22.3448V25.4309C4.40308 26.8973 5.60387 28.0981 7.0699 28.0981H10.156C10.8892 28.0981 11.9139 28.5225 12.432 29.0401L14.6141 31.223C15.6509 32.259 17.3485 32.259 18.3853 31.223L20.5673 29.0401C21.0858 28.5222 22.1102 28.0981 22.8434 28.0981H25.9306C27.3982 28.0981 28.5974 26.8973 28.5974 25.4309V22.3448C28.5974 21.6104 29.0222 20.5868 29.5399 20.0692L31.7223 17.8871C32.7583 16.8487 32.7583 15.151 31.7222 14.1142ZM14.3828 22.0003L8.49914 16.1158L10.3848 14.2306L14.3833 18.2291L22.6142 10.0001L24.4993 11.8854L14.3828 22.0003Z"
+      fill="#0056E0"
+    />
+  </svg>
+);
+const SupportIcon = () => (
+  <svg
+    width="32"
+    height="32"
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="inline-block mr-2"
+
+  >
+    <path
+      d="M32 13.3333V18.6667C32 20.1375 30.8042 21.3333 29.3333 21.3333H28.6073C27.5875 27.3771 22.3302 32 16 32C15.4104 32 14.9333 31.5229 14.9333 30.9333C14.9333 30.3438 15.4104 29.8667 16 29.8667C21.8813 29.8667 26.6667 25.0813 26.6667 19.2V12.8C26.6667 6.91875 21.8813 2.13333 16 2.13333C10.1188 2.13333 5.33333 6.91875 5.33333 12.8V20.2667C5.33333 20.8563 4.85625 21.3333 4.26667 21.3333H2.66667C1.19583 21.3333 0 20.1375 0 18.6667V13.3333C0 11.8625 1.19583 10.6667 2.66667 10.6667H3.39271C4.4125 4.62292 9.66979 0 16 0C22.3302 0 27.5875 4.62292 28.6073 10.6667H29.3333C30.8042 10.6667 32 11.8625 32 13.3333ZM16 4.26667C11.2948 4.26667 7.46667 8.09479 7.46667 12.8V18.1333C7.46667 22.8385 11.2948 26.6667 16 26.6667C20.7052 26.6667 24.5333 22.8385 24.5333 18.1333V12.8C24.5333 8.09479 20.7052 4.26667 16 4.26667Z"
+      fill="#0056E0"
+    />
+  </svg>
+);
+
 function ScrollingStrip() {
+  const items = [
+    { label: "Secure", icon: <SecureIcon /> },
+    { label: "Instant Payouts", icon: <PayoutsIcon /> },
+    { label: "Real-Time Monitoring", icon: <MonitoringIcon /> },
+    { label: "Risk-Free Growth", icon: <GrowthIcon /> },
+    { label: "Personalized Plans", icon: <SecureIcon /> },
+    { label: "Hassle-Free Activation", icon: <ActivationIcon /> },
+    { label: "Dedicated Support", icon: <SupportIcon /> },
+    { label: "Transparent Processes", icon: <SecureIcon /> },
+  ];
+
   return (
-    <div className="bg-transparent p-4 overflow-hidden font-meuthanies md:-mt-20 -mt-10 ">
-      <div class="relative flex overflow-x-hidden">
-        <div class="relative flex overflow-x-hidden">
-          <div class="md:py-12 py-6 animate-marquee whitespace-nowrap">
-            <span class="text-2xl mx-4">Secure</span>
-            <span className="mx-4 text-2xl">|</span>
-
-            <span class="text-2xl mx-4">Instant Payouts</span>
-            <span className="mx-4 text-2xl">|</span>
-
-            <span class="text-2xl mx-4">Real-Time Monitoring</span>
-            <span className="mx-4 text-2xl">|</span>
-
-            <span class="text-2xl mx-4">Risk-Free Growth</span>
-            <span className="mx-4 text-2xl">|</span>
-
-            <span class="text-2xl mx-4">Personalized Plans</span>
-            <span className="mx-4 text-2xl">|</span>
-
-            <span class="text-2xl mx-4">Hassle-Free Activation</span>
-            <span className="mx-4 text-2xl">|</span>
-
-            <span class="text-2xl mx-4">Dedicated Support</span>
-            <span className="mx-4 text-2xl">|</span>
-
-            <span class="text-2xl mx-4">Transparent Processes</span>
-            <span className="text-2xl mx-4">|</span>
+    <div className="bg-transparent p-4 overflow-hidden font-meuthanies md:-mt-20 -mt-10">
+      <div className="relative flex overflow-x-hidden">
+        <div className="relative flex overflow-x-hidden">
+          <div className="md:py-12 py-6 animate-marquee whitespace-nowrap">
+            {items.map((item, index) => (
+              <span key={index} className="text-2xl items-center">
+                {item.icon}
+                {item.label}
+                <span className="mx-4 text-2xl text-[#D9D9D9]">•</span>
+              </span>
+            ))}
           </div>
 
-          <div class="absolute top-0 md:py-12 py-6 animate-marquee2 whitespace-nowrap">
-            <span class="text-2xl mx-4">Secure</span>
-            <span className="mx-4 text-2xl">|</span>
-
-            <span class="text-2xl mx-4">Instant Payouts</span>
-            <span className="mx-4 text-2xl">|</span>
-
-            <span class="text-2xl mx-4">Real-Time Monitoring</span>
-            <span class="text-2xl">|</span>
-
-            <span class="text-2xl mx-4">Risk-Free Growth</span>
-            <span className="mx-4 text-2xl">|</span>
-
-            <span class="text-2xl mx-4">Personalized Plans</span>
-            <span className="mx-4 text-2xl">|</span>
-
-            <span class="text-2xl mx-4">Hassle-Free Activation</span>
-            <span className="mx-4 text-2xl">|</span>
-
-            <span class="text-2xl mx-4">Dedicated Support</span>
-            <span className="mx-4 text-2xl">|</span>
-
-            <span class="text-2xl mx-4">Transparent Processes</span>
-            <span className="text-2xl mx-4">|</span>
+          <div className="absolute top-0 md:py-12 py-6 animate-marquee2 whitespace-nowrap">
+            {items.map((item, index) => (
+              <span key={index} className="text-2xl items-center">
+                {item.icon}
+                {item.label}
+                <span className="mx-4 text-2xl text-[#D9D9D9]">•</span>
+              </span>
+            ))}
           </div>
         </div>
       </div>

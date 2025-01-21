@@ -211,10 +211,10 @@ function Navbar() {
                 <img src={PW} alt="Logo" className="w-44 h-38 bg-cover" />
                 {/* Mobile menu items */}
                 <div className="py-2 mt-4 text-sm cursor-pointer">
-                  <Link to="/boost-income">PAXO Products</Link>
+                  <Link to="/boost-income" onClick={() => setIsMobileMenuOpen(false)}>PAXO Products</Link>
                 </div>
                 <div className="py-2 text-sm cursor-pointer">
-                  <Link to="/roi-calculator">ROI Calculator</Link>
+                  <Link to="/roi-calculator" onClick={() => setIsMobileMenuOpen(false)}>ROI Calculator</Link>
                 </div>
                 <div
                   className="py-2 text-sm cursor-pointer"
@@ -223,23 +223,23 @@ function Navbar() {
                   Company
                 </div>
                 {openDropdown === "company" && (
-                  <div className="w-full py-2 bg-gray-800">
+                  <div className="w-full py-2 bg-gray-200">
                     <div className="py-2 text-sm">
-                      <Link to="/about-us">About Us</Link>
+                      <Link to="/about-us" onClick={() => setIsMobileMenuOpen(false)}>About Us</Link>
                     </div>
                     <div className="py-2 text-sm">
-                      <Link to="/blog">Blog</Link>
+                      <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
                     </div>
                   </div>
                 )}
                 <div className="py-2 text-sm cursor-pointer">
-                  <Link to="/contact-us">Contact Us</Link>
+                  <Link to="/contact-us" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
                 </div>
                 <div
                   className="py-2 text-sm cursor-pointer"
                   onClick={handleSignOut}
                 >
-                  <Link to="/contact-us">Sign Out</Link>
+                  <Link to="/contact-us" onClick={() => setIsMobileMenuOpen(false)}>Sign Out</Link>
                 </div>
                 <div className="mt-4 flex justify-start">
                   {renderAuthButton()}
