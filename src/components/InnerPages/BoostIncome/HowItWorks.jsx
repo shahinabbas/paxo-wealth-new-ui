@@ -196,9 +196,9 @@ const steps = [
 
 function HowItWorks() {
   return (
-    <div className="bg-[#F5F9FF] min-h-screen pt-20 pb-10  md:overflow-hidden ">
+    <div className="bg-[#F5F9FF] min-h-screen pt-10  pb-10  md:overflow-hidden ">
       <div className="md:px-20 px-5">
-        <h1 className="font-meuthanies xl:text-6xl text-4xl pt-10 xl:ml-20">
+        <h1 className="font-meuthanies xl:text-6xl text-4xl md:pt-10 xl:pt-10 xl:ml-20">
           How it works!
         </h1>
         <div className="md:w-[1100px] xl:w-[1100px]">
