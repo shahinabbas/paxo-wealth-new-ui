@@ -67,10 +67,12 @@ const Logo = () => (
     </defs>
   </svg>
 );
-const LeftLine = () => (
+const LeftLine = ({ classname }) => (
   <motion.svg
-    width="265"
-    height="144"
+    // width="265"
+    // height="144"
+    className={classname}
+
     viewBox="0 0 265 144"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -92,10 +94,12 @@ const LeftLine = () => (
   </motion.svg>
 );
 
-const RightLine = () => (
+const RightLine = ({ classname }) => (
   <motion.svg
-    width="265"
-    height="144"
+    // width="265"
+    // height="144"
+    className={classname}
+
     viewBox="0 0 265 144"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -118,10 +122,11 @@ const RightLine = () => (
   </motion.svg>
 );
 
-const CenterLine = () => (
+const CenterLine = ({ classname }) => (
   <motion.svg
-    width="2"
-    height="148"
+    // width="2"
+    // height="148"
+    className={classname}
     viewBox="0 0 2 148"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -144,10 +149,11 @@ const CenterLine = () => (
   </motion.svg>
 );
 
-const StepRounds = () => (
+const StepRounds = ({ classname }) => (
   <svg
-    width="1220"
-    height="40"
+    // width="1220"
+    // height="40"
+    className={classname}
     viewBox="0 0 1760 40"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -191,30 +197,27 @@ const steps = [
 ];
 
 function HowItWorks() {
- 
   return (
-    <div
-      className="bg-[#F5F9FF] min-h-screen pt-20 pb-10  md:overflow-hidden "
-    >
+    <div className="bg-[#F5F9FF] min-h-screen pt-20 pb-10  md:overflow-hidden ">
       <div className="md:px-20 px-5">
-        <h1 className="font-meuthanies text-4xl pt-10">How it works!</h1>
+        <h1 className="font-meuthanies xl:text-6xl text-4xl pt-10 xl:ml-20">How it works!</h1>
         <div className="md:flex justify-center mt-10 items-center relative hidden">
           <Logo />
-          <div className="absolute top-[60px] left-[224px] w-full ">
-            <LeftLine />
+          <div className="absolute top-[60px] md:left-[224px] xl:left-[417px] w-full">
+            <LeftLine classname="w-[265px] h-[144px]" />
           </div>
-          <div className="absolute top-[125px] left-0 w-full md:flex justify-center ">
-            <CenterLine />
+          <div className="absolute md:top-[125px] md:left-0 xl:top-[125px] xl:left-0 w-full md:flex justify-center ">
+            <CenterLine classname="w-[2px] h-[144px]" />
           </div>
-          <div className="absolute top-[60px] -right-[614px] w-full ">
-            <RightLine />
+          <div className="absolute top-[60px] md:-right-[614px] xl:-right-[806px] w-full ">
+            <RightLine classname="w-[265px] h-[144px]" />
           </div>
         </div>
         {/* Aligning the cards */}
         <div className="flex justify-center relative mt-10 flex-col md:flex-row">
           {/* Card aligned with the left line */}
-          <div className="md:absolute md:top-[35px] md:left-[64px] mb-6 md:mb-0">
-            <div className="bg-white w-[290px] h-80 p-3 rounded-lg">
+          <div className="md:absolute top-[35px] md:left-[64px] xl:left-[270px] mb-6 md:mb-0">
+            <div className="bg-white md:w-[290px] h-80 p-3 rounded-lg">
               <img
                 src={Works}
                 alt=""
@@ -230,15 +233,15 @@ function HowItWorks() {
           </div>
 
           {/* Card aligned with the center line */}
-          <div className="md:absolute md:top-[105px] md:left-[50%] md:transform md:-translate-x-[50%] mb-6 md:mb-0">
-            <div className="bg-white w-[290px] h-80 p-3 rounded-lg">
+          <div className="md:absolute md:top-[105px] md:left-[50%] xl:top-[105px] xl:left-[50%] md:transform md:-translate-x-[50%] mb-6 md:mb-0">
+            <div className="bg-white md:w-[290px] h-80 p-3 rounded-lg">
               <img
                 src={Works}
                 alt=""
                 className="rounded-lg h-[188px] object-cover object-left"
               />
               <h1 className="font-meuthanies mt-4">
-              Prestige Group - Jayanagar{" "}
+                Prestige Group - Jayanagar{" "}
               </h1>
               <div className="bg-black rounded-full p-3 mt-4">
                 <h1 className="text-white text-center">Activate Your Plan</h1>
@@ -247,14 +250,14 @@ function HowItWorks() {
           </div>
 
           {/* Card aligned with the right line */}
-          <div className="md:absolute md:top-[35px] md:left-[750px] mb-6 md:mb-0">
-            <div className="bg-white w-[290px] h-80 p-3 rounded-lg">
+          <div className="md:absolute top-[35px] md:left-[750px]  xl:left-[930px] mb-6 md:mb-0">
+            <div className="bg-white md:w-[290px] h-80 p-3 rounded-lg">
               <img
                 src={Works}
                 alt=""
                 className="rounded-lg h-[188px] object-cover object-left"
               />
-           <h1 className="font-meuthanies mt-4">
+              <h1 className="font-meuthanies mt-4">
                 Provident Sunworth City -<br /> Mysore Road{" "}
               </h1>
               <div className="bg-black rounded-full p-3 mt-4">
@@ -267,16 +270,16 @@ function HowItWorks() {
       <div>
         <div className="md:mx-auto px-7 p-4 md:mt-[460px]">
           <div className="hidden md:block">
-            <StepRounds />
+            <StepRounds classname="md:w-[1210px] xl:w-[1610px] h-[40px]" />
           </div>
           <div className="md:flex md:space-y-0 space-y-10 justify-between gap-x-5 mt-4">
             {steps.map((step, index) => (
               <div key={index} className="flex items-start">
                 <div className="flex flex-col">
-                  <h3 className="md:text-[15px] text-xl font-meuthanies">
+                  <h3 className="md:text-[15px] xl:text-[18px] text-xl font-meuthanies">
                     {step.title}
                   </h3>
-                  <p className="font-sf-pro mt-2 text-[12px] md:w-56">
+                  <p className="font-sf-pro mt-2 text-[12px] xl:text-[15px] xl:w-72 md:w-56">
                     {step.description}
                   </p>
                 </div>

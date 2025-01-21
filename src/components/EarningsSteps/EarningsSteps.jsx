@@ -296,16 +296,20 @@ const HandLine = () => (
     initial={{ strokeDasharray: 420, strokeDashoffset: 420, stroke: "#444444" }}
     animate={{
       strokeDashoffset: 0,
-      stroke: ["#444444", "#0056E0", "#444444"], // Color transition
+      stroke: ["#444444", "#0056E0", "#444444"],
     }}
     transition={{
       duration: 3,
       ease: "linear",
-      delay: 3, // Starts after BulbLine finishes
+      delay: 3,
     }}
   >
-    <motion.path
+    {/* <motion.path
       d="M318 1H152.298C139.043 1 128.298 11.7452 128.298 25V73C128.298 86.2548 117.553 97 104.298 97H0"
+      strokeWidth="2"
+    /> */}
+    <motion.path
+      d="M0 97H104.298C117.553 97 128.298 86.2548 128.298 73V25C128.298 11.7452 139.043 1 152.298 1H318"
       strokeWidth="2"
     />
   </motion.svg>
@@ -354,7 +358,8 @@ const GraphLine = () => (
       delay: 9, // Starts after BarLine finishes
     }}
   >
-    <motion.path d="M1 165V25C1 11.7452 11.7452 1 25 1H180" strokeWidth="2" />
+    {/* <motion.path d="M1 165V25C1 11.7452 11.7452 1 25 1H180" strokeWidth="2" /> */}
+    <motion.path d="M180 1H25C11.7452 1 1 11.7452 1 25V165" strokeWidth="2" />
   </motion.svg>
 );
 const LogoSvg = () => (
@@ -428,7 +433,7 @@ function EarningsSteps() {
   });
   return (
     <div className="bg-[#F5F9FF] text-black md:pt-10 pt-14 ">
-      <div className="max-w-4xl md:mx-20 mx-5">
+      <div className=" md:mx-20 mx-5">
         <div className="md:flex justify-between">
           <div className="font-meuthanies">
             <h1 className="text-4xl mt-3 mb-6 font-meuthanies">
@@ -440,7 +445,7 @@ function EarningsSteps() {
               <h1 className="mt-2">Made Simple in 4 Steps</h1>
             </h1>
           </div>
-          <p className=" md:mt-16 text-[12px] font-sf-pro">
+          <p className=" md:mt-14 text-[16px] md:px-20 xl:px-80 font-sf-pro">
             From exploring opportunities to enjoying <br />
             consistent payouts, Paxo Wealth makes it easy.
           </p>
@@ -449,10 +454,10 @@ function EarningsSteps() {
         <div className="flex font-sf-pro">
           <div>
             <div className=" mb-8 md:mt-16 mt-4">
-              <h2 className="text-2xl font-meuthanies mb-4 text-customBlue">
+              <h2 className="text-2xl xl:text-3xl font-meuthanies mb-4 text-customBlue">
                 Discover Opportunities
               </h2>
-              <p className="text-[14px] text-gray-400">
+              <p className="text-[14px] xl:text-[17px] text-gray-400">
                 Choose from our tailored solutions - Boost Income, Rent Rise, or
                 Direct <br />
                 Save. Easily browse through verified and secure plans suited to
@@ -462,10 +467,10 @@ function EarningsSteps() {
 
             {/* Step 2: Select & Activate your Earnings */}
             <div className=" mt-6 ">
-              <h2 className="text-2xl font-meuthanies mb-4   text-customBlue">
+              <h2 className="text-2xl xl:text-3xl font-meuthanies mb-4   text-customBlue">
                 Select & Activate your Earnings
               </h2>
-              <p className="text-[14px] text-gray-400">
+              <p className="text-[14px] xl:text-[17px] text-gray-400">
                 Pick a plan that matches your preferences, confirm the details,
                 and let us
                 <br /> take care of the rest. No stress, no complicated
@@ -475,10 +480,10 @@ function EarningsSteps() {
 
             {/* Step 3: Stay in Control */}
             <div className="  mt-6">
-              <h2 className="text-2xl font-meuthanies mb-4  text-customBlue">
+              <h2 className="text-2xl xl:text-3xl font-meuthanies mb-4  text-customBlue">
                 Stay in Control
               </h2>
-              <p className="text-[14px] text-gray-400">
+              <p className="text-[14px] xl:text-[17px] text-gray-400">
                 Access your personalized dashboard to track payouts, agreements,
                 and
                 <br />
@@ -487,11 +492,11 @@ function EarningsSteps() {
             </div>
 
             {/* Step 4: Enjoy Seamless Growth */}
-            <div className="  mb-20  mt-6">
-              <h2 className="text-2xl font-meuthanies mb-4  text-customBlue">
+            <div className=" mb-20  mt-6">
+              <h2 className="text-2xl xl:text-3xl font-meuthanies mb-4  text-customBlue">
                 Enjoy Seamless Growth
               </h2>
-              <p className="text-[14px] text-gray-400">
+              <p className="text-[14px] xl:text-[17px] text-gray-400">
                 Experience consistent earnings delivered directly to you,
                 <br /> securely and hassle-free.
               </p>
@@ -500,7 +505,7 @@ function EarningsSteps() {
 
           <div
             ref={ref}
-            className="mt-16 justify-center items-center ml-[350px] hidden lg:block"
+            className="mt-16 justify-center items-center md:ml-[350px] xl:ml-[500px] hidden lg:block"
           >
             {inView && (
               <div className="relative h-96  rounded-lg shadow-lg">

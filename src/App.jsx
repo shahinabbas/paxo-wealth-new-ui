@@ -34,6 +34,8 @@ import DirectSave from "./components/InnerPages/DirectSave/DirectSave";
 import Earnings from "./components/Earnings/Earnings";
 import { Provider } from "react-redux";
 import store from "./components/ReduxConfig/store"
+import Test from "./components/HomePage/Test"
+import MatterBox from "./components/HomePage/MatterBox";
 function App() {
   return (
     <Router>
@@ -55,6 +57,8 @@ function AppWithNavigation() {
       {!isAuthPage && <Navbar />}
 
       <Routes>
+        <Route path="/test" element={<Test />} />
+        <Route path="/matter" element={<MatterBox />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/properties" element={<Properties />} />
         <Route path="/login" element={<Login />} />

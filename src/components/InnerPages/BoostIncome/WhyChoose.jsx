@@ -1,4 +1,6 @@
 import React from "react";
+import Explore from "/explore1.png";
+
 const Growth = () => (
   <svg
     width="56"
@@ -150,42 +152,75 @@ const Dashboard = () => (
     />
   </svg>
 );
+
 function WhyChoose() {
-    const features = [
-      { title: "48% Immediate Growth", description: "Achieve instant growth without waiting or market risks", icon: <Growth /> },
-      { title: "4% Monthly Payouts", description: "Receive consistent payouts for 12 months", icon: <Payouts /> },
-      { title: "Asset-Backed Security", description: "Every opportunity is tied to verified, tangible properties", icon: <Asset /> },
-      { title: "Hassle-Free Process", description: "Simple activation with no complex calculations", icon: <Process /> },
-      { title: "Zero Market Dependency", description: "Your growth is secure, independent of market fluctuations", icon: <Market /> },
-      { title: "Real-Time Dashboard", description: "Monitor your payouts, agreements, and growth progress seamlessly", icon: <Dashboard /> },
-    ];
+  const features = [
+    {
+      title: "48% Immediate Growth",
+      description: "Achieve instant growth without waiting or market risks",
+      icon: <Growth />,
+    },
+    {
+      title: "4% Monthly Payouts",
+      description: "Receive consistent payouts for 12 months",
+      icon: <Payouts />,
+    },
+    {
+      title: "Asset-Backed Security",
+      description: "Every opportunity is tied to verified, tangible properties",
+      icon: <Asset />,
+    },
+    {
+      title: "Hassle-Free Process",
+      description: "Simple activation with no complex calculations",
+      icon: <Process />,
+    },
+    {
+      title: "Zero Market Dependency",
+      description: "Your growth is secure, independent of market fluctuations",
+      icon: <Market />,
+    },
+    {
+      title: "Real-Time Dashboard",
+      description:
+        "Monitor your payouts, agreements, and growth progress seamlessly",
+      icon: <Dashboard />,
+    },
+  ];
+
+  return (
+    <div
+    className="bg-customBlue p-6 sm:p-8 md:h-screen sm:bg-none md:bg-[url('/explore1.png')] bg-no-repeat"
+    style={{
+      backgroundSize: "100% 80%", // Sets the width to 100% and height to 60%
+      backgroundRepeat: "no-repeat", // Prevents repeating the image
+      backgroundPosition: "bottom", // Aligns the background image to the bottom
+    }}
+  >
   
-    return (
-      <div className="bg-customBlue p-6 sm:p-8">
-        <h1 className="font-meuthanies text-2xl sm:text-4xl text-white text-center mb-6 sm:mb-8">
-          Why Choose Boost Income?
-        </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-4">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-start gap-4 p-4 md:bg-transparent bg-white/10 rounded-lg"
-            >
-              <div className="text-customBlue">{feature.icon}</div>
-              <div>
-                <h2 className="text-base sm:text-lg text-white font-meuthanies ">
-                  {feature.title}
-                </h2>
-                <p className="text-sm text-[#F6F6F6] w-[292px] font-sf-pro opacity-70">
-                  {feature.description}
-                </p>
-              </div>
+      <h1 className="font-meuthanies text-2xl md:text-5xl xl:text-6xl text-white text-center xl:mt-16 mt-4 mb-6 sm:mb-8">
+        Why Choose Boost Income?
+      </h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-4 justify-items-center">
+        {features.map((feature, index) => (
+          <div
+            key={index}
+            className="flex flex-col items-start justify-center gap-4 p-4 md:mt-2 xl:mt-12 md:bg-transparent bg-white/10 rounded-lg"
+          >
+            <div className="text-customBlue">{feature.icon}</div>
+            <div>
+              <h2 className="text-base sm:text-lg xl:text-2xl text-white font-meuthanies ">
+                {feature.title}
+              </h2>
+              <p className="text-sm text-[#F6F6F6] w-[292px] font-sf-pro opacity-70">
+                {feature.description}
+              </p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    );
-  }
-  
-  export default WhyChoose;
-  
+    </div>
+  );
+}
+
+export default WhyChoose;

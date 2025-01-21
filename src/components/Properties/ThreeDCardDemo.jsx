@@ -38,7 +38,7 @@ export function ThreeDCardDemo() {
     },
     {
       id: 5,
-      title: "Choosing the Right Plan: BoostIncome, Rent Rise, or DirectSave?",
+      title: "Choose the Right : BoostIncome, Rent Rise or Direct Save?",
       date: "25 DEC 2024 | 5min read",
       imageSrc:
         "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGhvbWV8ZW58MHx8MHx8fDI%3D",

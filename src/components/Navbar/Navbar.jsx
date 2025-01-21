@@ -79,7 +79,7 @@ function Navbar() {
         className="flex justify-center items-center mt-2 cursor-pointer"
         onClick={handleClick}
       >
-        <img src={PW} alt="Logo" className="w-44 h-38 md:ml-10 bg-cover" />
+        <img src={PW} alt="Logo" className="w-40 md:ml-10 bg-cover" />
       </div>
 
       {/* Rest of the desktop menu code remains the same until the auth section */}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Features.css";
 import HorizontalLine from "./HorizontalLine";
 
@@ -36,7 +36,26 @@ const VerticalLine = ({ className, glow }) => (
 );
 
 const Features = () => {
+  const containerRef = useRef(null);
   const [mouseX, setMouseX] = useState(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+
+  useEffect(() => {
+    // Set the initial container width
+    if (containerRef.current) {
+      setContainerWidth(containerRef.current.offsetWidth);
+    }
+
+    // Update width on window resize
+    const handleResize = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const features = [
     {
@@ -372,14 +391,17 @@ const Features = () => {
     0.75, // 75% from the left
   ];
   return (
-    <div className="bg-white text-black md:py-16 relative min-h-screen  font-sf-pro">
-      <h1 className="md:ml-20 p-8 text-4xl  md:mb-12 mt-10 font-meuthanies">
+    <div
+      ref={containerRef}
+      className="bg-white text-black relative md:min-h-screen xl:min-h-[550px] font-sf-pro"
+    >
+      <h1 className="md:ml-20 p-8 text-4xl md:mb-16 mt-10 font-meuthanies">
         Why Trust Paxo Wealth for
-        <br/>
-          Your <span className="text-customBlue">Financial Growth?</span>
+        <br />
+        Your <span className="text-customBlue">Financial Growth?</span>
       </h1>
       <div
-        className="grid grid-cols-2 sm:grid-cols-4 gap-8 max-w-7xl mx-auto px-4 relative"
+        className="grid grid-cols-2 sm:grid-cols-4 gap-8 mx-auto px-4 relative"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
@@ -420,7 +442,7 @@ const Features = () => {
 
         {/* Horizontal Line */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden lg:block">
-          <HorizontalLine mouseX={mouseX} />
+          <HorizontalLine mouseX={mouseX} width={containerWidth} />
         </div>
       </div>
     </div>

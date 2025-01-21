@@ -4,10 +4,9 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
 
-const VIP = () => (
+const VIP = ({ className }) => (
   <svg
-    width="50"
-    height="50"
+    className={className}
     viewBox="0 0 120 120"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -28,10 +27,9 @@ const VIP = () => (
     />
   </svg>
 );
-const Coin = () => (
+const Coin = ({ className }) => (
   <svg
-    width="50"
-    height="50"
+    className={className}
     viewBox="0 0 120 120"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -123,10 +121,9 @@ const Coin = () => (
     </defs>
   </svg>
 );
-const Crown = () => (
+const Crown = ({ className }) => (
   <svg
-    width="50"
-    height="50"
+    className={className}
     viewBox="0 0 138 138"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -209,10 +206,9 @@ const Crown = () => (
     </defs>
   </svg>
 );
-const DOC = () => (
+const DOC = ({ className }) => (
   <svg
-    width="50"
-    height="50"
+    className={className}
     viewBox="0 0 138 138"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -265,10 +261,10 @@ const DOC = () => (
     </defs>
   </svg>
 );
-const Money = () => (
+
+const Money = ({ className }) => (
   <svg
-    width="50"
-    height="50"
+    className={className}
     viewBox="0 0 120 120"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -283,7 +279,7 @@ const Money = () => (
       fill="#4F00C1"
     />
     <circle cx="60" cy="60" r="59.5" stroke="#F6F6F6" />
-    <g clip-path="url(#clip0_310_1966)">
+    <g clipPath="url(#clip0_310_1966)">
       <path
         d="M62.583 44.6655C54.1598 43.3314 46.2191 49.0995 44.8848 57.5239C43.5505 65.9484 49.3201 73.888 57.7433 75.2221C66.1665 76.5562 74.1071 70.7881 75.4415 62.3636C76.7758 53.9391 71.0062 45.9995 62.583 44.6655ZM68.2078 54.099L64.0383 53.4386C64.5171 54.3409 64.7872 55.3554 64.8344 56.4123L67.7678 56.8769L67.3278 59.6547L64.3977 59.1907C63.4129 61.8157 60.9427 63.6252 58.1421 63.7504L62.3836 70.768L59.9787 72.2224L52.7 60.1855L57.1653 60.8927C58.9737 61.1791 60.6854 60.2564 61.5162 58.7343L53.4384 57.4549L53.8784 54.677L61.9562 55.9564C61.6364 54.2521 60.2936 52.8455 58.4852 52.5591L54.3184 51.8991L54.7584 49.1213L68.6477 51.3211L68.2078 54.099Z"
         fill="#FFCE3A"
@@ -305,10 +301,10 @@ const Money = () => (
     </defs>
   </svg>
 );
-const Diamond = () => (
+
+const Diamond = ({ className }) => (
   <svg
-    width="50"
-    height="50"
+    className={className}
     viewBox="0 0 138 138"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -416,7 +412,7 @@ function Premium() {
   return (
     <div
       ref={ref}
-      className="md:h-[650px]  h-[400px] bg-[#6200EE] flex justify-center items-center overflow-hidden"
+      className="md:h-[650px] xl:h-[790px] h-[450px] bg-[#6200EE] flex justify-center items-center overflow-hidden"
     >
       {inView && (
         <div
@@ -425,19 +421,19 @@ function Premium() {
         >
           {/* Circular Paths */}
           <motion.div
-            className="animate-spin-slow w-[340px] h-[340px] md:w-[520px] md:h-[520px] border-white border-opacity-30 border-2 border-dashed rounded-full absolute"
+            className="animate-spin-slow w-[340px] h-[340px] xl:w-[680px] xl:h-[680px] md:w-[520px] md:h-[520px] border-white border-opacity-30 border-2 border-dashed rounded-full absolute"
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1, ease: "easeInOut" }}
           ></motion.div>
           <motion.div
-            className="animate-spin-slow w-[260px] h-[260px] md:w-[400px] md:h-[400px] border-white border-opacity-50 border-2 border-dashed rounded-full absolute"
+            className="animate-spin-slow w-[260px] h-[260px] xl:w-[540px] xl:h-[540px] md:w-[400px] md:h-[400px] border-white border-opacity-50 border-2 border-dashed rounded-full absolute"
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.2, delay: 0.2, ease: "easeInOut" }}
           ></motion.div>
           <motion.div
-            className=" animate-spin-slow w-[170px] h-[170px] md:w-[280px] md:h-[280px] border-white border-2 border-dashed rounded-full absolute"
+            className=" animate-spin-slow w-[170px] h-[170px] xl:w-[400px] xl:h-[400px] md:w-[280px] md:h-[280px] border-white border-2 border-dashed rounded-full absolute"
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.4, delay: 0.4, ease: "easeInOut" }}
@@ -445,7 +441,7 @@ function Premium() {
           {/* Center Content */}
           <div className="text-center text-white">
             <motion.h1
-              className="text-customGreen sm:text-xl text-sm  md:mb-2 font-meuthanies"
+              className="text-customGreen sm:text-xl xl:text-4xl text-sm  md:mb-2 font-meuthanies"
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -454,7 +450,7 @@ function Premium() {
             </motion.h1>
 
             <motion.h1
-              className="text-white sm:text-2xl flex justify-center items-center font-meuthanies"
+              className="text-white sm:text-2xl xl:text-4xl flex justify-center items-center font-meuthanies"
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeInOut" }}
@@ -464,7 +460,7 @@ function Premium() {
             </motion.h1>
 
             <motion.h1
-              className="sm:text-2xl font-meuthanies"
+              className="sm:text-2xl xl:text-4xl font-meuthanies"
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4, ease: "easeInOut" }}
@@ -474,13 +470,14 @@ function Premium() {
               </span>{" "}
               Deals
             </motion.h1>
+
             <motion.div
-              className="bg-customYellow text-black md:p-2 rounded-full flex items-center justify-center mt-2 sm:mt-4 cursor-pointer"
+              className="bg-customYellow text-black md:p-2  rounded-full flex items-center justify-center mt-2 sm:mt-4 cursor-pointer"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6, ease: "easeInOut" }}
             >
-              <p className="md:text-md text-sm mr-2 font-sf-pro ">
+              <p className="md:text-md xl:text-2xl md:font-semibold xl:font-semibold text-sm mr-2 font-sf-pro ">
                 <span className="block sm:hidden ">Join Paxo</span>
                 <span className="hidden sm:block">
                   Join Paxo Wealth Private
@@ -491,37 +488,37 @@ function Premium() {
           </div>
           {/* Tooltip Messages */}
           <motion.div
-            className="absolute md:bottom-60 md:-left-56 bottom-[200px] -left-[100px] bg-[#4D00BB]   p-2 rounded-md flex items-center justify-center"
+            className="absolute xl:bottom-[300px] xl:-left-[390px] md:bottom-60 md:-left-56 bottom-[200px] -left-[100px] bg-[#4D00BB]   p-2 rounded-md flex items-center justify-center"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
           >
-            <p className="sm:text-[11px] text-[8px] text-white">
+            <p className="sm:text-[11px] xl:text-[22px] text-[8px] text-white">
               Full transparency and legal support.
             </p>
           </motion.div>
           <motion.div
-            className="absolute md:-bottom-28 md:-left-60 -bottom-[106px] -left-[100px] bg-[#4D00BB]  p-2 rounded-md flex items-center justify-center"
+            className="absolute md:-bottom-28 md:-left-60 xl:-bottom-[150px] xl:-left-[430px] -bottom-[106px] -left-[100px] bg-[#4D00BB]  p-2 rounded-md flex items-center justify-center"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeInOut" }}
           >
-            <p className="sm:text-[11px] text-[8px] text-white">
+            <p className="sm:text-[11px] text-[8px] xl:text-[22px] text-white">
               High savings potential and added benefits.
             </p>
           </motion.div>
           <motion.div
-            className="absolute md:top-[160px] md:-right-60 top-[160px] -right-[100px] bg-[#4D00BB]  p-2 rounded-md flex items-center justify-center px-4"
+            className="absolute md:top-[160px] md:-right-60 xl:top-[190px] xl:-right-[400px] top-[160px] -right-[100px] bg-[#4D00BB]  p-2 rounded-md flex items-center justify-center px-4"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeInOut" }}
           >
-            <p className="sm:text-[11px] text-[8px] text-white">
+            <p className="sm:text-[11px] text-[8px] xl:text-[22px] text-white">
               Handpicked Premium Properties.
             </p>
           </motion.div>
           {/* Icons */}
-          <div className="absolute md:-bottom-[30px] md:-left-[100px] -bottom-[30px] -left-[110px]">
+          <div className="absolute md:-bottom-[30px] md:-left-[100px]  xl:-bottom-[30px] xl:-left-[120px] -bottom-[30px] -left-[110px]">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{
@@ -539,10 +536,10 @@ function Premium() {
                 },
               }}
             >
-              <Coin />
+              <Coin className="w-10 h-10 sm:w-14 sm:h-14 md:w-14 md:h-14 xl:w-20 xl:h-20" />
             </motion.div>
           </div>
-          <div className="absolute sm:-bottom-[180px] sm:left-[150px] -bottom-[120px] left-[110px]">
+          <div className="absolute sm:-bottom-[180px] sm:left-[150px] xl:-bottom-[260px] xl:left-[130px] -bottom-[120px] left-[110px]">
             <motion.div
               initial={{ x: -50, opacity: 0 }}
               animate={{
@@ -561,10 +558,10 @@ function Premium() {
                 },
               }}
             >
-              <VIP />
+              <VIP className="w-10 h-10 sm:w-14 sm:h-14 md:w-14 md:h-14 xl:w-20 xl:h-20" />
             </motion.div>
           </div>
-          <div className="absolute md:bottom-[264px] md:left-[60px] bottom-[160px] left-[6px]">
+          <div className="absolute xl:bottom-[334px] xl:left-[136px]  md:bottom-[264px] md:left-[60px] bottom-[160px] left-[6px]">
             <motion.div
               initial={{ rotate: -45, opacity: 0 }}
               animate={{
@@ -583,10 +580,10 @@ function Premium() {
                 },
               }}
             >
-              <DOC />
+              <DOC className="w-10 h-10 sm:w-14 sm:h-14 md:w-14 md:h-14 xl:w-20 xl:h-20" />
             </motion.div>
           </div>
-          <div className="absolute md:bottom-[204px] md:-right-[134px] bottom-[150px] -right-[84px]">
+          <div className="absolute md:bottom-[204px] md:-right-[134px] xl:bottom-[284px] xl:-right-[138px] bottom-[150px] -right-[84px]">
             <motion.div
               initial={{ rotate: -45, opacity: 0 }}
               animate={{
@@ -605,10 +602,10 @@ function Premium() {
                 },
               }}
             >
-              <Money />
+              <Money className="w-10 h-10 sm:w-14 sm:h-14 md:w-14 md:h-14 xl:w-20 xl:h-20" />
             </motion.div>
           </div>
-          <div className="absolute md:bottom-[90px] md:-left-[184px] bottom-[90px] -left-[114px]">
+          <div className="absolute md:bottom-[90px] md:-left-[184px] xl:bottom-[90px] xl:-left-[214px] bottom-[90px] -left-[114px]">
             <motion.div
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{
@@ -627,10 +624,10 @@ function Premium() {
                 },
               }}
             >
-              <Crown />
+              <Crown className="w-10 h-10 sm:w-14 sm:h-14 md:w-14 md:h-14 xl:w-20 xl:h-20" />
             </motion.div>
           </div>
-          <div className="absolute md:bottom-16 md:-right-[125px] -bottom-[10px] -right-[80px]">
+          <div className="absolute md:bottom-16 md:-right-[125px] xl:bottom-16 xl:-right-[139px] -bottom-[10px] -right-[80px]">
             <motion.div
               initial={{ y: -30, opacity: 0 }}
               animate={{
@@ -648,7 +645,7 @@ function Premium() {
                 },
               }}
             >
-              <Diamond />
+              <Diamond className="w-10 h-10 sm:w-14 sm:h-14 md:w-14 md:h-14 xl:w-20 xl:h-20" />
             </motion.div>
           </div>
         </div>

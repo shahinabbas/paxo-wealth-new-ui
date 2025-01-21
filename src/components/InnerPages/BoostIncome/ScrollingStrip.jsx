@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 function ScrollingStrip() {
   return (
-    <div className="bg-white p-4 overflow-hidden font-meuthanies md:-mt-[5%] ">
+    <div className="bg-transparent p-4 overflow-hidden font-meuthanies md:-mt-20 -mt-10 ">
       <div class="relative flex overflow-x-hidden">
         <div class="relative flex overflow-x-hidden">
           <div class="md:py-12 py-6 animate-marquee whitespace-nowrap">

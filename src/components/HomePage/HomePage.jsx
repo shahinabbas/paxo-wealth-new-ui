@@ -11,12 +11,14 @@ import Premium from "../Premium/Premium";
 import Explore from "../Explore/Explore";
 import DirectSave from "../Home/DirectSave";
 import RentRise from "../Home/RentRise";
+import BoostIncome from "../Home/BoostIncome";
+import Introduction from "../Home/Introduction";
+import Combined from "../Home/Combined";
 
 
 const HomePage = () => {
   return (
-    <div>
-  
+    <div> 
       <Home />
       <Features />
       <HeroScrollDemo />

@@ -48,12 +48,12 @@ function BoostIncome() {
   }, [startSecondLine]);
 
   return (
-    <div className="h-screen md:flex bg-white items-center ">
+    <div className="h-screen md:flex bg-white items-center justify-center  ">
       <motion.div
         initial="hidden"
         animate="visible"
         variants={gifVariants}
-        className="md:w-[700px] md:h-[550px] md:mt-0 mt-10 flex items-center justify-center"
+        className="md:w-[700px] md:h-[550px] xl:-ml-40 md:-ml-40 md:mt-0 mt-10 flex items-center justify-center"
       >
         <img
           src={IncomeGif}

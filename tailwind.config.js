@@ -14,23 +14,31 @@ module.exports = {
         "spin-slow": "spin 60s linear infinite",
         marquee: "marquee 25s linear infinite",
         marquee2: "marquee2 25s linear infinite",
-        fadeIn: 'fadeIn 1s ease-in forwards',
-        slideDown: 'slideDown 0.8s ease-out forwards',
-        slideUp: 'slideUp 0.8s ease-out forwards'
+        fadeIn: "fadeIn 1s ease-in forwards",
+        slideDown: "slideDown 0.8s ease-out forwards",
+        slideUp: "slideUp 0.8s ease-out forwards",
       },
-
+      screens: {
+        xs: "640px", // Default small screens
+        sm: "768px", // Medium screens (small tablets)
+        md: "1024px", // Larger tablets
+        lg: "1280px", // 1280x1024 resolution
+        xl: "1440px", // 1440x900 (13-inch laptops)
+        "2xl": "1792px", // 1792x1120 (16-inch laptops)
+        "3xl": "1920px", // 1920x1080 (Full HD)
+      },
       keyframes: {
         fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' }
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
         },
         slideDown: {
-          '0%': { transform: 'translateY(-20px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' }
+          "0%": { transform: "translateY(-20px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
         },
         slideUp: {
-          '0%': { transform: 'translateY(20px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' }
+          "0%": { transform: "translateY(20px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
         },
         marquee: {
           "0%": { transform: "translateX(0%)" },

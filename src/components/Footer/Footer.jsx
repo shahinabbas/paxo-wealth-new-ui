@@ -1,9 +1,7 @@
 import React from "react";
 import { FloatingDockDemo } from "./FloatingDockDemo";
-import Logo from "/paxowealth.png";
 import FooterImage from "/Footer.png";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 
 function Footer() {
   return (
@@ -13,9 +11,9 @@ function Footer() {
         <h1 className="font-meuthanies text-2xl">Paxo Wealth</h1>
       </div>
 
-      <div className="md:flex gap-36 items-center justify-center font-sf-pro">
-        <div className="flex gap-20 md:ml-0 ml-5  md:items-center md:justify-center">
-          <div className="text-sm grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 gap-x-14 mb-10">
+      <div className="md:flex items-center md:px-[120px] xl:px-[120px] font-sf-pro">
+        <div className="md:flex gap-40 md:ml-0 ml-5  md:items-center md:justify-center">
+          <div className="text-sm grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-x-12 xl:gap-x-44 mb-10">
             <Link to="/" className="hover:text-customBlue">
               Home
             </Link>
@@ -53,24 +51,22 @@ function Footer() {
               Privacy Policy
             </Link>
           </div>
-        </div>
 
-        <div className="md:mb-10 p-5 md:p-0 font-sf-pro">
-          <p>Contact</p>
-          <br />
-          {/* <p>info@paxowealth.com</p> */}
-          {/* <p>+91-XXXXXXXXXX</p> */}
-          <p className="text-[13px]">
-            PAXO Wealth, NESCO IT Park,
-            <br /> Building 4, North Wing, <br />
-            Western Express Hwy,
-            <br /> Goregaon, Mumbai, Maharashtra
-          </p>
+          <div className="mb-8 font-sf-pro">
+            <p>Contact</p>
+            <br />
+            <p className="text-[13px]">
+              PAXO Wealth, NESCO IT Park,
+              <br /> Building 4, North Wing, <br />
+              Western Express Hwy,
+              <br /> Goregaon, Mumbai, Maharashtra
+            </p>
+          </div>
         </div>
       </div>
 
-      <hr className="border-t border-gray-600 md:w-[1000px]  mx-auto md:mb-10" />
-      <div className="md:flex md:p-0 p-5 font-sf-pro">
+      <hr className="border-t border-gray-600 md:w-[1000px] xl:w-[1380px]  mx-auto md:mb-10" />
+      <div className="md:flex md:p-0 p-5 justify-between font-sf-pro">
         <div className="md:ml-[120px]">
           <p>Legal Disclaimer</p>
           <p className="mt-3">Registration Number : U70100MH2024PTC874590</p>
@@ -79,15 +75,16 @@ function Footer() {
             due diligence.
           </p>
         </div>
-        <div className="md:mt-10 md:ml-[251px]">
+        <div className="md:mt-10 pr-[98px]">
           <FloatingDockDemo />
         </div>
       </div>
+
       <div className="md:mt-20 mt-4 font-sf-pro">
         {/* <img src={FooterImage} alt="Footer Image" /> */}
         <div className="overflow-hidden">
           <div className="flex animate-marquee">
-            <img src={FooterImage} alt="Footer Image" className=" " />
+            <img src={FooterImage} alt="Footer Image" className="" />
             <img src={FooterImage} alt="Footer Image" className="" />
             <img src={FooterImage} alt="Footer Image" className="" />
           </div>

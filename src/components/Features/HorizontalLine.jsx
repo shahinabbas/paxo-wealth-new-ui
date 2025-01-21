@@ -1,21 +1,23 @@
 import React from "react";
 
-const HorizontalLine = ({ mouseX }) => {
+const HorizontalLine = ({ mouseX, width }) => {
+  const adjustedWidth = width - 190;
   const glowWidth = 200; // Width of the glow effect
   const glowPosition = mouseX ? mouseX - glowWidth / 2 : 0;
 
   return (
     <svg
-      width="1100"
+      // width="1100"
+      width={adjustedWidth}
       height="2"
-      viewBox="0 0 1700 1"
+      viewBox={`0 0 ${adjustedWidth} 1`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="transition-all duration-200 ease-in-out text-customBlue"
     >
       {/* Base line with sharper gradient at the edges */}
       <rect
-        width="1700"
+        width={adjustedWidth}
         height="2"
         fill="#006FFF"
         shapeRendering="crispEdges"
@@ -24,7 +26,7 @@ const HorizontalLine = ({ mouseX }) => {
       {/* Moving glow effect */}
       {mouseX && (
         <rect
-          width="1700"
+          width={adjustedWidth}
           height="2"
           fill="url(#glowGradient)"
           opacity="0.8"
@@ -36,9 +38,11 @@ const HorizontalLine = ({ mouseX }) => {
         {/* Smooth gradient for the base line with sharp needle-like ends */}
         <linearGradient
           id="baseGradient"
-          x1="0"
+          // x1="0"
+          x1={glowPosition + 5} // Adjust glow position by 5px
           y1="0.5"
-          x2="1350"
+          // x2="1350"
+          x2={glowPosition + glowWidth + 5}
           y2="0.5"
           gradientUnits="userSpaceOnUse"
         >

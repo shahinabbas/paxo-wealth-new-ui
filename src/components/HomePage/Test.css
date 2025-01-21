@@ -1,0 +1,15 @@
+@keyframes falling {
+  0% {
+    transform: translateY(-100px); /* Start above the screen */
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(calc(100vh - 10rem)); /* Stop at the bottom of the screen */
+    opacity: 1;
+  }
+}
+
+.falling-animation {
+  animation: falling 3s ease-in-out forwards; /* forwards ensures they stay at the final position */
+  position: absolute; /* Position absolute so that we can control their location */
+}

@@ -58,22 +58,6 @@ const faqData = [
   },
 ];
 
-const Vector = () => (
-  <svg
-    width="40"
-    height="40"
-    viewBox="0 0 90 90"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="ml-4"
-  >
-    <path
-      d="M45 0C42.9938 41.3438 41.3438 42.9938 0 45C41.3438 47.0062 42.9938 48.6562 45 90C47.0062 48.6562 48.6562 47.0062 90 45C48.6562 42.9938 47.0062 41.3438 45 0Z"
-      fill="#0056E0"
-    />
-  </svg>
-);
-
 export default function FaqNew() {
   const [expanded, setExpanded] = useState(null);
   const location = useLocation();
@@ -88,12 +72,15 @@ export default function FaqNew() {
 
   return (
     <div className="relative max-w-full min-h-screen ">
-      <div className="max-w-4xl mx-auto p-4 h-full flex flex-col relative z-10">
-        <div className="text-center mt-10 flex items-center justify-center">
-          <h2 className="text-[40px]  font-meuthanies">
-            Got Questions? <br />
+      <div className="md:max-w-4xl xl:max-w-7xl mx-auto p-4 h-full flex flex-col relative z-10">
+        <div className="text-center mt-10 ">
+          <h1 className="md:text-[40px] text-[30px] xl:text-6xl font-meuthanies">
+            Got Questions? 
+          </h1>
+          <h1 className="md:text-[40px] text-[30px]  xl:mt-4 xl:text-6xl font-meuthanies">
+            
             We've Got <span className="text-customBlue">Answers</span>
-          </h2>
+          </h1>
         </div>
 
         <div className="flex-grow mt-10 space-y-4 font-sf-pro">
@@ -139,8 +126,10 @@ export default function FaqNew() {
         </div>
       </div>
       <div className="flex justify-center mt-10">
-      <div className="bg-[#101010] text-white gap-2 font-sf-pro   w-[210px] rounded-full p-2 flex justify-center items-center"><h1>Explore FAQ's Now</h1> <MdArrowOutward/></div>
-    </div>
+        <div className="bg-customYellow  text-black font-semibold xl:text-3xl gap-2 font-sf-pro xl:w-[360px] xl:p-3 w-[210px] rounded-full p-2 flex justify-center items-center">
+          <h1>Explore FAQ's Now</h1> <MdArrowOutward />
+        </div>
+      </div>
     </div>
   );
 }

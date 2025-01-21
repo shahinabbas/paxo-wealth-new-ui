@@ -88,7 +88,7 @@ export default function FAQ() {
 
   return (
     <div className="relative max-w-full min-h-screen">
-      <div className="max-w-4xl mx-auto p-4 h-full flex flex-col relative z-10">
+      <div className="md:max-w-4xl xl:max-w-7xl mx-auto p-4 h-full flex flex-col relative z-10">
         <div className="text-center md:mt-10 flex items-center justify-center">
           <h2 className="text-[40px]  font-meuthanies">
             Got Questions? <br />
@@ -98,7 +98,7 @@ export default function FAQ() {
 
         <div className="flex-grow mt-10 space-y-4 font-sf-pro">
           {faqsToShow.map((faq, index) => (
-            <div key={index} className="overflow-hidden shadow-md">
+            <div key={index} className="overflow-hidden ">
               <button
                 className="w-full py-5 border-l-2 border-customBlue flex justify-between items-center px-4 text-lg font-medium text-left bg-[#F1F1F1] "
                 onClick={() => toggleAccordion(index)}
@@ -138,7 +138,7 @@ export default function FAQ() {
           ))}
         </div>
       </div>
-      <div className="flex justify-center mt-10 ">
+      <div className="flex justify-center font-semibold mt-10 ">
         <div className="bg-customYellow  gap-2 font-sf-pro   w-[210px] rounded-full p-2 flex justify-center items-center">
           <h1>Explore FAQ's Now</h1> <MdArrowOutward />
         </div>

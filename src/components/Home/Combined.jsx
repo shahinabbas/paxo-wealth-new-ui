@@ -7,7 +7,7 @@ import DirectSaveGif from "/DirectSave.gif";
 import RentRiseGif from "/Rent.gif";
 
 function Combined() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleClick = (link) => {
     if (link) {
@@ -45,11 +45,11 @@ function Combined() {
 
   return (
     <div>
-      <div className="hidden bg-white md:flex min-h-screen mt-10 gap-10 px-10 items-center text-center justify-center">
+      <div className="hidden bg-white md:flex min-h-screen xl:mt-10 md:mt-10 md:gap-10 xl:gap-32 px-10 items-center text-center justify-center ">
         {/* Boost Income Section */}
-        <div className=" bg-[#AED1FF] bg-opacity-20 p-8 w-[380px]">
+        <div className=" bg-[#AED1FF] bg-opacity-20 p-8 w-[380px] ">
           <motion.h1
-            className=" text-4xl font-meuthanies"
+            className=" text-4xl xl:mt-10  font-meuthanies"
             initial="hidden"
             animate="visible"
             variants={textVariants}
@@ -75,7 +75,7 @@ function Combined() {
           >
             {" "}
             <div
-              className="border bg-customYellow rounded-full  inline-flex items-center justify-center space-x-2 p-2 px-8 transition-all duration-300 ease-in-out"
+              className="border bg-customYellow rounded-full xl:mb-10 inline-flex items-center justify-center space-x-2 p-2 px-8 transition-all duration-300 ease-in-out"
               onClick={() => handleClick("/boost-income")}
             >
               <p className=" text-xl font-semibold font-sf-pro">Unlock</p>
@@ -87,7 +87,7 @@ function Combined() {
         {/* Rent Rise Section */}
         <div className=" bg-[#89DDBF] bg-opacity-20 p-8 w-[380px]">
           <motion.h1
-            className=" text-4xl font-meuthanies"
+            className=" text-4xl xl:mt-10  font-meuthanies"
             initial="hidden"
             animate="visible"
             variants={textVariants}
@@ -112,7 +112,7 @@ function Combined() {
             className="bottom-5  cursor-pointer"
           >
             <div
-              className="border bg-customYellow rounded-full  inline-flex items-center justify-center space-x-2 p-2 px-8 transition-all duration-300 ease-in-out"
+              className="border bg-customYellow rounded-full xl:mb-10 inline-flex items-center justify-center space-x-2 p-2 px-8 transition-all duration-300 ease-in-out"
               onClick={() => handleClick("/rent-rise")}
             >
               <p className=" text-xl font-semibold font-sf-pro">Unlock</p>
@@ -129,7 +129,7 @@ function Combined() {
           className="bg-[#CAB5F5] bg-opacity-20 p-8 w-[380px]"
         >
           <motion.h1
-            className=" text-4xl font-meuthanies"
+            className=" text-4xl xl:mt-10 font-meuthanies"
             initial="hidden"
             animate="visible"
             variants={textVariants}
@@ -154,7 +154,7 @@ function Combined() {
             className="bottom-5  cursor-pointer"
           >
             <div
-              className="border bg-customYellow rounded-full  inline-flex items-center justify-center space-x-2 p-2 px-8 transition-all duration-300 ease-in-out"
+              className="border bg-customYellow rounded-full xl:mb-10 inline-flex items-center justify-center space-x-2 p-2 px-8 transition-all duration-300 ease-in-out"
               onClick={() => handleClick("/direct-save")}
             >
               <p className=" text-xl font-semibold font-sf-pro">Unlock</p>
@@ -165,7 +165,7 @@ function Combined() {
       </div>
 
       {/* Mobile View */}
-      <div className="flex h-[10rem] lg:hidden flex-col min-h-screen md:mt-14 md:gap-10  items-center text-center overflow-y-auto">
+      <div className="flex h-[10rem] pt-8 lg:hidden flex-col min-h-screen md:mt-14 md:gap-10  items-center text-center overflow-y-auto">
         {[
           {
             title: "Boost Income",
@@ -188,7 +188,7 @@ function Combined() {
         ].map((section, index) => (
           <div
             key={index}
-            className="bg-white w-full flex flex-col items-center"
+            className="bg-white w-full flex flex-col items-center  pt-16"
           >
             <div className=" text-2xl font-meuthanies ">{section.title}</div>
             <p className="opacity-50 text-xs mt-2 -mb-10 font-sf-pro">

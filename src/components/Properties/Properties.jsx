@@ -21,12 +21,12 @@ function Properties() {
         </p>
       </div>
       <ThreeDCardDemo />
-      <div className=" flex justify-center md:mt-0 mt-4 ml-50">
+      <div className="font-semibold flex justify-center md:mt-0 mt-4 ml-50">
         <Link
           to="/blog"
-          className=" rounded-full bg-customYellow text-white px-8 inline-flex items-center justify-center  space-x-2 p-2"
+          className=" rounded-full  bg-customYellow text-white px-8 inline-flex items-center justify-center  space-x-2 p-2"
         >
-          <p className="text-black text-lg">View All Blogs</p>
+          <p className="text-black  text-lg">View All Blogs</p>
           <RxArrowTopRight className="text-black" />
         </Link>
       </div>
