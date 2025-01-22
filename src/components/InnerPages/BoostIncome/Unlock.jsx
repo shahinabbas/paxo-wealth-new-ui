@@ -1,5 +1,6 @@
 import React from "react";
 import { MdArrowOutward } from "react-icons/md";
+import { Link } from "react-router-dom";
 const Starter = () => (
   <svg
     width="80"
@@ -166,10 +167,10 @@ function Unlock() {
                   </li>
                 </ul>
               </div>
-              <div className="bottom-2 xl:mb-6 flex xl:text-xl justify-center items-center mt-4 rounded-full bg-customYellow p-2">
+              <Link to="/boost-income/properties" className="bottom-2 xl:mb-6 flex xl:text-xl justify-center items-center mt-4 rounded-full bg-customYellow p-2">
                 <h1 className="font-sf-pro font-semibold">{plan.buttonText}</h1>
                 <MdArrowOutward />
-              </div>
+              </Link>
             </div>
           );
         })}

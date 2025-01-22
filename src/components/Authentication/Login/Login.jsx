@@ -155,6 +155,40 @@ function Login() {
     }
   };
 
+  // const handleVerifyOtp = async () => {
+  //   setErrors({});
+  //   setSuccessMessage("");
+
+  //   const otpError = validateField("otp", formData.otp);
+  //   if (otpError) {
+  //     setErrors({ otp: otpError });
+  //     return;
+  //   }
+
+  //   setIsLoading(true);
+  //   try {
+  //     const response = await axios.post(`${apiURL}/auth/verify-otp`, {
+  //       phone: formData.mobileNumber,
+  //       otp: formData.otp.join(""),
+  //     });
+
+  //     if (response.data && response.data.token) {
+  //       localStorage.setItem("token", response.data.token);
+  //       localStorage.setItem("name", response.data.name);
+  //       dispatch(setAuth(response.data));
+  //       navigate("/");
+  //     }
+  //   } catch (error) {
+  //     setErrors({
+  //       api: error.response?.data?.message || "Invalid OTP",
+  //       otp: "Incorrect OTP. Please try again.",
+  //     });
+  //     setFormData((prev) => ({ ...prev, otp: ["", "", "", ""] }));
+  //     otpInputRefs[0].current?.focus();
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
   const handleVerifyOtp = async () => {
     setErrors({});
     setSuccessMessage("");
@@ -176,7 +210,8 @@ function Login() {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("name", response.data.name);
         dispatch(setAuth(response.data));
-        navigate("/");
+        const from = location.state?.from?.pathname || "/";
+        navigate(from);
       }
     } catch (error) {
       setErrors({
@@ -191,137 +226,139 @@ function Login() {
   };
 
   return (
-    <div className="relative bg-white h-screen overflow-hidden font-sf-pro">
-      <div className="absolute top-60 md:left-32 left-60 w-96 h-96 rounded-full opacity-40 blur-3xl"></div>
-
-      <div className="flex justify-center items-center h-full">
-        <div className="border border-gray-600 rounded-xl md:w-2/6 md:h-5/6 p-6">
-          <h1 className="text-xl text-center text-customBlue font-meuthanies">
-            PW
-          </h1>
-          <h1 className="text-black text-center font-meuthanies text-xl">
-            Welcome to <span className="text-customBlue">Paxo Wealth</span>
-          </h1>
-
-          <div className="mt-6 xl:px-4 md:px-4">
+    <div className="relative bg-white min-h-screen py-5 font-sf-pro flex items-center justify-center">
+      <div className="border border-gray-600 rounded-xl md:w-2/6 h-auto p-6">
+        <h1 className="text-xl text-center text-customBlue font-meuthanies">
+          PW
+        </h1>
+        <h1 className="text-black text-center font-meuthanies text-xl">
+          Welcome to <span className="text-customBlue">Paxo Wealth</span>
+        </h1>
+  
+        <div className="mt-6 xl:px-4 md:px-4">
+          <div>
+            {successMessage && (
+              <div className="bg-green-500 bg-opacity-10 border border-green-500 text-green-500 rounded-md p-3 mb-4 text-sm">
+                {successMessage}
+              </div>
+            )}
+  
+            {errors.api && (
+              <div className="bg-red-500 bg-opacity-10 border border-red-500 text-red-500 rounded-md p-3 mb-4 text-sm">
+                {errors.api}
+              </div>
+            )}
+  
             <div>
-              {successMessage && (
-                <div className="bg-green-500 bg-opacity-10 border border-green-500 text-green-500 rounded-md p-3 mb-4 text-sm">
-                  {successMessage}
-                </div>
+              <h1 className="text-black">Mobile Number*</h1>
+              <input
+                type="tel"
+                name="mobileNumber"
+                value={formData.mobileNumber}
+                onChange={handleChange}
+                className={`bg-white text-black p-2 w-full mt-2 rounded border ${
+                  errors.mobileNumber ? "border-red-500" : "border-gray-700"
+                }`}
+                placeholder="10-digit mobile number"
+                maxLength={10}
+              />
+              {errors.mobileNumber && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.mobileNumber}
+                </p>
               )}
-
-              {errors.api && (
-                <div className="bg-red-500 bg-opacity-10 border border-red-500 text-red-500 rounded-md p-3 mb-4 text-sm">
-                  {errors.api}
+            </div>
+  
+            {isOtpEnabled && (
+              <div className="mt-5 ">
+                <h1 className="text-black">One Time Password</h1>
+                <div className="flex xl:gap-16 gap-2 md:gap-6 justify-start mt-2">
+                  {[0, 1, 2, 3].map((index) => (
+                    <input
+                      key={index}
+                      ref={otpInputRefs[index]}
+                      type="text"
+                      inputMode="numeric"
+                      value={formData.otp[index]}
+                      onChange={(e) =>
+                        handleOtpChange(index, e.target.value)
+                      }
+                      onKeyDown={(e) => handleOtpKeyDown(index, e)}
+                      onPaste={handleOtpPaste}
+                      className={`w-16 h-16 text-center border ${
+                        errors.otp ? "border-red-500" : "border-gray-700"
+                      } rounded focus:border-customGreen focus:ring-1 focus:ring-customGreen`}
+                      maxLength={1}
+                    />
+                  ))}
                 </div>
-              )}
-
-              <div>
-                <h1 className="text-black">Mobile Number*</h1>
-                <input
-                  type="tel"
-                  name="mobileNumber"
-                  value={formData.mobileNumber}
-                  onChange={handleChange}
-                  className={`bg-white text-black p-2 w-full mt-2 rounded border ${
-                    errors.mobileNumber ? "border-red-500" : "border-gray-700"
-                  }`}
-                  placeholder="10-digit mobile number"
-                  maxLength={10}
-                />
-                {errors.mobileNumber && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {errors.mobileNumber}
+                {errors.otp && (
+                  <p className="text-red-500 text-xs mt-1 text-center">
+                    {errors.otp}
                   </p>
                 )}
-              </div>
-
-              {isOtpEnabled && (
-                <div className="mt-5 ">
-                  <h1 className="text-black">One Time Password</h1>
-                  <div className="flex xl:gap-16 gap-2 md:gap-6 justify-start mt-2">
-                    {[0, 1, 2, 3].map((index) => (
-                      <input
-                        key={index}
-                        ref={otpInputRefs[index]}
-                        type="text"
-                        inputMode="numeric"
-                        value={formData.otp[index]}
-                        onChange={(e) => handleOtpChange(index, e.target.value)}
-                        onKeyDown={(e) => handleOtpKeyDown(index, e)}
-                        onPaste={handleOtpPaste}
-                        className={`w-16 h-16 text-center border ${
-                          errors.otp ? "border-red-500" : "border-gray-700"
-                        } rounded focus:border-customGreen focus:ring-1 focus:ring-customGreen`}
-                        maxLength={1}
-                      />
-                    ))}
-                  </div>
-                  {errors.otp && (
-                    <p className="text-red-500 text-xs mt-1 text-center">
-                      {errors.otp}
-                    </p>
-                  )}
-                  <div className="mt-2 text-center">
-                    <button
-                      type="button"
-                      onClick={handleResendOtp}
-                      disabled={resendTimer > 0 || isLoading}
-                      className={`text-xs ${
-                        resendTimer > 0
-                          ? "text-gray-400"
-                          : "text-customGreen hover:underline"
-                      }`}
-                    >
-                      {resendTimer > 0
-                        ? `Resend OTP in ${resendTimer}s`
-                        : "Resend OTP"}
-                    </button>
-                  </div>
+                <div className="mt-2 text-center">
+                  <button
+                    type="button"
+                    onClick={handleResendOtp}
+                    disabled={resendTimer > 0 || isLoading}
+                    className={`text-xs ${
+                      resendTimer > 0
+                        ? "text-gray-400"
+                        : "text-customGreen hover:underline"
+                    }`}
+                  >
+                    {resendTimer > 0
+                      ? `Resend OTP in ${resendTimer}s`
+                      : "Resend OTP"}
+                  </button>
                 </div>
-              )}
-
-              <button
-                onClick={isOtpEnabled ? handleVerifyOtp : handleSendOtp}
-                disabled={isLoading}
-                className={`rounded-full bg-customGreen mt-5 w-48 p-2 mx-auto font-semibold 
-                  ${
-                    isLoading
-                      ? "opacity-70 cursor-not-allowed"
-                      : "cursor-pointer hover:bg-opacity-90"
-                  } block`}
+              </div>
+            )}
+  
+            <button
+              onClick={isOtpEnabled ? handleVerifyOtp : handleSendOtp}
+              disabled={isLoading}
+              className={`rounded-full bg-customGreen mt-5 w-48 p-2 mx-auto font-semibold 
+                ${
+                  isLoading
+                    ? "opacity-70 cursor-not-allowed"
+                    : "cursor-pointer hover:bg-opacity-90"
+                } block`}
+            >
+              <span className="text-center block">
+                {isLoading
+                  ? "Processing..."
+                  : isOtpEnabled
+                  ? "Verify"
+                  : "Send OTP"}
+              </span>
+            </button>
+  
+            <p className="text-gray-600 text-center mt-2">Or</p>
+            <button
+              className="rounded-full border border-customGreen mt-2 justify-center items-center flex w-48 p-2 mx-auto text-black hover:bg-gray-50"
+              type="button"
+            >
+              <FcGoogle />
+              <span className="text-sm ml-2">SignIn with Google</span>
+            </button>
+  
+            <p className="text-black text-[10px] text-center mt-4">
+              Don't have an account?{" "}
+              <Link
+                to="/signup"
+                className="text-customBlue hover:underline"
               >
-                <span className="text-center block">
-                  {isLoading
-                    ? "Processing..."
-                    : isOtpEnabled
-                    ? "Verify"
-                    : "Send OTP"}
-                </span>
-              </button>
-
-              <p className="text-gray-600 text-center mt-2">Or</p>
-              <button
-                className="rounded-full border border-customGreen mt-2 justify-center items-center flex w-48 p-2 mx-auto text-black hover:bg-gray-50"
-                type="button"
-              >
-                <FcGoogle />
-                <span className="text-sm ml-2">SignIn with Google</span>
-              </button>
-
-              <p className="text-black text-[10px] text-center mt-4">
-                Don't have an account?{" "}
-                <Link to="/signup" className="text-customBlue hover:underline">
-                  SignUp
-                </Link>
-              </p>
-            </div>
+                SignUp
+              </Link>
+            </p>
           </div>
         </div>
       </div>
     </div>
   );
+  
 }
 
 export default Login;

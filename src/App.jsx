@@ -33,9 +33,12 @@ import RentRise from "./components/InnerPages/RentRise/RentRise";
 import DirectSave from "./components/InnerPages/DirectSave/DirectSave";
 import Earnings from "./components/Earnings/Earnings";
 import { Provider } from "react-redux";
-import store from "./components/ReduxConfig/store"
-import Test from "./components/HomePage/Test"
-import MatterBox from "./components/HomePage/MatterBox";
+import store from "./components/ReduxConfig/store";
+import ProtectedRoute from "./components/Reusable/ProtectedRoute";
+import BoostIncomePropertiesHome from "./components/InnerPages/BoostIncome/BoostIncomeproperties/BoostIncomePropertiesHome";
+import Calc from "./components/Calc";
+import Vid from "./components/Vid";
+
 function App() {
   return (
     <Router>
@@ -57,9 +60,9 @@ function AppWithNavigation() {
       {!isAuthPage && <Navbar />}
 
       <Routes>
-        <Route path="/test" element={<Test />} />
-        <Route path="/matter" element={<MatterBox />} />
         <Route path="/" element={<HomePage />} />
+        <Route path="/calc" element={<Calc />} />
+        <Route path="/vid" element={<Vid />} />
         <Route path="/properties" element={<Properties />} />
         <Route path="/login" element={<Login />} />
         <Route path="/kyc" element={<KYC />} />
@@ -67,11 +70,27 @@ function AppWithNavigation() {
         <Route path="/faq" element={<FaqCombined />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route path="/boost-income" element={<BoostIncomePage />} />
+        <Route path="/boost-income/properties" element={<BoostIncomePropertiesHome />} />
+        <Route path="/boost" element={<Boost />} />
         {/* <Route path="/rent-rise" element={<RentRise />} /> */}
         <Route path="/rent-rise" element={<ComingSoon />} />
         <Route path="/direct-save" element={<DirectSave />} />
-        <Route path="/property-detail/:slug" element={<PropertyDetail />} />
-        <Route path="/payment-page" element={<PaymentPage />} />
+        <Route
+          path="/property-detail/:slug"
+          element={
+            <ProtectedRoute>
+              <PropertyDetail />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/payment-page"
+          element={
+            <ProtectedRoute>
+              <PaymentPage />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/opportunities" element={<OpportunitiesPage />} />
         <Route path="/dashboard/*" element={<Dashboard />} />
         <Route path="/about-us" element={<About />} />

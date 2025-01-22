@@ -28,7 +28,8 @@ const PropertyDetail = () => {
   const [isChecked, setIsChecked] = useState(false);
 
   const [activeTab, setActiveTab] = useState("overview");
-  const [quantity, setQuantity] = useState(1);
+  const [quantityInput, setQuantityInput] = useState("1");
+
   const [showTermsModal, setShowTermsModal] = useState(false);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -84,19 +85,52 @@ const PropertyDetail = () => {
   ];
 
   const [selectedTrend, setSelectedTrend] = useState("value");
+  const quantity =
+    quantityInput === "" ? 1 : Math.max(1, parseInt(quantityInput) || 1);
 
   // Calculate values
   const availableArea = propertyDetails.available_unit;
-  const totalArea = quantity * 100;
-  const totalPrice = quantity * propertyDetails.property_unit_price * 100;
+  const totalArea = quantity * propertyDetails.minimum_sqft;
+  const totalPrice =
+    quantity *
+    propertyDetails.property_unit_price *
+    propertyDetails.minimum_sqft;
 
   const handleQuantityChange = (e) => {
-    const value = parseInt(e.target.value) || 1;
-    if (value >= 1) setQuantity(value);
+    const value = e.target.value;
+    // Allow empty string or valid numbers
+    if (value === "" || /^\d+$/.test(value)) {
+      // Check if the new quantity would exceed available units
+      const newQuantity = parseInt(value) || 0;
+      if (newQuantity <= availableArea || value === "") {
+        setQuantityInput(value);
+      }
+    }
   };
 
-  const handleIncrease = () => setQuantity((prev) => prev + 1);
-  const handleDecrease = () => quantity > 1 && setQuantity((prev) => prev - 1);
+  const handleIncrease = () => {
+    const newQuantity = (parseInt(quantityInput) || 1) + 1;
+    if (newQuantity <= availableArea) {
+      setQuantityInput(newQuantity.toString());
+    }
+  };
+
+  const handleDecrease = () => {
+    const currentValue = parseInt(quantityInput) || 1;
+    if (currentValue > 1) {
+      setQuantityInput((currentValue - 1).toString());
+    }
+  };
+
+  const handleBlur = () => {
+    // When input loses focus, ensure we have a valid number >= 1 and <= availableArea
+    const value = parseInt(quantityInput) || 0;
+    if (value < 1) {
+      setQuantityInput("1");
+    } else if (value > availableArea) {
+      setQuantityInput(availableArea.toString());
+    }
+  };
 
   const handlePayment = () => {
     const orderSummary = {
@@ -108,7 +142,6 @@ const PropertyDetail = () => {
     sessionStorage.setItem("orderSummary", JSON.stringify(orderSummary));
     navigate("/payment-page");
   };
-
   return (
     <div className="bg-gray-50 min-h-screen p-6 py-12">
       {/* Property Header */}
@@ -120,9 +153,9 @@ const PropertyDetail = () => {
             </h1>
             <div className="grid grid-cols-2 gap-4 font-sf-pro">
               <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                <div className="text-gray-600 text-sm">Property Type</div>
-                <div className="text-gray-900 font-semibold flex items-center">
-                  <FaBuilding className="mr-2 text-customBlue" />
+                <div className="text-gray-600 text-sm ">Property Type</div>
+                <div className="text-gray-900 font-semibold flex items-center capitalize ">
+                  <FaBuilding className="mr-2 text-customBlue " />
                   {propertyDetails.property_type}
                 </div>
               </div>
@@ -272,320 +305,337 @@ const PropertyDetail = () => {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 font-sf-pro">
-        {/* Left Column - Tabs Content */}
-        <div className="lg:col-span-2">
-          {/* Tabs */}
-          <div className="bg-white rounded-lg p-4 mb-6 shadow-lg border border-gray-200">
-            <div className="flex space-x-4 border-b border-gray-200 pb-4">
-              {[
-                { id: "overview", label: "Overview", icon: FaChartLine },
-                { id: "legal", label: "Legal Documents", icon: FaFileContract },
-                {
-                  id: "calculator",
-                  label: "ROI Calculator",
-                  icon: FaCalculator,
-                },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
-                    activeTab === tab.id
-                      ? "bg-customBlue text-white"
-                      : "text-gray-600 hover:bg-gray-100"
-                  }`}
-                >
-                  <tab.icon />
-                  <span>{tab.label}</span>
-                </button>
-              ))}
-            </div>
+      <div className="w-full  mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 font-sf-pro">
+          {/* Left Column - Tabs Content */}
+          <div className="lg:col-span-2">
+            {/* Tabs */}
+            <div className="bg-white rounded-lg p-3 md:p-4 mb-4 md:mb-6 shadow-lg border border-gray-200">
+              {/* Tab Buttons */}
+              <div className="flex flex-wrap gap-2 border-b border-gray-200 pb-4">
+                {[
+                  { id: "overview", label: "Overview", icon: FaChartLine },
+                  {
+                    id: "legal",
+                    label: "Legal Documents",
+                    icon: FaFileContract,
+                  },
+                  {
+                    id: "calculator",
+                    label: "ROI Calculator",
+                    icon: FaCalculator,
+                  },
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`flex items-center space-x-1 px-2 md:px-4 py-2 rounded-lg transition-colors text-sm md:text-base ${
+                      activeTab === tab.id
+                        ? "bg-customBlue text-white"
+                        : "text-gray-600 hover:bg-gray-100"
+                    }`}
+                  >
+                    <tab.icon className="text-sm md:text-base" />
+                    <span>{tab.label}</span>
+                  </button>
+                ))}
+              </div>
 
-            {/* Tab Content */}
-            <div className="mt-6">
-              {activeTab === "overview" && (
-                <div className="space-y-4">
-                  <h3 className="text-xl font-semibold text-gray-900 font-meuthanies">
-                    Property Overview
-                  </h3>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                      <div className="text-gray-600 text-sm">Total Area</div>
-                      <div className="text-gray-900 font-semibold">
-                        {propertyDetails.total_unit} sqft
+              {/* Tab Content */}
+              <div className="mt-4 md:mt-6">
+                {activeTab === "overview" && (
+                  <div className="space-y-4">
+                    <h3 className="text-lg md:text-xl font-semibold text-gray-900 font-meuthanies">
+                      Property Overview
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+                      <div className="bg-gray-50 p-3 md:p-4 rounded-lg border border-gray-200">
+                        <div className="text-gray-600 text-sm">Total Area</div>
+                        <div className="text-gray-900 font-semibold">
+                          {propertyDetails.total_unit} sqft
+                        </div>
                       </div>
-                    </div>
-                    <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                      <div className="text-gray-600 text-sm">
-                        Available Area
+                      <div className="bg-gray-50 p-3 md:p-4 rounded-lg border border-gray-200">
+                        <div className="text-gray-600 text-sm">
+                          Available Area
+                        </div>
+                        <div className="text-gray-900 font-semibold">
+                          {availableArea} sqft
+                        </div>
                       </div>
-                      <div className="text-gray-900 font-semibold">
-                        {availableArea} sqft
+                      <div className="bg-gray-50 p-3 md:p-4 rounded-lg border border-gray-200">
+                        <div className="text-gray-600 text-sm">
+                          Minimum Participation
+                        </div>
+                        <div className="text-gray-900 font-semibold">
+                          {propertyDetails.minimum_sqft} sqft
+                        </div>
                       </div>
-                    </div>
-                    <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                      <div className="text-gray-600 text-sm">
-                        Completion Date
-                      </div>
-                      <div className="text-gray-900 font-semibold">
-                        {propertyDetails.completion_date}
-                      </div>
-                    </div>
-                    <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                      <div className="text-gray-600 text-sm">Monthly Yield</div>
-                      <div className="text-customBlue font-semibold">
-                        {propertyDetails.capital_appreciation}%
+                      <div className="bg-gray-50 p-3 md:p-4 rounded-lg border border-gray-200">
+                        <div className="text-gray-600 text-sm">
+                          Monthly Yield
+                        </div>
+                        <div className="text-customBlue font-semibold">
+                          {propertyDetails.capital_appreciation}%
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              {activeTab === "legal" && (
-                <div className="space-y-4">
-                  <h3 className="text-xl font-semibold text-gray-900">
-                    Legal Documents
-                  </h3>
-                  <div className="space-y-3">
-                    {[
-                      "Property Title",
-                      "NOC Certificate",
-                      "Building Approval",
-                      "Tax Documents",
-                    ].map((doc, index) => (
-                      <div
-                        key={index}
-                        className="flex items-center justify-between bg-gray-50 p-4 rounded-lg border border-gray-200"
-                      >
-                        <div className="flex items-center">
-                          <FaRegCircleCheck className="text-customBlue mr-2" />
-                          <span className="text-gray-900">{doc}</span>
+                {activeTab === "legal" && (
+                  <div className="space-y-4">
+                    <h3 className="text-lg md:text-xl font-semibold text-gray-900">
+                      Legal Documents
+                    </h3>
+                    <div className="space-y-3">
+                      {[
+                        "Property Title",
+                        "NOC Certificate",
+                        "Building Approval",
+                        "Tax Documents",
+                      ].map((doc, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center justify-between bg-gray-50 p-3 md:p-4 rounded-lg border border-gray-200"
+                        >
+                          <div className="flex items-center">
+                            <FaRegCircleCheck className="text-customBlue mr-2" />
+                            <span className="text-gray-900 text-sm md:text-base">
+                              {doc}
+                            </span>
+                          </div>
+                          <button className="text-customBlue hover:text-blue-700 text-sm md:text-base">
+                            View
+                          </button>
                         </div>
-                        <button className="text-customBlue hover:text-blue-700">
-                          View
-                        </button>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              {activeTab === "calculator" && (
-                <div className="space-y-4">
-                  <h3 className="text-xl font-semibold text-gray-900">
-                    ROI Calculator
-                  </h3>
-                  <div className="rounded-md border border-customBlue p-5">
-                    <div className="flex flex-col gap-y-4">
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-600 font-semibold">
-                          One Square Feet Price
-                        </span>
-                        <span className="text-gray-900 flex items-center">
-                          <MdCurrencyRupee />
-                          {propertyDetails.property_unit_price}
-                        </span>
-                      </div>
-
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-600 font-semibold">
-                          Quantity
-                        </span>
-                        <div className="flex items-center">
-                          <button
-                            onClick={handleDecrease}
-                            className="px-2 border border-gray-300 text-gray-700 rounded-md mr-2 hover:bg-gray-100"
-                          >
-                            -
-                          </button>
-                          <input
-                            type="number"
-                            value={quantity}
-                            onChange={handleQuantityChange}
-                            className="w-12 pl-2 text-center bg-white text-gray-900 border border-gray-300 rounded-md font-semibold"
-                          />
-                          <button
-                            onClick={handleIncrease}
-                            className="px-2 border border-gray-300 text-gray-700 rounded-md ml-2 hover:bg-gray-100"
-                          >
-                            +
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-600 font-semibold">
-                          Area Per Quantity
-                        </span>
-                        <span className="text-gray-900 flex items-center">
-                          {totalArea} sqft
-                        </span>
-                      </div>
-
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-600 font-semibold">
-                          Total Price
-                        </span>
-                        <span className="text-gray-900 flex items-center">
-                          <MdCurrencyRupee /> {totalPrice}
-                        </span>
-                      </div>
-
-                      <div className="bg-blue-50 text-customBlue p-4 rounded-lg">
-                        <div className="flex justify-between items-center">
-                          <span className="font-semibold">
-                            Monthly Earnings
+                {activeTab === "calculator" && (
+                  <div className="space-y-4">
+                    <h3 className="text-lg md:text-xl font-semibold text-gray-900">
+                      ROI Calculator
+                    </h3>
+                    <div className="rounded-md border border-customBlue p-3 md:p-5">
+                      <div className="flex flex-col gap-y-4">
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                          <span className="text-gray-600 font-semibold text-sm md:text-base">
+                            One Square Feet Price
                           </span>
-                          <span className="flex items-center font-bold">
+                          <span className="text-gray-900 flex items-center text-sm md:text-base">
                             <MdCurrencyRupee />
-                            {Math.ceil(
-                              ((propertyDetails.capital_appreciation / 100) *
-                                totalPrice) /
-                                12
-                            )}
+                            {propertyDetails.property_unit_price}
                           </span>
+                        </div>
+
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                          <span className="text-gray-600 font-semibold text-sm md:text-base">
+                            Quantity
+                          </span>
+                          <div className="flex items-center">
+                            <button
+                              onClick={handleDecrease}
+                              className="px-2 py-1 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-100"
+                            >
+                              -
+                            </button>
+                            <input
+                              type="number"
+                              value={quantity}
+                              onChange={handleQuantityChange}
+                              className="w-12 mx-2 pl-2 text-center bg-white text-gray-900 border border-gray-300 rounded-md font-semibold"
+                            />
+                            <button
+                              onClick={handleIncrease}
+                              className="px-2 py-1 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-100"
+                            >
+                              +
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Additional calculator fields */}
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                          <span className="text-gray-600 font-semibold text-sm md:text-base">
+                            Area Per Quantity
+                          </span>
+                          <span className="text-gray-900 flex items-center text-sm md:text-base">
+                            {totalArea} sqft
+                          </span>
+                        </div>
+
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                          <span className="text-gray-600 font-semibold text-sm md:text-base">
+                            Total Price
+                          </span>
+                          <span className="text-gray-900 flex items-center text-sm md:text-base">
+                            <MdCurrencyRupee /> {totalPrice}
+                          </span>
+                        </div>
+
+                        <div className="bg-blue-50 text-customBlue p-3 md:p-4 rounded-lg">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                            <span className="font-semibold text-sm md:text-base">
+                              Monthly Earnings
+                            </span>
+                            <span className="flex items-center font-bold text-sm md:text-base">
+                              <MdCurrencyRupee />
+                              {Math.ceil(
+                                ((propertyDetails.capital_appreciation / 100) *
+                                  totalPrice) /
+                                  12
+                              )}
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Right Column - Order Summary */}
-        <div className="bg-white rounded-lg shadow-lg border border-gray-200">
-          <div className="rounded-md border border-customBlue p-5">
-            <h1 className="text-xl font-semibold text-customBlue mb-4 font-meuthanies">
-              Order Summary
-            </h1>
+          {/* Right Column - Order Summary */}
+          {/* Right Column - Order Summary */}
+          <div className="bg-white rounded-lg shadow-lg border border-gray-200">
+            <div className="rounded-md border border-customBlue p-5">
+              <h1 className="text-xl font-semibold text-customBlue mb-4 font-meuthanies">
+                Order Summary
+              </h1>
 
-            {/* Property Details */}
-            <div className="flex flex-col gap-y-4 mb-6">
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600 font-semibold">
-                  Property Name
-                </span>
-                <span className="text-sm text-gray-900 flex items-center">
-                  {propertyDetails.property_name}
-                </span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600 font-semibold">
-                  One Square Feet Price
-                </span>
-                <span className="text-sm text-gray-900 flex items-center">
-                  <MdCurrencyRupee /> {propertyDetails.property_unit_price}
-                </span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600 font-semibold">
-                  Area Per Quantity
-                </span>
-                <span className="text-sm text-gray-900 flex items-center">
-                  <IoHomeOutline className="mr-1" /> {totalArea} sqft
-                </span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600 font-semibold">
-                  Quantity
-                </span>
-                <div className="flex items-center">
-                  <button
-                    onClick={handleDecrease}
-                    className="px-2 border border-gray-300 text-gray-700 rounded-md mr-2 hover:bg-gray-100"
-                  >
-                    -
-                  </button>
-                  <input
-                    type="number"
-                    value={quantity}
-                    onChange={handleQuantityChange}
-                    className="w-12 pl-2 text-center bg-white text-gray-900 border border-gray-300 rounded-md font-semibold"
-                  />
-                  <button
-                    onClick={handleIncrease}
-                    className="px-2 border border-gray-300 text-gray-700 rounded-md ml-2 hover:bg-gray-100"
-                  >
-                    +
-                  </button>
+              {/* Property Details */}
+              <div className="flex flex-col gap-y-4 mb-6">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-600 font-semibold">
+                    Property Name
+                  </span>
+                  <span className="text-sm text-gray-900 flex items-center">
+                    {propertyDetails.property_name}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-600 font-semibold">
+                    One Square Feet Price
+                  </span>
+                  <span className="text-sm text-gray-900 flex items-center">
+                    <MdCurrencyRupee /> {propertyDetails.property_unit_price}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-600 font-semibold">
+                    Area Per Quantity
+                  </span>
+                  <span className="text-sm text-gray-900 flex items-center">
+                    <IoHomeOutline className="mr-1" /> {totalArea} sqft
+                  </span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-600 font-semibold">
+                    Quantity
+                  </span>
+                  <div className="flex items-center">
+                    <button
+                      onClick={handleDecrease}
+                      className="px-2 border border-gray-300 text-gray-700 rounded-md mr-2 hover:bg-gray-100"
+                      disabled={quantity <= 1}
+                    >
+                      -
+                    </button>
+                    <input
+                      type="text"
+                      value={quantityInput}
+                      onChange={handleQuantityChange}
+                      onBlur={handleBlur}
+                      className="w-12 pl-2 text-center bg-white text-gray-900 border border-gray-300 rounded-md font-semibold"
+                    />
+                    <button
+                      onClick={handleIncrease}
+                      className="px-2 border border-gray-300 text-gray-700 rounded-md ml-2 hover:bg-gray-100"
+                      disabled={quantity >= availableArea}
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-600 font-semibold">
+                    Growth Rate
+                  </span>
+                  <span className="text-sm text-customBlue flex items-center">
+                    <BsGraphUp className="mr-1" />
+                    {propertyDetails.capital_appreciation}%
+                  </span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-600 font-semibold">
+                    Total Investment
+                  </span>
+                  <span className="text-sm text-gray-900 flex items-center font-bold">
+                    <MdCurrencyRupee /> {totalPrice}
+                  </span>
                 </div>
               </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600 font-semibold">
-                  Growth Rate
-                </span>
-                <span className="text-sm text-customBlue flex items-center">
-                  <BsGraphUp className="mr-1" />
-                  {propertyDetails.capital_appreciation}%
-                </span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600 font-semibold">
-                  Total Investment
-                </span>
-                <span className="text-sm text-gray-900 flex items-center font-bold">
-                  <MdCurrencyRupee /> {totalPrice}
-                </span>
-              </div>
-            </div>
 
-            {/* Monthly Earnings Card */}
-            <div className="bg-blue-50 text-customBlue p-4 rounded-lg mb-6">
-              <div className="flex justify-between items-center">
-                <span className="font-semibold">Monthly Earnings</span>
-                <span className="flex items-center font-bold text-lg">
-                  <MdCurrencyRupee />
-                  {Math.ceil(
-                    ((propertyDetails.capital_appreciation / 100) *
-                      totalPrice) /
-                      12
-                  )}
-                </span>
+              {/* Monthly Earnings Card */}
+              <div className="bg-blue-50 text-customBlue p-4 rounded-lg mb-6">
+                <div className="flex justify-between items-center">
+                  <span className="font-semibold">Monthly Earnings</span>
+                  <span className="flex items-center font-bold text-lg">
+                    <MdCurrencyRupee />
+                    {Math.ceil(
+                      ((propertyDetails.capital_appreciation / 100) *
+                        totalPrice) /
+                        12
+                    )}
+                  </span>
+                </div>
+                <div className="mt-2 text-xs text-customBlue/80">
+                  Based on {propertyDetails.capital_appreciation}% annual
+                  returns
+                </div>
               </div>
-              <div className="mt-2 text-xs text-customBlue/80">
-                Based on {propertyDetails.capital_appreciation}% annual returns
+
+              {/* Terms & Conditions */}
+              <div className="mb-6">
+                <label className="flex items-start gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    className="mt-1.5"
+                    checked={isChecked}
+                    onChange={handleCheckboxChange}
+                  />
+                  <span className="text-sm text-gray-600">
+                    I agree to the{" "}
+                    <button className="text-customBlue hover:text-blue-700">
+                      Terms & Conditions
+                    </button>{" "}
+                    and
+                    <button className="text-customBlue hover:text-blue-700">
+                      {" "}
+                      Privacy Policy
+                    </button>{" "}
+                    of Paxo Wealth
+                  </span>
+                </label>
               </div>
-            </div>
 
-            {/* Terms & Conditions */}
-            <div className="mb-6">
-              <label className="flex items-start gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  className="mt-1.5"
-                  checked={isChecked}
-                  onChange={handleCheckboxChange}
-                />
-                <span className="text-sm text-gray-600">
-                  I agree to the{" "}
-                  <button className="text-customBlue hover:text-blue-700">
-                    Terms & Conditions
-                  </button>{" "}
-                  and
-                  <button className="text-customBlue hover:text-blue-700">
-                    {" "}
-                    Privacy Policy
-                  </button>{" "}
-                  of Paxo Wealth
-                </span>
-              </label>
+              {/* CTA Button */}
+              <button
+                className={`w-full py-3 rounded-lg font-bold transition-colors ${
+                  isChecked
+                    ? "bg-customBlue hover:bg-blue-700 text-white"
+                    : "bg-gray-400 cursor-not-allowed text-gray-600"
+                }`}
+                onClick={handlePayment}
+                disabled={!isChecked} // Disable the button when not checked
+              >
+                PROCEED TO PAYMENT
+              </button>
             </div>
-
-            {/* CTA Button */}
-            <button
-              className={`w-full py-3 rounded-lg font-bold transition-colors ${
-                isChecked
-                  ? "bg-customBlue hover:bg-blue-700 text-white"
-                  : "bg-gray-400 cursor-not-allowed text-gray-600"
-              }`}
-              onClick={handlePayment}
-              disabled={!isChecked} // Disable the button when not checked
-            >
-              PROCEED TO PAYMENT
-            </button>
           </div>
         </div>
       </div>

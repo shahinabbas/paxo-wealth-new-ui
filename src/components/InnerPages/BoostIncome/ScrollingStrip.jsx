@@ -119,7 +119,7 @@ function ScrollingStrip() {
   ];
 
   return (
-    <div className="bg-transparent p-4 overflow-hidden font-meuthanies md:-mt-20 -mt-10">
+    <div className="bg-transparent p-4 overflow-hidden font-meuthanies -mt-20 ">
       <div className="relative flex overflow-x-hidden">
         <div className="relative flex overflow-x-hidden">
           <div className="md:py-12 py-6 animate-marquee whitespace-nowrap">

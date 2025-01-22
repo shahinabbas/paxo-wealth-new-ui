@@ -16,7 +16,7 @@ function Earnings() {
         {/* Animated "Start Earning" Text */}
         <div className="absolute inset-0 flex items-center justify-center">
           
-            <h1 className="text-[#6200EE] font-meuthanies text-[40px] xl:text-[180px] md:text-[113px]">
+            <h1 className="text-[#6200EE] font-meuthanies text-[40px] xl:text-[170px] md:text-[103px]">
               Start Earning
             </h1>
           

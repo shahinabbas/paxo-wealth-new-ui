@@ -1,6 +1,7 @@
 import React from "react";
 import Works from "/HowItWorks.png";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Logo = () => (
   <svg
@@ -75,20 +76,21 @@ const LeftLine = ({ classname }) => (
     viewBox="0 0 265 144"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    initial={{ strokeDasharray: 420, strokeDashoffset: 420, stroke: "#444444" }}
+    animate={{
+      strokeDashoffset: 0,
+      stroke: ["#444444", "#0056E0", "#444444"], // Color transition
+    }}
+    transition={{
+      duration: 2,
+      ease: "linear",
+      delay: 2, // Adjust delay if needed
+      stroke: { duration: 2, ease: "linear", repeat: Infinity, delay: 2 },
+    }}
   >
     <motion.path
-      d="M1 144V25C1 11.7452 11.7452 1 25 1H265"
-      stroke="#444444"
+      d="M265 1H25C11.7452 1 1 11.7452 1 25V144"
       strokeWidth="2"
-      initial={{ strokeDasharray: 420, strokeDashoffset: 420 }}
-      animate={{
-        strokeDashoffset: 0,
-        stroke: ["#444444", "#0056E0", "#444444"], // Color transition
-      }}
-      transition={{
-        strokeDashoffset: { duration: 2, ease: "linear", delay: 0 },
-        stroke: { duration: 3, ease: "linear", repeat: Infinity, delay: 3 },
-      }}
     />
   </motion.svg>
 );
@@ -110,7 +112,7 @@ const RightLine = ({ classname }) => (
       duration: 2,
       ease: "linear",
       delay: 2, // Adjust delay if needed
-      stroke: { duration: 3, ease: "linear", repeat: Infinity, delay: 3 },
+      stroke: { duration: 2, ease: "linear", repeat: Infinity, delay: 2 },
     }}
   >
     <motion.path
@@ -136,8 +138,8 @@ const CenterLine = ({ classname }) => (
     transition={{
       duration: 2,
       ease: "linear",
-      delay: 2, // Adjust delay if needed
-      stroke: { duration: 3, ease: "linear", repeat: Infinity, delay: 3 },
+      delay: 2, 
+      stroke: { duration: 2, ease: "linear", repeat: Infinity, delay: 2 },
     }}
   >
     <motion.path
@@ -226,9 +228,13 @@ function HowItWorks() {
                 <h1 className="font-meuthanies mt-4">
                   Shobha Apartments - Sarjapur
                 </h1>
-                <div className="bg-black rounded-full p-3 mt-4">
-                  <h1 className="text-white text-center">Activate Your Plan</h1>
-                </div>
+                <Link to="/boost-income/properties">
+                  <div className="bg-black rounded-full p-3 mt-4">
+                    <h1 className="text-white text-center">
+                      Activate Your Plan
+                    </h1>
+                  </div>
+                </Link>
               </div>
             </div>
 
@@ -242,9 +248,13 @@ function HowItWorks() {
                 <h1 className="font-meuthanies mt-4">
                   Prestige Group - Jayanagar{" "}
                 </h1>
-                <div className="bg-black rounded-full p-3 mt-4">
-                  <h1 className="text-white text-center">Activate Your Plan</h1>
-                </div>
+                <Link to="/boost-income/properties">
+                  <div className="bg-black rounded-full p-3 mt-4">
+                    <h1 className="text-white text-center">
+                      Activate Your Plan
+                    </h1>
+                  </div>
+                </Link>
               </div>
             </div>
 
@@ -259,9 +269,13 @@ function HowItWorks() {
                 <h1 className="font-meuthanies mt-4">
                   Provident Sunworth City -<br /> Mysore Road{" "}
                 </h1>
-                <div className="bg-black rounded-full p-3 mt-4">
-                  <h1 className="text-white text-center">Activate Your Plan</h1>
-                </div>
+                <Link to="/boost-income/properties">
+                  <div className="bg-black rounded-full p-3 mt-4">
+                    <h1 className="text-white text-center">
+                      Activate Your Plan
+                    </h1>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

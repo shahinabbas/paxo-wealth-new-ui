@@ -1,23 +1,25 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { ContainerScroll } from "./ContainerScroll";
 import Image from "/discover.jpg";
 import Video from "/Paxo_Wealth_Explainer.mp4";
 import AboutUsAnimation from "./AboutUsAnimation";
 import { FaPlay, FaPause } from "react-icons/fa";
-import { CiPlay1 } from "react-icons/ci";
-import { BackgroundBeamsDemo } from "../Explore/BackgroundBeamsDemo";
 
 export function HeroScrollDemo() {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const togglePlayPause = () => {
-    if (isPlaying) {
-      videoRef.current.pause();
-    } else {
-      videoRef.current.play();
+    if (videoRef.current) {
+      console.log("clicked");
+
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
     }
-    setIsPlaying(!isPlaying);
   };
 
   return (
@@ -55,14 +57,12 @@ export function HeroScrollDemo() {
             loop
             playsInline
           />
-
           {/* Play/Pause Button */}
           <button
             onClick={togglePlayPause}
-            className="absolute m-auto bg-black text-white rounded-full p-4 flex items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100"
-            style={{ width: "60px", height: "60px" }}
+            className="absolute z-20 bg-black/70 text-white rounded-full p-3 md:opacity-0 md:group-hover:opacity-100 xl:opacity-0 xl:group-hover:opacity-100 transition-opacity duration-300"
           >
-            {isPlaying ? <FaPause size={24} /> : <CiPlay1 size={24} />}
+            {isPlaying ? <FaPause size={16} /> : <FaPlay size={16} />}
           </button>
         </div>
       </ContainerScroll>

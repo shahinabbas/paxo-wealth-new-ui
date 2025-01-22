@@ -52,11 +52,13 @@ const PaymentPage = () => {
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [profile, setProfile] = useState(null);
 
   // Calculate values based on property details and quantity
   const calculateValues = (property, quantity) => {
-    const totalArea = quantity * 100;
-    const totalPrice = quantity * property.property_unit_price * 100;
+    const totalArea = quantity * property.minimum_sqft;
+    const totalPrice =
+      quantity * property.property_unit_price * property.minimum_sqft;
     const taxes = Math.ceil(totalPrice * 0.05); // 5% taxes
     const monthlyEarnings = property.capital_appreciation
       ? Math.ceil(((property.capital_appreciation / 100) * totalPrice) / 12)
@@ -69,6 +71,21 @@ const PaymentPage = () => {
   useEffect(() => {
     const init = async () => {
       try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          setError("User is not authenticated. Please log in.");
+          return;
+        }
+
+        // Fetch user profile
+        const fetchedProfile = await fetchUserProfile(token);
+        if (!fetchedProfile) {
+          setError("Failed to fetch user profile.");
+          return;
+        }
+
+        setProfile(fetchedProfile); // Update profile in state
+
         const storedData = sessionStorage.getItem("orderSummary");
 
         if (!storedData) {
@@ -96,6 +113,20 @@ const PaymentPage = () => {
 
     init();
   }, []);
+
+  const fetchUserProfile = async (token) => {
+    try {
+      const response = await axios.get(`${apiURL}/auth/profile`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data; // Return fetched profile data
+    } catch (error) {
+      console.error("Error fetching user profile:", error);
+      return null;
+    }
+  };
 
   const fetchPropertyDetails = async (slug, quantity) => {
     try {
@@ -340,19 +371,19 @@ const PaymentPage = () => {
                       <div>
                         <p className="text-sm text-gray-600">Name</p>
                         <p className="font-semibold text-gray-900">
-                          {userDetails.name}
+                          {profile.username}
                         </p>
                       </div>
                       <div>
                         <p className="text-sm text-gray-600">Email</p>
                         <p className="font-semibold text-gray-900">
-                          {userDetails.email}
+                          {profile.email}
                         </p>
                       </div>
                       <div>
                         <p className="text-sm text-gray-600">Phone</p>
                         <p className="font-semibold text-gray-900">
-                          {userDetails.phone}
+                          {profile.phone}
                         </p>
                       </div>
                     </div>
@@ -517,53 +548,78 @@ const PaymentPage = () => {
                 </button>
 
                 {paymentStep === 1 && (
-                  <>
-                    <h2 className="text-gray-900 text-lg font-bold mb-4">
+                  <div className="space-y-6 font-meuthanies">
+                    <h2 className="text-xl font-bold text-gray-900 mb-4">
                       Step 1: NEFT/RTGS Payment Instructions
                     </h2>
-                    <p className="text-sm text-gray-600 mb-4">
+
+                    <div className="text-sm text-gray-600">
                       Please transfer the payment to the following account
                       details. Open your banking app or visit your bank to
                       complete the NEFT/RTGS payment:
-                    </p>
-
-                    <div className="bg-gray-50 p-4 rounded-lg text-sm text-gray-900 space-y-2 border border-gray-200">
-                      <p>
-                        <span className="font-semibold">Account Name:</span>{" "}
-                        [Your Company Name]
-                      </p>
-                      <p>
-                        <span className="font-semibold">Account Number:</span>{" "}
-                        [Your Account Number]
-                      </p>
-                      <p>
-                        <span className="font-semibold">Bank Name:</span> [Bank
-                        Name]
-                      </p>
-                      <p>
-                        <span className="font-semibold">Branch Name:</span>{" "}
-                        [Branch Name]
-                      </p>
-                      <p>
-                        <span className="font-semibold">IFSC Code:</span> [Bank
-                        IFSC Code]
-                      </p>
                     </div>
 
-                    <p className="text-sm text-gray-600 mt-4">
+                    <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                      <div className="space-y-3">
+                        <div className="flex">
+                          <span className="font-semibold w-1/2">
+                            Account Name:
+                          </span>
+                          <span className="w-1/2">PAXO Wealth Pvt. Ltd.</span>
+                        </div>
+                        <div className="flex">
+                          <span className="font-semibold w-1/2">
+                            Account Number:
+                          </span>
+                          <span className="w-1/2">987654321012</span>
+                        </div>
+                        <div className="flex">
+                          <span className="font-semibold w-1/2">
+                            Bank Name:
+                          </span>
+                          <span className="w-1/2">HDFC Bank</span>
+                        </div>
+                        <div className="flex">
+                          <span className="font-semibold w-1/2">
+                            Branch Name:
+                          </span>
+                          <span className="w-1/2">Fort Branch, Mumbai</span>
+                        </div>
+                        <div className="flex">
+                          <span className="font-semibold w-1/2">
+                            IFSC Code:
+                          </span>
+                          <span className="w-1/2">HDFC0001234</span>
+                        </div>
+                        <div className="flex">
+                          <span className="font-semibold w-1/2">
+                            Account Type:
+                          </span>
+                          <span className="w-1/2">Current Account</span>
+                        </div>
+                        <div className="flex">
+                          <span className="font-semibold w-1/2">
+                            MICR Code:
+                          </span>
+                          <span className="w-1/2">400240003</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="text-sm text-gray-600">
                       Once the payment is made, proceed to the next step to
                       enter the transaction details for verification.
-                    </p>
+                    </div>
 
-                    <div className="flex justify-center mt-6">
+                    <div className="flex justify-center mt-8">
                       <button
                         onClick={() => setPaymentStep(2)}
-                        className="bg-customBlue text-white py-2 px-8 rounded-lg font-bold hover:bg-blue-700"
+                        className="bg-customBlue text-white py-3 px-8 rounded-lg font-bold hover:bg-blue-700 transition-colors"
                       >
                         Proceed to Enter Details
                       </button>
                     </div>
-                  </>
+                  </div>
                 )}
 
                 {paymentStep === 2 && (

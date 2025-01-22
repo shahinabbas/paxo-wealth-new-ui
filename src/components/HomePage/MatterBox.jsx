@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import React, { useRef, useState, useEffect } from "react";
 import Matter from "matter-js";
 import Dot from "/Dot1.png"; // Your background image
-import "./MatterBox.css"
+import "./MatterBox.css";
 // Convert the Tick SVG to a string for texture
 const tickSVG = encodeURIComponent(`
   <svg
@@ -23,8 +24,8 @@ xmlns="http://www.w3.org/2000/svg"
 `);
 const coinSVG = encodeURIComponent(`
 <svg
-width="165"
-height="163"
+width="140"
+height="120"
 viewBox="0 0 165 163"
 fill="none"
 xmlns="http://www.w3.org/2000/svg"
@@ -70,8 +71,19 @@ const boostSVG = encodeURIComponent(`
 const MatterBox = () => {
   const canvasRef = useRef(null);
   const [texts] = useState(["Direct Save", "Rent Rise", "BoostIncome"]);
-  const gap = 150;
 
+  const textVariants = {
+    hidden: { opacity: 0, scale: 0.5 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 1, ease: "easeOut" },
+    },
+  };
+  const textVariant = {
+    hidden: { opacity: 0, y: 5 },
+    visible: { opacity: 0.3, y: 0, transition: { duration: 1 } },
+  };
   useEffect(() => {
     const Engine = Matter.Engine;
     const Render = Matter.Render;
@@ -80,16 +92,15 @@ const MatterBox = () => {
     const Composite = Matter.Composite;
     const Mouse = Matter.Mouse;
     const MouseConstraint = Matter.MouseConstraint;
-
+  
     const width = window.innerWidth;
     const height = window.innerHeight;
-
-    // Dynamically change positions based on screen size
-    const isMobile = width < 768; // Mobile screen condition (example: sm breakpoint)
-
+  
+    const isMobile = width < 768; // Mobile screen condition
+  
     const engine = Engine.create();
     const world = engine.world;
-
+  
     const render = Render.create({
       canvas: canvasRef.current,
       engine: engine,
@@ -102,18 +113,16 @@ const MatterBox = () => {
         wireframes: false,
       },
     });
-
+  
     Render.run(render);
-    const runner = Runner.create();
-    Runner.run(runner, engine);
-
+  
     const positions = [
-      { x: isMobile ? 150 : 300, y: isMobile ? 50 : 100, texture: tickSVG },
-      { x: isMobile ? 200 : 200, y: isMobile ? 100 : 150, texture: rentSVG },
+      { x: isMobile ? 150 : 200, y: isMobile ? 50 : 100, texture: tickSVG },
+      { x: isMobile ? 200 : 200, y: isMobile ? 100 : 350, texture: rentSVG },
       { x: isMobile ? 100 : 1150, y: isMobile ? 150 : 200, texture: boostSVG },
-      { x: isMobile ? 150 : 800, y: isMobile ? 200 : 250, texture: directSVG },
+      { x: isMobile ? 150 : 800, y: isMobile ? 200 : 390, texture: directSVG },
     ];
-
+  
     positions.forEach((position) => {
       const body = Bodies.rectangle(position.x, position.y, 110, 110, {
         restitution: 0.7,
@@ -128,12 +137,12 @@ const MatterBox = () => {
       });
       Composite.add(world, body);
     });
-
+  
     const coinPositions = [
-      { x: isMobile ? 200 : 1150, y: isMobile ? 150 : 200, texture: coinSVG },
-      { x: isMobile ? 400 : 700, y: isMobile ? 150 : 200, texture: coinSVG },
+      { x: isMobile ? 200 : 1150, y: isMobile ? 150 : 350, texture: coinSVG },
+      { x: isMobile ? 400 : 700, y: isMobile ? 150 : 100, texture: coinSVG },
     ];
-
+  
     coinPositions.forEach((coinPosition) => {
       const body = Bodies.rectangle(coinPosition.x, coinPosition.y, 110, 110, {
         restitution: 0.7,
@@ -148,7 +157,7 @@ const MatterBox = () => {
       });
       Composite.add(world, body);
     });
-
+  
     const thickness = 50;
     Composite.add(world, [
       Bodies.rectangle(width / 2, -thickness / 2, width, thickness, {
@@ -164,35 +173,67 @@ const MatterBox = () => {
         isStatic: true,
       }),
     ]);
-
+  
     const mouse = Mouse.create(render.canvas);
     const mouseConstraint = MouseConstraint.create(engine, {
       mouse: mouse,
       constraint: { stiffness: 0.2, render: { visible: false } },
     });
-
+  
     Composite.add(world, mouseConstraint);
     render.mouse = mouse;
-
+  
     Render.lookAt(render, {
       min: { x: 0, y: 0 },
       max: { x: width, y: height },
     });
-
+  
+    const runner = Runner.create();
+  
+    // Add delay before starting the runner
+    const delay = 2000; // 2 seconds
+    setTimeout(() => {
+      Runner.run(runner, engine);
+    }, delay);
+  
     return () => {
       Render.stop(render);
       Runner.stop(runner);
       Composite.clear(world);
       Engine.clear(engine);
     };
-  }, [texts]);
+  }, []);
+  
 
   return (
-    <div className="matter-box-container w-screen">
-      <canvas ref={canvasRef} />
+    <div className="w-screen h-screen flex justify-center items-center relative">
+      <canvas ref={canvasRef} className="absolute top-0 left-0" />
+      <motion.h1
+        initial="hidden"
+        animate="visible"
+        variants={textVariant}
+        className="font-meuthanies absolute mb-24 opacity-30 text-customBlue text-8xl"
+      >
+        Start Earning
+      </motion.h1>
+      <motion.h1
+        className="font-meuthanies absolute text-customBlue text-8xl"
+        initial="hidden"
+        animate="visible"
+        variants={textVariants}
+      >
+        Start Earning
+      </motion.h1>
+      <motion.h1
+        initial="hidden"
+        animate="visible"
+        variants={textVariant}
+        className="font-meuthanies absolute mt-24 opacity-30 text-customBlue text-8xl"
+      >
+        Start Earning
+      </motion.h1>
     </div>
   );
 };
 
 export default MatterBox;
-

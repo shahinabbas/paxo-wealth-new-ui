@@ -1,9 +1,11 @@
 import React from "react";
 import { MdArrowOutward } from "react-icons/md";
-import { Link } from "react-scroll"; // Import react-scroll Link
 import BoostIncomeIcon from "../../Home/BoostIncomeIcon";
+import { Link } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 
 function BoostIncomeHome() {
+
   return (
     <div className="bg-white h-screen md:px-10 px-4">
       <div className="bg-customBlue xl:h-[700px] rounded-xl mt-20 md:flex gap-60 items-center p-6">
@@ -24,14 +26,17 @@ function BoostIncomeHome() {
             with consistent payouts for 12 months.
           </h2>
           <div className="md:flex md:space-y-0 font-semibold space-y-4 gap-10 md:mt-10 xl:mt-16 mt-4">
-            <div className="border rounded-full  border-customYellow text-customYellow flex items-center justify-center xl:p-3 p-2 px-4">
+          <ScrollLink
+              to="HowItWork" // The id of the section to scroll to
+              smooth={true} // Enables smooth scrolling
+              duration={500} // The duration of the scroll (in ms)
+              className="border cursor-pointer rounded-full border-customYellow text-customYellow flex items-center justify-center xl:p-3 p-2 px-4"
+            >
               <h1>Learn How It Works</h1>
               <MdArrowOutward />
-            </div>
+            </ScrollLink>
             <Link
-              to="highlighted"
-              smooth={true}
-              duration={500}
+              to="/boost-income/properties"
               className="bg-customYellow rounded-full text-black flex items-center justify-center p-2 xl:p-3 px-4 cursor-pointer"
             >
               <h1>Activate Boost Income Now</h1>

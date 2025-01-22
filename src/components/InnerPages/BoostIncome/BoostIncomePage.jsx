@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import Unlock from "./Unlock";
-import Highlighted from "./Highlighted";
 import WhyChoose from "./WhyChoose";
 import FaqNew from "./FaqNew";
 import GrowthJourney from "./GrowthJourney";
@@ -26,7 +25,9 @@ function BoostIncomePage() {
       {/* <div id="highlighted">
         <Highlighted />
       </div> */}
-      <HowItWork />
+      <div id="HowItWork">
+        <HowItWork />
+      </div>
       <GrowthExamples />
       <WhyChoose />
       <FaqNew />
