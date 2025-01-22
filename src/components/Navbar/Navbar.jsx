@@ -217,7 +217,7 @@ function Navbar() {
             />
 
             <motion.div
-              className="fixed h-screen top-0 right-0 w-[80%] bg-white text-black lg:hidden font-sf-pro z-50"
+              className="fixed h-screen top-0 right-0 w-[80%] bg-white text-black lg:hidden font-sf-pro z-[45]"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
