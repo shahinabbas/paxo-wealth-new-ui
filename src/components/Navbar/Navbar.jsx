@@ -7,7 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 // import PW from "/paxowealth.png";
-import PW from "/PWnew.png";
+import PW from "/pwlogo.png";
+import axios from "axios";
 
 import { FaSignOutAlt } from "react-icons/fa";
 
@@ -17,7 +18,8 @@ function Navbar() {
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const userName = localStorage.getItem("name");
+  const [user, setUserData] = useState(null);
+  const apiURL = process.env.REACT_APP_API_URL;
 
   const handleClick = () => navigate("/");
   const handleDashboardClick = () => navigate("/dashboard");
@@ -33,12 +35,34 @@ function Navbar() {
     }
   };
 
+  const fetchUserData = async () => {
+    try {
+      const response = await axios.get(`${apiURL}/auth/profile`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      setUserData(response.data);
+      localStorage.setItem("name", response?.data?.username);
+      localStorage.setItem("kycStatus", response?.data?.isKycVerified);
+    } catch (error) {
+      console.error("Failed to fetch user data:", error);
+    }
+  };
+
   useEffect(() => {
+    fetchUserData();
+  }, [apiURL, token]);
+
+  useEffect(() => {
+    fetchUserData();
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
   const renderAuthButton = () => {
-    if (token && userName) {
+    if (token && user) {
       return (
         <div className="relative group">
           <div
@@ -46,7 +70,7 @@ function Navbar() {
             onClick={handleDashboardClick}
           >
             <FaUser />
-            <p>{userName}</p>
+            <p>{user?.username || "user"}</p>
           </div>
         </div>
       );
@@ -85,9 +109,7 @@ function Navbar() {
       {/* Rest of the desktop menu code remains the same until the auth section */}
 
       <div className="relative hidden lg:flex">
-        <div
-          className="relative flex   w-[540px] h-12 gap-8 px-6 rounded-xl justify-center items-center bg-transparent transition-all duration-300"
-        >
+        <div className="relative flex   w-[540px] h-12 gap-8 px-6 rounded-xl justify-center items-center bg-transparent transition-all duration-300">
           <div className="flex flex-col items-center cursor-pointer relative">
             <Link to="/boost-income" className="flex items-center">
               <h1 className="text-sm font-sf-pro">PAXO Products</h1>
@@ -120,8 +142,8 @@ function Navbar() {
                   exit="exit"
                   className="absolute w-[540px] top-[42px] -right-[154.5px]  p-4 bg-[#FFFFFF99]  bg-clip-padding backdrop-filter backdrop-blur-[10px] bg-opacity-10"
                   ref={dropdownRef}
-                  onMouseEnter={() => setOpenDropdown("company")} 
-                  onMouseLeave={() => setOpenDropdown(null)} 
+                  onMouseEnter={() => setOpenDropdown("company")}
+                  onMouseLeave={() => setOpenDropdown(null)}
                 >
                   <div className="flex gap-5">
                     <GlowingStarsBackgroundCardPreview />
@@ -201,48 +223,80 @@ function Navbar() {
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 100, damping: 25 }}
             >
-              <div className="flex flex-col p-5 py-4 font-sf-pro relative">
+              <div className="flex flex-col font-sf-pro relative">
                 <div
                   className="absolute top-4 right-4 text-2xl cursor-pointer text-black"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <IoMdClose />
                 </div>
-                <img src={PW} alt="Logo" className="w-44 h-38 bg-cover" />
+                <img src={PW} alt="Logo" className="w-28 h-28 bg-cover" />
                 {/* Mobile menu items */}
-                <div className="py-2 mt-4 text-sm cursor-pointer">
-                  <Link to="/boost-income" onClick={() => setIsMobileMenuOpen(false)}>PAXO Products</Link>
-                </div>
-                <div className="py-2 text-sm cursor-pointer">
-                  <Link to="/roi-calculator" onClick={() => setIsMobileMenuOpen(false)}>ROI Calculator</Link>
-                </div>
-                <div
-                  className="py-2 text-sm cursor-pointer"
-                  onClick={() => toggleDropdown("company")}
-                >
-                  Company
-                </div>
-                {openDropdown === "company" && (
-                  <div className="w-full py-2 bg-gray-200">
-                    <div className="py-2 text-sm">
-                      <Link to="/about-us" onClick={() => setIsMobileMenuOpen(false)}>About Us</Link>
-                    </div>
-                    <div className="py-2 text-sm">
-                      <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
-                    </div>
+                <div className="px-5">
+                  <div className="py-2 text-sm cursor-pointer">
+                    <Link
+                      to="/boost-income"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      PAXO Products
+                    </Link>
                   </div>
-                )}
-                <div className="py-2 text-sm cursor-pointer">
-                  <Link to="/contact-us" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
-                </div>
-                <div
-                  className="py-2 text-sm cursor-pointer"
-                  onClick={handleSignOut}
-                >
-                  <Link to="/contact-us" onClick={() => setIsMobileMenuOpen(false)}>Sign Out</Link>
-                </div>
-                <div className="mt-4 flex justify-start">
-                  {renderAuthButton()}
+                  <div className="py-2 text-sm cursor-pointer">
+                    <Link
+                      to="/roi-calculator"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      ROI Calculator
+                    </Link>
+                  </div>
+                  <div
+                    className="py-2 text-sm cursor-pointer"
+                    onClick={() => toggleDropdown("company")}
+                  >
+                    Company
+                  </div>
+                  {openDropdown === "company" && (
+                    <div className="w-full py-2 bg-gray-200">
+                      <div className="py-2 text-sm">
+                        <Link
+                          to="/about-us"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          About Us
+                        </Link>
+                      </div>
+                      <div className="py-2 text-sm">
+                        <Link
+                          to="/blog"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          Blog
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+                  <div className="py-2 text-sm cursor-pointer">
+                    <Link
+                      to="/contact-us"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Contact Us
+                    </Link>
+                  </div>
+                  <div
+                    className="py-2 text-sm cursor-pointer"
+                    onClick={handleSignOut}
+                  >
+                    <Link
+                      to="/contact-us"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Sign Out
+                    </Link>
+                  </div>
+                  <div className="mt-4 flex justify-start">
+                    {renderAuthButton()}
+                  </div>
                 </div>
               </div>
             </motion.div>

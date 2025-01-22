@@ -15,20 +15,18 @@ import BoostIncome from "../Home/BoostIncome";
 import Introduction from "../Home/Introduction";
 import Combined from "../Home/Combined";
 
-
 const HomePage = () => {
   return (
-    <div> 
-      {/* <Combined/> */}
+    <div>
       <Home />
-        <Features />
-        <HeroScrollDemo />
-        <Explore />
-        <EarningsSteps />
-        <Earnings />
-        <Premium />
-        <Properties />
-        <FaqCombined />
+      <Features />
+      <HeroScrollDemo />
+      <Explore />
+      <EarningsSteps />
+      <Earnings />
+      <Premium />
+      <Properties />
+      <FaqCombined />
     </div>
   );
 };

@@ -234,7 +234,7 @@ function Login() {
         <h1 className="text-black text-center font-meuthanies text-xl">
           Welcome to <span className="text-customBlue">Paxo Wealth</span>
         </h1>
-  
+
         <div className="mt-6 xl:px-4 md:px-4">
           <div>
             {successMessage && (
@@ -242,13 +242,13 @@ function Login() {
                 {successMessage}
               </div>
             )}
-  
+
             {errors.api && (
               <div className="bg-red-500 bg-opacity-10 border border-red-500 text-red-500 rounded-md p-3 mb-4 text-sm">
                 {errors.api}
               </div>
             )}
-  
+
             <div>
               <h1 className="text-black">Mobile Number*</h1>
               <input
@@ -268,7 +268,7 @@ function Login() {
                 </p>
               )}
             </div>
-  
+
             {isOtpEnabled && (
               <div className="mt-5 ">
                 <h1 className="text-black">One Time Password</h1>
@@ -280,9 +280,7 @@ function Login() {
                       type="text"
                       inputMode="numeric"
                       value={formData.otp[index]}
-                      onChange={(e) =>
-                        handleOtpChange(index, e.target.value)
-                      }
+                      onChange={(e) => handleOtpChange(index, e.target.value)}
                       onKeyDown={(e) => handleOtpKeyDown(index, e)}
                       onPaste={handleOtpPaste}
                       className={`w-16 h-16 text-center border ${
@@ -315,7 +313,7 @@ function Login() {
                 </div>
               </div>
             )}
-  
+
             <button
               onClick={isOtpEnabled ? handleVerifyOtp : handleSendOtp}
               disabled={isLoading}
@@ -334,7 +332,7 @@ function Login() {
                   : "Send OTP"}
               </span>
             </button>
-  
+
             <p className="text-gray-600 text-center mt-2">Or</p>
             <button
               className="rounded-full border border-customGreen mt-2 justify-center items-center flex w-48 p-2 mx-auto text-black hover:bg-gray-50"
@@ -343,13 +341,10 @@ function Login() {
               <FcGoogle />
               <span className="text-sm ml-2">SignIn with Google</span>
             </button>
-  
+
             <p className="text-black text-[10px] text-center mt-4">
               Don't have an account?{" "}
-              <Link
-                to="/signup"
-                className="text-customBlue hover:underline"
-              >
+              <Link to="/signup" className="text-customBlue hover:underline">
                 SignUp
               </Link>
             </p>
@@ -358,7 +353,6 @@ function Login() {
       </div>
     </div>
   );
-  
 }
 
 export default Login;
