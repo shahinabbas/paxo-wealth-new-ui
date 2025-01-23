@@ -12,7 +12,7 @@ import axios from "axios";
 
 import { FaSignOutAlt } from "react-icons/fa";
 
-function Navbar() {
+function Navbar({ setIsSidebarOpen }) {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -51,6 +51,9 @@ function Navbar() {
       console.error("Failed to fetch user data:", error);
     }
   };
+  useEffect(() => {
+    setIsSidebarOpen(isMobileMenuOpen);
+  }, [isMobileMenuOpen, setIsSidebarOpen]);
 
   useEffect(() => {
     fetchUserData();
@@ -66,7 +69,7 @@ function Navbar() {
       return (
         <div className="relative group">
           <div
-            className="flex items-center gap-2 bg-customGreen text-black rounded-full text-sm font-semibold p-2 cursor-pointer"
+            className="flex items-center gap-2 bg-customGreen text-black rounded-full text-sm font-semibold p-2 px-6  cursor-pointer"
             onClick={handleDashboardClick}
           >
             <FaUser />
@@ -116,9 +119,11 @@ function Navbar() {
             </Link>
           </div>
           <div>
-            <h1 className="text-sm cursor-pointer font-sf-pro">
-              ROI Calculator
-            </h1>
+            <Link to="/roi-calculator">
+              <h1 className="text-sm cursor-pointer font-sf-pro">
+                ROI Calculator
+              </h1>
+            </Link>
           </div>
           <div className="flex flex-col items-center cursor-pointer relative">
             <div
@@ -140,7 +145,7 @@ function Navbar() {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="absolute w-[540px] top-[42px] -right-[154.5px]  p-4 bg-[#FFFFFF99]  bg-clip-padding backdrop-filter backdrop-blur-[10px] bg-opacity-10"
+                  className="absolute w-[540px] top-[42px] -right-[154.5px] p-4 bg-[#FFFFFF99]  bg-clip-padding backdrop-filter backdrop-blur-[10px] bg-opacity-10"
                   ref={dropdownRef}
                   onMouseEnter={() => setOpenDropdown("company")}
                   onMouseLeave={() => setOpenDropdown(null)}
@@ -249,32 +254,19 @@ function Navbar() {
                       ROI Calculator
                     </Link>
                   </div>
-                  <div
-                    className="py-2 text-sm cursor-pointer"
-                    onClick={() => toggleDropdown("company")}
-                  >
-                    Company
+                  <div className="py-2 text-sm cursor-pointer">
+                    <Link
+                      to="/about-us"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      About Us{" "}
+                    </Link>
                   </div>
-                  {openDropdown === "company" && (
-                    <div className="w-full py-2 bg-gray-200">
-                      <div className="py-2 text-sm">
-                        <Link
-                          to="/about-us"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          About Us
-                        </Link>
-                      </div>
-                      <div className="py-2 text-sm">
-                        <Link
-                          to="/blog"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          Blog
-                        </Link>
-                      </div>
-                    </div>
-                  )}
+                  <div className="py-2 text-sm cursor-pointer">
+                    <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)}>
+                      Blog{" "}
+                    </Link>
+                  </div>
                   <div className="py-2 text-sm cursor-pointer">
                     <Link
                       to="/contact-us"
@@ -294,7 +286,10 @@ function Navbar() {
                       Sign Out
                     </Link>
                   </div>
-                  <div className="mt-4 flex justify-start">
+                  <div
+                    className="mt-4 flex justify-start"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
                     {renderAuthButton()}
                   </div>
                 </div>

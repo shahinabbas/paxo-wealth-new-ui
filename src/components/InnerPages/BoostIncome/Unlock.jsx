@@ -1,6 +1,8 @@
 import React from "react";
 import { MdArrowOutward } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
 const Starter = () => (
   <svg
     width="80"
@@ -115,11 +117,12 @@ const plans = [
     buttonText: "Activate Boost Income Now",
   },
 ];
+
 function Unlock() {
   return (
     <div className="px-5 xl:px-14 md:px-10 pb-10">
       <div>
-        <div className="md:flex mt-10">
+        <div className="md:flex ">
           <div className="relative inline-block">
             <span className="absolute inset-0 bg-customYellow transform rotate-[-2deg] w-full h-full"></span>
             <span className="relative z-10 font-meuthanies text-[30px] md:text-[45px]">
@@ -167,7 +170,10 @@ function Unlock() {
                   </li>
                 </ul>
               </div>
-              <Link to="/boost-income/properties" className="bottom-2 xl:mb-6 flex xl:text-xl justify-center items-center mt-4 rounded-full bg-customYellow p-2">
+              <Link
+                to="/boost-income/properties"
+                className="bottom-2 xl:mb-6 flex xl:text-xl justify-center items-center mt-4 rounded-full bg-customYellow p-2"
+              >
                 <h1 className="font-sf-pro font-semibold">{plan.buttonText}</h1>
                 <MdArrowOutward />
               </Link>

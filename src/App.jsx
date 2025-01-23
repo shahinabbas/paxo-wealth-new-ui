@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -38,6 +38,9 @@ import ProtectedRoute from "./components/Reusable/ProtectedRoute";
 import BoostIncomePropertiesHome from "./components/InnerPages/BoostIncome/BoostIncomeproperties/BoostIncomePropertiesHome";
 import KycNotificationBar from "./components/Reusable/KycNotificationBar";
 import KycTrackingPage from "./components/Reusable/KycTrackingPage";
+import GrowthExamples from "./components/InnerPages/BoostIncome/GrowthExamples";
+import Calc from "./components/Calc"
+import Matter from "./components/HomePage/MatterBox"
 
 function App() {
   return (
@@ -57,15 +60,18 @@ function AppWithNavigation() {
   const kycStatus = localStorage.getItem("kycStatus");
   const isDashboard = location.pathname.startsWith("/dashboard");
   const shouldShowNotification = !isAuthPage && token && kycStatus !== "true";
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   return (
     <Provider store={store}>
       {/* Conditionally render Navbar and Footer */}
       <div
-        className={`min-h-screen ${shouldShowNotification ? "pt-28" : "pt-16"}`}
+        className={`min-h-screen ${shouldShowNotification && !isSidebarOpen ? "pt-10" : "md:pt-16"}`}
       >
-        {!isAuthPage && <Navbar />}
+        {!isAuthPage && <Navbar setIsSidebarOpen={setIsSidebarOpen} />}
 
-        {shouldShowNotification && <KycNotificationBar />}
+        {shouldShowNotification && !isSidebarOpen && <KycNotificationBar />}
 
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -75,6 +81,9 @@ function AppWithNavigation() {
           <Route path="/kyc" element={<KYC />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/faq" element={<FaqCombined />} />
+          <Route path="/calc" element={<Calc />} />
+          <Route path="/matter" element={<Matter />} />
+          <Route path="/roi-calculator" element={<GrowthExamples />} />
           <Route path="/coming-soon" element={<ComingSoon />} />
           <Route path="/boost-income" element={<BoostIncomePage />} />
           <Route

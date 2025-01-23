@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { MdArrowOutward, MdLocationPin } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { motion } from 'framer-motion'; // Import motion from framer-motion
-
+import { motion } from "framer-motion"; // Import motion from framer-motion
+import Image from "/propertyNotFound.jpg";
 const Verified = () => (
   <svg
     width="18"
@@ -147,7 +147,7 @@ const Starter = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <rect   width="32" height="32" rx="16" fill="#FFCE3A" />
+    <rect width="32" height="32" rx="16" fill="#FFCE3A" />
     <path
       d="M8 16C8 11.5816 11.5816 8 16 8C16 8 16 16 8 16ZM8 16C8 20.4184 11.5816 24 16 24C16 24 16 16 8 16ZM16 24C20.4182 24 24 20.4184 24 16C16 16 16 24 16 24ZM24 16C24 11.5816 20.4182 8 16 8C16 8 16 16 24 16Z"
       fill="#ffffff"
@@ -220,9 +220,7 @@ const Pinnacle = () => (
   </svg>
 );
 
-
 const BoostIncomeProperties = () => {
-  
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState("all");
   const [propertyTypeFilter, setPropertyTypeFilter] = useState("all");
@@ -232,7 +230,7 @@ const BoostIncomeProperties = () => {
   const [error, setError] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const apiURL = process.env.REACT_APP_API_URL;
- useEffect(() => {
+  useEffect(() => {
     // Smooth scroll to top
     window.scrollTo({
       top: 0,
@@ -326,7 +324,6 @@ const BoostIncomeProperties = () => {
     navigate(`/property-detail/${slug}`);
   };
   return (
-  
     <div className="mt-20 ">
       <h1 className="font-meuthanies text-center text-4xl md:text-5xl xl:text-5xl text-black">
         Featured Pre - Listed Properties
@@ -359,8 +356,11 @@ const BoostIncomeProperties = () => {
         ))}
       </div>
       {filteredProperties.length === 0 ? (
-        <div className="text-center text-black py-10">
-          No properties found matching your criteria
+        <div className="text-center text-black ">
+          <div className="flex justify-center items-center">
+            <img src={Image} alt="" className="w-1/2 h-1/2" />
+          </div>
+          <h1>No properties found matching your criteria</h1>
         </div>
       ) : (
         <div className="md:grid md:grid-cols-3  md:px-8 px-4  justify-center items-center gap-8 mt-4">

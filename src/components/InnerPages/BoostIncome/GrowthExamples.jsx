@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Legend, Cell } from "recharts";
+import { useInView } from "react-intersection-observer";
 
 function GrowthExamples() {
   const [selectedCategory, setSelectedCategory] = useState("Starter Edge");
-  const [activationAmount, setActivationAmount] = useState(1000000);
+  const [activationAmount, setActivationAmount] = useState(1);
   const [chartDimensions, setChartDimensions] = useState({
     width: 400,
     height: 790,
@@ -20,15 +21,33 @@ function GrowthExamples() {
 
   const categories = ["Starter Edge", "Progressive Growth", "Pinnacle Growth"];
 
+  useEffect(() => {
+    // Smooth scroll to top
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
+  const investmentAmount = (activationAmount * 100000) / 1000;
+  const estReturns = (totalYearlyGrowth * 100000) / 1000;
+
+  // Normalize the values so their sum equals 1000
+  const total = investmentAmount + estReturns;
+  const normalizedInvestment = (investmentAmount / total) * 1000;
+  const normalizedReturns = (estReturns / total) * 1000;
+
+
   const computeStarterEdgeData = () => [
     {
       name: "Investment Amount",
-      value: activationAmount,
+      value: normalizedInvestment,
       fill: "#0056E0",
     },
     {
       name: "Est. Returns",
-      value: totalYearlyGrowth,
+      value: normalizedReturns,
       fill: "#ECF1F8",
     },
   ];

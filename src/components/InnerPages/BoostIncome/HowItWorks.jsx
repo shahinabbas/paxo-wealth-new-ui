@@ -2,6 +2,7 @@ import React from "react";
 import Works from "/HowItWorks.png";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useInView } from "react-intersection-observer";
 
 const Logo = () => (
   <svg
@@ -84,14 +85,11 @@ const LeftLine = ({ classname }) => (
     transition={{
       duration: 2,
       ease: "linear",
-      delay: 2, // Adjust delay if needed
-      stroke: { duration: 2, ease: "linear", repeat: Infinity, delay: 2 },
+      delay: 0.5, // Adjust delay if needed
+      stroke: { duration: 2, ease: "linear", repeat: Infinity, delay: 0.5 },
     }}
   >
-    <motion.path
-      d="M265 1H25C11.7452 1 1 11.7452 1 25V144"
-      strokeWidth="2"
-    />
+    <motion.path d="M265 1H25C11.7452 1 1 11.7452 1 25V144" strokeWidth="2" />
   </motion.svg>
 );
 
@@ -111,8 +109,8 @@ const RightLine = ({ classname }) => (
     transition={{
       duration: 2,
       ease: "linear",
-      delay: 2, // Adjust delay if needed
-      stroke: { duration: 2, ease: "linear", repeat: Infinity, delay: 2 },
+      delay: 0.5, // Adjust delay if needed
+      stroke: { duration: 2, ease: "linear", repeat: Infinity, delay: 0.5 },
     }}
   >
     <motion.path
@@ -138,8 +136,8 @@ const CenterLine = ({ classname }) => (
     transition={{
       duration: 2,
       ease: "linear",
-      delay: 2, 
-      stroke: { duration: 2, ease: "linear", repeat: Infinity, delay: 2 },
+      delay: 0.5,
+      stroke: { duration: 2, ease: "linear", repeat: Infinity, delay: 0.5 },
     }}
   >
     <motion.path
@@ -197,26 +195,35 @@ const steps = [
 ];
 
 function HowItWorks() {
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+  });
   return (
-    <div className="bg-[#F5F9FF] min-h-screen pt-10  pb-10  md:overflow-hidden ">
+    <div
+      ref={ref}
+      className="bg-[#F5F9FF] min-h-screen pt-10  pb-10  md:overflow-hidden "
+    >
       <div className="md:px-20 px-5">
         <h1 className="font-meuthanies xl:text-6xl text-4xl md:pt-10 xl:pt-10 xl:ml-20">
           How it works!
         </h1>
-        <div className="md:w-[1100px] xl:w-[1100px]">
-          <div className="md:flex justify-center mt-10 items-center relative hidden">
-            <Logo />
-            <div className="absolute top-[60px] md:left-[224px]  w-full">
-              <LeftLine classname="w-[265px] h-[144px]" />
-            </div>
-            <div className="absolute md:top-[125px] md:left-0  w-full md:flex justify-center ">
-              <CenterLine classname="w-[2px] h-[144px]" />
-            </div>
-            <div className="absolute top-[60px] md:-right-[610px]  w-full ">
-              <RightLine classname="w-[265px] h-[144px]" />
-            </div>
+        <div>
+          <div className="md:w-[1100px] xl:w-[1100px]">
+            {inView && (
+              <div className="md:flex justify-center mt-10 items-center relative hidden">
+                <Logo />
+                <div className="absolute top-[60px] md:left-[224px]  w-full">
+                  <LeftLine classname="w-[265px] h-[144px]" />
+                </div>
+                <div className="absolute md:top-[125px] md:left-0  w-full md:flex justify-center ">
+                  <CenterLine classname="w-[2px] h-[144px]" />
+                </div>
+                <div className="absolute top-[60px] md:-right-[610px]  w-full ">
+                  <RightLine classname="w-[265px] h-[144px]" />
+                </div>
+              </div>
+            )}
           </div>
-
           <div className="flex justify-center relative mt-10 flex-col md:flex-row">
             <div className="md:absolute md:top-[25px] md:left-[20%]  md:transform md:-translate-x-[50%] mb-6 md:mb-0">
               <div className="bg-white md:w-[290px] h-80 p-3 rounded-lg">
@@ -238,7 +245,7 @@ function HowItWorks() {
               </div>
             </div>
 
-            <div className="md:absolute md:top-[105px] md:left-[50%]  md:transform md:-translate-x-[50%] mb-6 md:mb-0">
+            <div className="md:absolute md:top-[105px] md:left-[50%] md:transform md:-translate-x-[50%] mb-6 md:mb-0">
               <div className="bg-white md:w-[290px] h-80 p-3 rounded-lg">
                 <img
                   src={Works}

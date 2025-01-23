@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const BoostIncomeDetails = () => {
   // Dummy Data
   const allOpportunities = [
     {
       id: 1,
-      name: 'ResidentialSV956',
-      location: 'Bangalore',
+      name: "ResidentialSV956",
+      location: "Bangalore",
       growthRate: 48,
       size: 2000,
       tenure: 5,
       price: 10000000,
-      status: 'Available',
+      status: "Available",
     },
     {
       id: 2,
-      name: 'CommercialAX837',
-      location: 'Mumbai',
+      name: "CommercialAX837",
+      location: "Mumbai",
       growthRate: 30,
       size: 1500,
       tenure: 4,
       price: 25000000,
-      status: 'Available',
+      status: "Available",
     },
     // More properties here
   ];
@@ -32,13 +32,15 @@ const BoostIncomeDetails = () => {
 
   useEffect(() => {
     // In case you want to simulate fetching data, you can log or manipulate this state.
-    console.log('Selected Property:', property);
+    console.log("Selected Property:", property);
   }, [property]);
 
   return (
     <div className="bg-black text-white min-h-screen font-sans pb-10">
       <header className="py-12 text-center">
-        <h1 className="text-4xl font-bold">{property.name} - Property Details</h1>
+        <h1 className="text-4xl font-bold">
+          {property.name} - Property Details
+        </h1>
       </header>
 
       <section className="px-6 mb-8">

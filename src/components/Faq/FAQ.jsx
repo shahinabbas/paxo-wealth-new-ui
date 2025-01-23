@@ -82,7 +82,6 @@ export default function FAQ() {
     setExpanded(expanded === index ? null : index);
   };
 
-  // Determine how many FAQs to show based on the current path
   const faqsToShow =
     location.pathname === "/faq" ? faqData : faqData.slice(0, 5);
 
@@ -138,11 +137,16 @@ export default function FAQ() {
           ))}
         </div>
       </div>
-      <div className="flex justify-center font-semibold mt-10 ">
-        <div className="bg-customYellow  gap-2 font-sf-pro   w-[210px] rounded-full p-2 flex justify-center items-center">
-          <h1>Explore FAQ's Now</h1> <MdArrowOutward />
+      {location.pathname !== "/faq" && (
+        <div className="flex justify-center font-semibold mt-10 ">
+          <Link
+            to="/faq"
+            className="bg-customYellow gap-2 font-sf-pro w-[210px] rounded-full p-2 flex justify-center items-center"
+          >
+            <h1>Explore FAQ's Now</h1> <MdArrowOutward />
+          </Link>
         </div>
-      </div>
+      )}
     </div>
   );
 }

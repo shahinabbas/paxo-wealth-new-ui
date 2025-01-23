@@ -212,12 +212,12 @@ const MatterBox = () => {
         initial="hidden"
         animate="visible"
         variants={textVariant}
-        className="font-meuthanies absolute mb-24 opacity-30 text-customBlue text-8xl"
+        className="font-meuthanies absolute mb-24 opacity-30 text-customBlue text-8xl select-none"
       >
         Start Earning
       </motion.h1>
       <motion.h1
-        className="font-meuthanies absolute text-customBlue text-8xl"
+        className="font-meuthanies absolute text-customBlue text-8xl select-none"
         initial="hidden"
         animate="visible"
         variants={textVariants}
@@ -228,7 +228,7 @@ const MatterBox = () => {
         initial="hidden"
         animate="visible"
         variants={textVariant}
-        className="font-meuthanies absolute mt-24 opacity-30 text-customBlue text-8xl"
+        className="font-meuthanies absolute mt-24 opacity-30 text-customBlue text-8xl select-none"
       >
         Start Earning
       </motion.h1>

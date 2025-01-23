@@ -190,14 +190,13 @@ function WhyChoose() {
 
   return (
     <div
-    className="bg-customBlue p-6 sm:p-8 md:h-screen sm:bg-none md:bg-[url('/explore1.png')] bg-no-repeat"
-    style={{
-      backgroundSize: "100% 80%", // Sets the width to 100% and height to 60%
-      backgroundRepeat: "no-repeat", // Prevents repeating the image
-      backgroundPosition: "bottom", // Aligns the background image to the bottom
-    }}
-  >
-  
+      className="bg-customBlue p-6 sm:p-8 md:h-screen sm:bg-none md:bg-[url('/explore1.png')] bg-no-repeat"
+      style={{
+        backgroundSize: "100% 80%", // Sets the width to 100% and height to 60%
+        backgroundRepeat: "no-repeat", // Prevents repeating the image
+        backgroundPosition: "bottom", // Aligns the background image to the bottom
+      }}
+    >
       <h1 className="font-meuthanies text-2xl md:text-5xl xl:text-6xl text-white text-center xl:mt-16 mt-4 mb-6 sm:mb-8">
         Why Choose Boost Income?
       </h1>

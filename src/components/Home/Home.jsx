@@ -12,8 +12,8 @@ function Home() {
     visible: (i) => ({
       x: 0,
       transition: {
-        delay: i * 4.5,
-        duration: 5.5,
+        delay: i * 1,
+        duration: 1,
         type: "spring",
         stiffness: 40,
       },
@@ -47,7 +47,7 @@ function Home() {
       </motion.div>
 
       {/* BoostIncome component */}
-      <motion.div
+      {/* <motion.div
         initial="hidden"
         animate="visible"
         variants={variants}
@@ -58,10 +58,10 @@ function Home() {
         }}
       >
         <BoostIncome />
-      </motion.div>
+      </motion.div> */}
 
       {/* RentRise component */}
-      <motion.div
+      {/* <motion.div
         initial="hidden"
         animate="visible"
         exit="exit"
@@ -73,10 +73,10 @@ function Home() {
         }}
       >
         <RentRise />
-      </motion.div>
+      </motion.div> */}
 
       {/* DirectSave component */}
-      <motion.div
+      {/* <motion.div
         initial="hidden"
         animate="visible"
         exit="exit"
@@ -88,7 +88,7 @@ function Home() {
         }}
       >
         <DirectSave />
-      </motion.div>
+      </motion.div> */}
 
       {/* Combined component */}
       <motion.div

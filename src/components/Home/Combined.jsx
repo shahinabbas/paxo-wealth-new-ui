@@ -23,7 +23,7 @@ function Combined() {
       transition: {
         duration: 2,
         ease: "easeInOut",
-        delay: 18.5,
+        delay: 4.5,
       },
     },
   };
@@ -45,7 +45,7 @@ function Combined() {
 
   return (
     <div>
-      <div className="hidden bg-white md:flex min-h-screen xl:mt-10 md:mt-10 md:gap-10 xl:gap-32 px-10 items-center text-center justify-center ">
+      <div className="hidden bg-white md:flex min-h-screen xl:mt-10 md:gap-10 xl:gap-32 px-10 items-center text-center justify-center ">
         {/* Boost Income Section */}
         <div className=" bg-[#AED1FF] bg-opacity-20 p-8 w-[380px] ">
           <motion.h1

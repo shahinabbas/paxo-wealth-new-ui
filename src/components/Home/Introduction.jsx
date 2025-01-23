@@ -1,25 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Financial from "/financial-advisor.gif";
+
 function Introduction() {
+  const [counter, setCounter] = useState(0);
+  const speed = 35; // Adjust this value to control the speed (lower = faster)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCounter((prev) => {
+        if (prev < 100) {
+          return prev + 1;
+        } else {
+          clearInterval(interval);
+          return prev;
+        }
+      });
+    }, speed); // Use the speed variable here
+    return () => clearInterval(interval);
+  }, [speed]);
+
   return (
-    <div className="h-screen bg-white md:flex items-center md:justify-center gap-20 mt-10">
-      <div className="md:w-[450px] md:h-[350px] flex items-center justify-center">
-        <img
-          src={Financial}
-          alt="Introduction"
-          className="max-w-full max-h-full md:mt-0 mt-20"
-        />
-      </div>
-      <div className="md:-ml-20 px-5 md:mt-0 -mt-10 md:text-left text-center">
-        <h1 className="md:text-5xl text-xl font-meuthanies ">
+    <div className="md:h-screen bg-white md:flex items-center justify-center ">
+      <div className="text-center">
+        <h1 className="md:text-6xl text-3xl font-meuthanies md:mt-0 mt-40">
           Step into Smarter
-          <br className="md:block hidden" /> Financial Growth
-          <br className="md:block hidden" />
-          with <span className="text-customBlue">PAXO Wealth</span> <br />
+          <br className="" /> Financial Growth with
+          <br className="" />
+          <span className="text-customBlue">PAXO Wealth</span>
         </h1>
-        <p className="text-black opacity-50 mt-4 font-sf-pro">
+        <hr className="md:w-[380px] w-3/4 mt-2 mx-auto border border-t-1 border-black" />
+        <p className="text-black text-xl opacity-50 mt-2 font-sf-pro">
           Transform your future with our core solutions
         </p>
+      </div>
+      {/* Counter in the bottom-right corner */}
+      <div
+        className="absolute  top-[420px] text-black  md:right-4 text-6xl font-meuthanies 
+                right-1/2 translate-x-1/2 md:translate-x-0 "
+      >
+        {counter}%
       </div>
     </div>
   );
