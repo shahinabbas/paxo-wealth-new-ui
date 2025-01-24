@@ -412,7 +412,7 @@ function Premium() {
   return (
     <div
       ref={ref}
-      className="md:h-[650px] xl:h-[790px] h-[450px] bg-[#6200EE] flex justify-center items-center overflow-hidden"
+      className=" md:h-screen h-[560px] bg-[#6200EE] flex justify-center items-center overflow-hidden"
     >
       {inView && (
         <div

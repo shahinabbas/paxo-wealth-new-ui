@@ -165,49 +165,54 @@ function Combined() {
       </div>
 
       {/* Mobile View */}
-      <div className="flex h-[40rem] pt-8 lg:hidden flex-col min-h-screen md:mt-14 md:gap-10  items-center text-center overflow-y-auto scrollbar-hide">
+      <div className="flex pt-8 mt-5 lg:hidden flex-col  md:mt-14 md:gap-10 items-center text-center ">
         {[
           {
             title: "Boost Income",
             icon: IncomeGif,
             desc: "Experience immediate 48% growth with secure payouts",
             link: "/boost-income",
+            bgColor: "bg-[#AED1FF] bg-opacity-20",
           },
           {
             title: "Rent Rise",
             icon: RentRiseGif,
             desc: "Turn properties into a steady income source effortlessly.",
             link: "/rent-rise",
+            bgColor: "bg-[#89DDBF] bg-opacity-20",
           },
           {
             title: "Direct Save",
             icon: DirectSaveGif,
             desc: "Save big with exclusive discounts on premium properties",
             link: "/direct-save",
+            bgColor: "bg-[#CAB5F5] bg-opacity-20",
           },
         ].map((section, index) => (
           <div
             key={index}
-            className="bg-white w-full flex flex-col items-center  pt-16"
+            className={`w-full flex flex-col items-center  pt-4 px-5 bg-white`}
           >
-            <div className=" text-2xl font-meuthanies ">{section.title}</div>
-            <p className="opacity-50 text-xs mt-2 -mb-10 font-sf-pro">
-              {section.desc}
-            </p>
-            <img
-              src={section.icon}
-              alt={`${section.title} GIF`}
-              className="w-full h-full"
-            />
-            <div className=" cursor-pointer -mt-8">
-              <div
-                className="border rounded-full  inline-flex items-center justify-center space-x-2 py-1 px-5  bg-customYellow"
-                onClick={() => handleClick(section.link)}
-              >
-                <p className=" text-xl font-sf-pro font-medium md:text-[10px]">
-                  Unlock
-                </p>
-                <RxArrowTopRight />
+            <div className={`py-10 ${section.bgColor}`}>
+              <div className="text-2xl font-meuthanies">{section.title}</div>
+              <p className="opacity-50 text-xs mt-2 -mb-10 font-sf-pro">
+                {section.desc}
+              </p>
+              <img
+                src={section.icon}
+                alt={`${section.title} GIF`}
+                className="w-full h-full"
+              />
+              <div className="cursor-pointer -mt-8">
+                <div
+                  className="border rounded-full inline-flex items-center justify-center space-x-2 py-1 px-5 bg-customYellow"
+                  onClick={() => handleClick(section.link)}
+                >
+                  <p className="text-xl font-sf-pro font-medium md:text-[10px]">
+                    Unlock
+                  </p>
+                  <RxArrowTopRight />
+                </div>
               </div>
             </div>
           </div>

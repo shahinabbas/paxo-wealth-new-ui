@@ -440,14 +440,14 @@ const BoostIncomeProperties = () => {
               <div className="flex justify-between items-center mt-4 px-3 p-2 text-sm text-customBlue bg-[#F6F6F6] rounded-b-lg pt-3">
                 <div className="flex  gap-2  text-[12px]  items-center">
                   <Verified />
-                  <span>Verified Property</span>
+                  <span>Verified Assets</span>
                 </div>
                 <div className="flex  gap-2  text-[12px]  items-center">
-                  <Returns /> <span>High Returns</span>
+                  <Returns /> <span>Instant Growth</span>
                 </div>
                 <div className="flex  gap-2 text-[12px]  items-center">
                   <Income />
-                  <span>Steady Income</span>
+                  <span>Steady Benefits</span>
                 </div>
               </div>
             </div>

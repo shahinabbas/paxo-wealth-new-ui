@@ -395,7 +395,7 @@ const Features = () => {
       ref={containerRef}
       className="bg-white text-black relative md:min-h-screen xl:min-h-[550px] font-sf-pro"
     >
-      <h1 className="md:ml-20 p-8 text-4xl md:mb-16 mt-10 font-meuthanies">
+      <h1 className="md:ml-20 p-8 text-4xl md:mb-16 md:mt-10 font-meuthanies">
         Why Trust Paxo Wealth for
         <br />
         Your <span className="text-customBlue">Financial Growth?</span>

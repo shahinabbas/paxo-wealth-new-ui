@@ -47,13 +47,13 @@ const FloatingDockMobile = ({ items, className }) => {
                 }}
                 transition={{ delay: (items.length - 1 - idx) * 0.05 }}
               >
-                <Link
+                <a
                   href={item.href}
                   key={item.title}
                   className="h-10 w-10 bg-[#F3F3F3] flex items-center justify-center"
                 >
                   <div className="h-4 w-4 ">{item.icon}</div>
-                </Link>
+                </a>
               </motion.div>
             ))}
           </motion.div>
@@ -131,8 +131,8 @@ function IconContainer({ mouseX, title, icon, href }) {
   const [hovered, setHovered] = useState(false);
 
   const handleClick = (e, title, href) => {
-    e.preventDefault(); 
-    window.open(href, "_blank"); 
+    e.preventDefault();
+    window.open(href, "_blank");
   };
 
   return (

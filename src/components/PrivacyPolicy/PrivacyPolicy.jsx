@@ -11,8 +11,8 @@ function PrivacyPolicy() {
   }, []);
   return (
     <div className="min-h-screen bg-[#F5F9FF] p-4 sm:p-8">
-      <div className="max-w-4xl text-black font-sf-pro mx-auto bg-white p-6 rounded-lg shadow-lg mt-20">
-        <h1 className="text-5xl font-meuthanies text-center mt-2">
+      <div className="max-w-4xl text-black font-sf-pro mx-auto bg-white p-6 rounded-lg shadow-lg md:mt-0 mt-14">
+        <h1 className="text-4xl md:text-5xl font-meuthanies text-center mt-2">
           Privacy Policy{" "}
         </h1>
 

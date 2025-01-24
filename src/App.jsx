@@ -41,6 +41,7 @@ import KycTrackingPage from "./components/Reusable/KycTrackingPage";
 import GrowthExamples from "./components/InnerPages/BoostIncome/GrowthExamples";
 import Calc from "./components/Calc"
 import Matter from "./components/HomePage/MatterBox"
+import RefundPolicy from "./components/Refund/RefundPolicy";
 
 function App() {
   return (
@@ -115,6 +116,7 @@ function AppWithNavigation() {
           <Route path="/about-us" element={<About />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/how-it-works" element={<HowItWork />} />

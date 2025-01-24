@@ -19,19 +19,13 @@ function Home() {
       },
     }),
     exit: {
-      x: "-100vw", 
+      x: "-100vw",
       transition: { duration: 0.8 },
     },
   };
 
   return (
-    <div
-      style={{
-        overflow: "hidden",
-        height: "110vh",
-        position: "relative",
-      }}
-    >
+    <div className="overflow-hidden relative h-[190vh] md:h-[110vh]">
       {/* Introduction component */}
       <motion.div
         initial="hidden"

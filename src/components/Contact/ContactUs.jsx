@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { FaAddressCard } from "react-icons/fa6";
+import { MdQuestionAnswer, MdSupportAgent } from "react-icons/md";
+import { FaClipboardQuestion } from "react-icons/fa6";
 
 const ContactUs = () => {
   useEffect(() => {
@@ -10,175 +13,191 @@ const ContactUs = () => {
     });
   }, []);
   return (
-    <div className="container mx-auto px-2 md:px-4 pt-28 py-20 bg-white">
-      <section className="text-black">
+    <div className="flex items-center mt-10 md:mt-0 justify-center min-h-screen  px-2 md:px-4 bg-white font-sf-pro">
+      <section className="container mx-auto text-black mt-10">
         <div className="flex justify-center">
-          <div className="text-center md:max-w-xl lg:max-w-3xl">
-            <h2 className="mb-12 px-6 text-3xl font-meuthanies">Contact us</h2>
+          <div className="text-center md:max-w-xl lg:max-w-3xl xl:max-w-4xl">
+            <h2 className="mb-4 2xl:mb-14 px-6 text-3xl md:text-5xl 2xl:text-6xl font-meuthanies">
+              Contact us
+            </h2>
+            <p className="mb-14 2xl:mb-36  2xl:text-2xl text-black opacity-50">
+              We’re here to help you with any queries or support you need.
+              Please feel free to reach out through any of the options below,
+              and our team will assist you promptly.
+            </p>
           </div>
         </div>
 
-        <div className="flex flex-wrap">
-          <form className="mb-12 w-full shrink-0 grow-0 basis-auto px-5 md:px-3 lg:mb-0 lg:w-5/12 lg:px-6">
-            <div className="mb-3 w-full">
+        <div className="md:flex xl:gap-20 gap-10">
+          <form
+            className="w-full p-6 bg-white sm:mb-10 rounded-lg md:px-8 lg:w-5/12 h-full min-h-[400px] md:min-h-[440px] lg:min-h-[450px]"
+            style={{
+              boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <div className="mb-4">
+              <h1 className="mb-4 font-semibold text-xl xl:text-2xl">
+                We Value Your Feedback{" "}
+              </h1>
+              <h1 className="xl:text-xl">
+                Your input is important to us. Share your thoughts, suggestions,
+                or concerns using the form below. We strive to ensure your
+                experience with us is exceptional.
+              </h1>
+            </div>
+            <div className="mb-4">
               <label
-                className="block font-medium mb-[2px] text-customBlue"
-                htmlFor="paxowealthInput90"
+                className="block mb-2 text-sm font-medium text-gray-700"
+                htmlFor="nameInput"
               >
                 Name
               </label>
               <input
                 type="text"
-                className="px-2 py-2 border border-black bg-white w-full outline-none rounded-md"
-                id="paxowealthInput90"
-                placeholder="Enter Name"
+                id="nameInput"
+                className="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Enter your name"
               />
             </div>
-
-            <div className="mb-3 w-full">
+            {/* Email Input */}
+            <div className="mb-4">
               <label
-                className="block font-medium mb-[2px] text-customBlue"
-                htmlFor="paxowealthInput90"
+                className="block mb-2 text-sm font-medium text-gray-700"
+                htmlFor="emailInput"
               >
                 Email
               </label>
               <input
                 type="email"
-                className="px-2 py-2 bg-white border border-black w-full outline-none rounded-md"
-                id="paxowealthInput90"
-                placeholder="Enter your email address"
+                id="emailInput"
+                className="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Enter your email"
               />
             </div>
-
-            <div className="mb-3 w-full">
+            {/* Message Input */}
+            <div className="mb-4">
               <label
-                className="block font-medium mb-[2px] text-customBlue"
-                htmlFor="paxowealthInput90"
+                className="block mb-2 text-sm font-medium text-gray-700"
+                htmlFor="messageInput"
               >
                 Message
               </label>
               <textarea
-                className="px-2 py-2 bg-white border border-black rounded-[5px] w-full outline-none"
-                name=""
-                id=""
+                id="messageInput"
+                className="w-full h-28 px-4 py-2 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Write your message here"
               ></textarea>
             </div>
-
+            {/* Submit Button */}
             <button
-              type="button"
-              className="mb-6 inline-block w-full rounded bg-customBlue px-6 py-2.5 font-medium uppercase leading-normal text-white hover:shadow-md "
+              type="submit"
+              className="w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
               Send
             </button>
           </form>
 
-          <div className="w-full shrink-0 grow-0 basis-auto lg:w-7/12">
-            <div className="flex flex-wrap">
-              <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">
-                <div className="flex items-start">
-                  <div className="shrink-0">
-                    <div className="inline-block rounded-md bg-teal-400-100 p-4 text-customBlue">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="2"
-                        stroke="currentColor"
-                        className="h-6 w-6"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M14.25 9.75v-4.5m0 4.5h4.5m-4.5 0l6-6m-3 18c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 014.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 00-.38 1.21 12.035 12.035 0 007.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 011.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 01-2.25 2.25h-2.25z"
-                        />
-                      </svg>
+          <div className="w-full  mt-10 md:mt-0 lg:w-6/12">
+            <div className="xl:flex gap-20">
+              <div className="xl:space-y-32">
+                <div className="mb-12 w-full  md:w-full md:px-3 lg:px-6">
+                  <div className="flex items-start">
+                    <div className="">
+                      <div className="inline-block rounded-md bg-teal-400-100 p-2 text-customBlue">
+                        <MdSupportAgent className="size-7 md:size-10 xl:size-12" />
+                      </div>
+                    </div>
+                    <div className="ml-6 grow">
+                      <p className="mb-2 font-semibold xl:text-2xl md:text-xl font-meuthanies">
+                        Get in Touch
+                      </p>
+                      <p className="font-semibold">Technical support</p>
+                      <p>Have a technical issue or need assistance?</p>
+                      <p>
+                        <strong className="mr-2">Email:</strong>
+                        <a href="mailto:support@paxowealth.com">
+                          support@paxowealth.com
+                        </a>
+                      </p>
+                      {/* <p>
+                        <strong>Phone:</strong> +1 234-567-89
+                      </p> */}
                     </div>
                   </div>
-                  <div className="ml-6 grow">
-                    <p className="mb-2 font-bold">Technical support</p>
-                    <p className="text-neutral-500 ">support@paxowealth.com</p>
-                    <p className="text-neutral-500 ">+1 234-567-89</p>
+                </div>
+                <div className="mb-12 w-full  md:w-full md:px-3 lg:px-6">
+                  <div className="flex items-start">
+                    <div className="shrink-0">
+                      <div className="inline-block rounded-md bg-teal-400-100 p-2 text-customBlue">
+                        <MdQuestionAnswer className="size-7 md:size-10 xl:size-12" />
+                      </div>
+                    </div>
+                    <div className="ml-6 grow">
+                      <p className="mb-2 font-semibold xl:text-2xl md:text-xl font-meuthanies">
+                        Information & General Queries
+                      </p>
+                      <p className="mb-2">
+                        Looking for general information or details about our
+                        services?
+                      </p>
+                      <p className=" ">
+                        <strong>Email:</strong>{" "}
+                        <a href="mailto:info@paxowealth.com">
+                          info@paxowealth.com
+                        </a>
+                      </p>
+                      {/* <p className="">
+                        <strong>Phone:</strong> +1 234-567-89
+                      </p> */}
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">
-                <div className="flex items-start">
-                  <div className="shrink-0">
-                    <div className="inline-block rounded-md bg-teal-400-100 p-4 text-customBlue">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="2"
-                        stroke="currentColor"
-                        className="h-6 w-6"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"
-                        />
-                      </svg>
+              <div className="xl:space-y-32">
+                <div className="mb-12 w-full  md:w-full md:px-3 lg:px-6">
+                  <div className="flex items-start">
+                    <div className="shrink-0">
+                      <div className="inline-block rounded-md bg-teal-400-100 p-2 text-customBlue">
+                        <FaClipboardQuestion className="size-7 md:size-10 xl:size-12" />
+                      </div>
                     </div>
-                  </div>
-                  <div className="ml-6 grow">
-                    <p className="mb-2 font-bold ">Sales questions</p>
-                    <p className="text-neutral-500 ">sales@paxowealth.com</p>
-                    <p className="text-neutral-500 ">+1 234-567-89</p>
+                    <div className="ml-6 grow">
+                      <p className="mb-2 font-bold xl:text-2xl md:text-xl font-meuthanies">
+                        Sales questions
+                      </p>
+                      <p className="mb-2 ">
+                        Interested in our products or services? Our sales team
+                        is here to guide you.
+                      </p>
+                      <p className="">
+                        <strong>Email: </strong>
+                        <a href="mailto:sales@paxowealth.com">
+                          sales@paxowealth.com
+                        </a>
+                      </p>
+                      {/* <p className="">
+                        <strong>Phone: </strong>+1 234-567-89
+                      </p> */}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">
-                <div className="align-start flex">
-                  <div className="shrink-0">
-                    <div className="inline-block rounded-md bg-teal-400-100 p-4 text-customBlue">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="2"
-                        stroke="currentColor"
-                        className="h-6 w-6"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"
-                        />
-                      </svg>
+                <div className="mb-12 w-full  md:w-full md:px-3 lg:px-6">
+                  <div className="align-start flex">
+                    <div className="shrink-0">
+                      <div className="rounded-md  p-2 text-customBlue">
+                        <FaAddressCard className="size-7 md:size-10 xl:size-12" />
+                      </div>
                     </div>
-                  </div>
-                  <div className="ml-6 grow">
-                    <p className="mb-2 font-bold ">Press</p>
-                    <p className="text-neutral-500 ">press@paxowealth.com</p>
-                    <p className="text-neutral-500 ">+1 234-567-89</p>
-                  </div>
-                </div>
-              </div>
-              <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">
-                <div className="align-start flex">
-                  <div className="shrink-0">
-                    <div className="inline-block rounded-md bg-teal-400-100 p-4 text-customBlue">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="2"
-                        stroke="currentColor"
-                        className="h-6 w-6"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M12 12.75c1.148 0 2.278.08 3.383.237 1.037.146 1.866.966 1.866 2.013 0 3.728-2.35 6.75-5.25 6.75S6.75 18.728 6.75 15c0-1.046.83-1.867 1.866-2.013A24.204 24.204 0 0112 12.75zm0 0c2.883 0 5.647.508 8.207 1.44a23.91 23.91 0 01-1.152 6.06M12 12.75c-2.883 0-5.647.508-8.208 1.44.125 2.104.52 4.136 1.153 6.06M12 12.75a2.25 2.25 0 002.248-2.354M12 12.75a2.25 2.25 0 01-2.248-2.354M12 8.25c.995 0 1.971-.08 2.922-.236.403-.066.74-.358.795-.762a3.778 3.778 0 00-.399-2.25M12 8.25c-.995 0-1.97-.08-2.922-.236-.402-.066-.74-.358-.795-.762a3.734 3.734 0 01.4-2.253M12 8.25a2.25 2.25 0 00-2.248 2.146M12 8.25a2.25 2.25 0 012.248 2.146M8.683 5a6.032 6.032 0 01-1.155-1.002c.07-.63.27-1.222.574-1.747m.581 2.749A3.75 3.75 0 0115.318 5m0 0c.427-.283.815-.62 1.155-.999a4.471 4.471 0 00-.575-1.752M4.921 6a24.048 24.048 0 00-.392 3.314c1.668.546 3.416.914 5.223 1.082M19.08 6c.205 1.08.337 2.187.392 3.314a23.882 23.882 0 01-5.223 1.082"
-                        />
-                      </svg>
+                    <div className="ml-6 grow">
+                      <p className="mb-2 font-semibold xl:text-2xl md:text-xl font-meuthanies">
+                        Contact
+                      </p>
+                      <p className="text-black opacity-70">
+                        PAXO Wealth NESCO IT Park, Building 4, North Wing,
+                        Western Express Hwy, Goregaon, Mumbai, Maharashtra
+                        400063
+                      </p>
                     </div>
-                  </div>
-                  <div className="ml-6 grow">
-                    <p className="mb-2 font-bold">Bug report</p>
-                    <p className="text-neutral-500 ">bugs@paxowealth.com</p>
-                    <p className="text-neutral-500">+1 234-567-89</p>
                   </div>
                 </div>
               </div>
