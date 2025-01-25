@@ -25,7 +25,7 @@ function Home() {
   };
 
   return (
-    <div className="overflow-hidden relative h-[190vh] md:h-[110vh]">
+    <div className="overflow-hidden relative h-[190vh] md:h-screen">
       {/* Introduction component */}
       <motion.div
         initial="hidden"
@@ -40,49 +40,7 @@ function Home() {
         <Introduction />
       </motion.div>
 
-      {/* BoostIncome component */}
-      {/* <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={variants}
-        custom={1}
-        style={{
-          position: "absolute",
-          width: "100%",
-        }}
-      >
-        <BoostIncome />
-      </motion.div> */}
-
-      {/* RentRise component */}
-      {/* <motion.div
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-        variants={variants}
-        custom={2}
-        style={{
-          position: "absolute",
-          width: "100%",
-        }}
-      >
-        <RentRise />
-      </motion.div> */}
-
-      {/* DirectSave component */}
-      {/* <motion.div
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-        variants={variants}
-        custom={3}
-        style={{
-          position: "absolute",
-          width: "100%",
-        }}
-      >
-        <DirectSave />
-      </motion.div> */}
+      
 
       {/* Combined component */}
       <motion.div

@@ -20,7 +20,7 @@ function Introduction() {
   }, [speed]);
 
   return (
-    <div className="md:h-screen bg-white md:flex items-center justify-center ">
+    <div className="h-screen bg-white md:flex items-center justify-center ">
       <div className="text-center">
         <h1 className="md:text-6xl lg:text-7xl xl:text-8xl text-3xl font-meuthanies md:mt-0 mt-40">
           Step into Smarter

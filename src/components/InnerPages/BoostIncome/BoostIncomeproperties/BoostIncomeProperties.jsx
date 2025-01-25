@@ -324,12 +324,12 @@ const BoostIncomeProperties = () => {
     navigate(`/property-detail/${slug}`);
   };
   return (
-    <div className="mt-20 ">
+    <div className="mt-10 md:mt-20 ">
       <h1 className="font-meuthanies text-center text-4xl md:text-5xl xl:text-5xl text-black">
         Featured Pre - Listed Properties
       </h1>
 
-      <div className="md:flex justify-center mt-8 gap-2 px-4">
+      <div className="md:flex justify-center mt-10 gap-2 px-4">
         {/* Category Filter UI */}
         {categories.map((category) => (
           <div
@@ -363,14 +363,14 @@ const BoostIncomeProperties = () => {
           <h1>No properties found matching your criteria</h1>
         </div>
       ) : (
-        <div className="md:grid md:grid-cols-3  md:px-8 px-4  justify-center items-center gap-8 mt-4">
+        <div className="md:grid md:grid-cols-3 md:px-8 px-4 justify-center items-center gap-8 mt-10">
           {filteredProperties.map((property, index) => (
-            <div className="md:w-[380px] font-sf-pro my-4 hover:shadow-2xl bg-white rounded-lg border border-[#D9D9D9] transform transition-transform duration-300 hover:scale-105">
-              <div className="text-md text-blue-500 bg-[#F4F9FF] rounded-lg p-2 text-center font-semibold mb-2">
+            <div className="w-auto font-sf-pro my-4 hover:shadow-2xl bg-white rounded-lg border border-[#D9D9D9] transform transition-transform duration-300 hover:scale-105">
+              <div className="text-md xl:text-2xl text-blue-500 bg-[#F4F9FF] rounded-lg p-2 text-center font-semibold mb-2">
                 {property.property_name}
               </div>
               <div className="p-4">
-                <h2 className="text-lg font-bold text-[#101010">
+                <h2 className="text-lg xl:text-xl font-bold text-[#101010">
                   {property.property_subName}
                 </h2>
                 <p className="text-sm text-[#666666] line-clamp-2">
@@ -438,14 +438,14 @@ const BoostIncomeProperties = () => {
                 </button>
               </div>
               <div className="flex justify-between items-center mt-4 px-3 p-2 text-sm text-customBlue bg-[#F6F6F6] rounded-b-lg pt-3">
-                <div className="flex  gap-2  text-[12px]  items-center">
+                <div className="flex  gap-1 md:gap-2  text-[10px] md:text-[12px]  items-center">
                   <Verified />
                   <span>Verified Assets</span>
                 </div>
-                <div className="flex  gap-2  text-[12px]  items-center">
+                <div className="flex  gap-1 md:gap-2  text-[10px] md:text-[12px]  items-center">
                   <Returns /> <span>Instant Growth</span>
                 </div>
-                <div className="flex  gap-2 text-[12px]  items-center">
+                <div className="flex  gap-1 md:gap-2 text-[10px] md:text-[12px]   items-center">
                   <Income />
                   <span>Steady Benefits</span>
                 </div>

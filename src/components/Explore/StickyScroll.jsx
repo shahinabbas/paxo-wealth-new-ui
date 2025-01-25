@@ -82,7 +82,7 @@ export const StickyScroll = ({ content }) => {
                 </motion.div>
 
                 {/* Render Points with Icons */}
-                <div className="mt-6 max-w-lg grid grid-cols-2 gap-6">
+                <div className="mt-4 max-w-xl grid grid-cols-2 gap-6 ">
                   {activeCard === index &&
                     item.points.map((point, pointIndex) => (
                       <motion.div

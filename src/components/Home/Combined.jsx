@@ -45,7 +45,7 @@ function Combined() {
 
   return (
     <div>
-      <div className="hidden bg-white md:flex h-screen xl:mt-10 md:gap-8 xl:gap-14 xl:px-14 md:px-8 items-center text-center justify-center ">
+      <div className="hidden bg-white md:flex h-screen md:gap-8 xl:gap-14 xl:px-14 md:px-8 items-center text-center justify-center ">
         {/* Boost Income Section */}
         <div className=" bg-[#AED1FF] bg-opacity-20 p-8 md:w-[380px] xl:w-[400px] 2xl:w-[800px]">
           <motion.h1
@@ -165,7 +165,7 @@ function Combined() {
       </div>
 
       {/* Mobile View */}
-      <div className="flex pt-8 mt-5 lg:hidden flex-col  md:mt-14 md:gap-10 items-center text-center ">
+      <div className="flex pt-8 mt-5 lg:hidden flex-col min-h-screen md:mt-14 md:gap-10 items-center text-center ">
         {[
           {
             title: "Boost Income",

@@ -93,7 +93,7 @@ function HowItWorks() {
           {steps.map((_, index) => (
             <div key={index} className="flex items-center">
               <div
-              onClick={() => setCurrentIndex(index)}
+                onClick={() => setCurrentIndex(index)}
                 className={`w-5 h-5 rounded-full transition-all duration-300 ${
                   currentIndex === index
                     ? "bg-[#101010] w-5 h-5 border-4 border-[#D9D9D9]"
