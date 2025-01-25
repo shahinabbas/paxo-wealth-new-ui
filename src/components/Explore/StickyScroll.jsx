@@ -114,7 +114,7 @@ export const StickyScroll = ({ content }) => {
                       to={item.path}
                       className="bg-customYellow md:mb-0 px-8 rounded-full mt-6 text-black inline-flex items-center justify-center space-x-2 p-2 "
                     >
-                      <p className="text-black font-semibold text-[10px] md:text-lg">
+                      <p className="text-black font-medium text-[10px] md:text-lg">
                         {item.button}
                       </p>
                       <RxArrowTopRight className="md:text-2xl" />

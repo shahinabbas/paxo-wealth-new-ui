@@ -71,65 +71,72 @@ export default function FaqNew() {
     location.pathname === "/faq" ? faqData : faqData.slice(0, 5);
 
   return (
-    <div className="relative max-w-full min-h-screen ">
-      <div className="md:max-w-4xl xl:max-w-7xl mx-auto p-4 h-full flex flex-col relative z-10">
-        <div className="text-center mt-10 ">
-          <h1 className="md:text-[40px] text-[30px] xl:text-6xl font-meuthanies">
-            Got Questions? 
-          </h1>
-          <h1 className="md:text-[40px] text-[30px]  xl:mt-4 xl:text-6xl font-meuthanies">
-            
-            We've Got <span className="text-customBlue">Answers</span>
-          </h1>
-        </div>
-
-        <div className="flex-grow mt-10 space-y-4 font-sf-pro">
-          {faqsToShow.map((faq, index) => (
-            <div key={index} className="overflow-hidden shadow-md">
-              <button
-                className="w-full py-5 border-l-2 border-customBlue flex justify-between items-center px-4 text-lg font-medium text-left bg-[#F1F1F1] "
-                onClick={() => toggleAccordion(index)}
-              >
-                <span>{faq.question}</span>
-                <span className="ml-2">{expanded === index ? "−" : "+"}</span>
-              </button>
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={
-                  expanded === index
-                    ? { height: "auto", opacity: 1 }
-                    : { height: 0, opacity: 0 }
-                }
-                transition={{
-                  duration: expanded === index ? 0.4 : 1.2,
-                  ease: "easeInOut",
-                }}
-                className="overflow-hidden"
-              >
-                {expanded === index && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{
-                      duration: 0.7,
-                      ease: "easeInOut",
-                    }}
-                    className="px-4 py-2 text-sm border-l-2 border-customBlue  font-medium text-left bg-[#F1F1F1] "
-                  >
-                    <p>{faq.answer}</p>
-                  </motion.div>
-                )}
-              </motion.div>
+      <div className="relative max-w-full min-h-screen">
+        <div className="md:max-w-4xl xl:max-w-7xl mx-auto p-4 h-full flex flex-col relative z-10">
+          <div className="text-center md:mt-10 xl:mt-20 flex items-center justify-center">
+            <div>
+              <h2 className="text-[40px] xl:text-6xl font-meuthanies">
+                Got Questions?
+              </h2>
+              <h1 className="text-[40px] xl:text-6xl xl:mt-2 font-meuthanies">
+                We've Got <span className="text-customBlue">Answers</span>
+              </h1>
             </div>
-          ))}
+          </div>
+  
+          <div className="flex-grow mt-10 space-y-4 font-sf-pro">
+            {faqsToShow.map((faq, index) => (
+              <div key={index} className="overflow-hidden ">
+                <button
+                  className="w-full py-5 xl:py-8 border-l-2 border-customBlue flex justify-between items-center px-4 text-lg font-medium text-left bg-[#F1F1F1] "
+                  onClick={() => toggleAccordion(index)}
+                >
+                  <span>{faq.question}</span>
+                  <span className="ml-2">{expanded === index ? "−" : "+"}</span>
+                </button>
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={
+                    expanded === index
+                      ? { height: "auto", opacity: 1 }
+                      : { height: 0, opacity: 0 }
+                  }
+                  transition={{
+                    duration: expanded === index ? 0.4 : 1.2,
+                    ease: "easeInOut",
+                  }}
+                  className="overflow-hidden"
+                >
+                  {expanded === index && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{
+                        duration: 0.7,
+                        ease: "easeInOut",
+                      }}
+                      className="px-4 py-2 text-sm border-l-2 border-customBlue  font-medium text-left bg-[#F1F1F1] "
+                    >
+                      <p>{faq.answer}</p>
+                    </motion.div>
+                  )}
+                </motion.div>
+              </div>
+            ))}
+          </div>
         </div>
+        {location.pathname !== "/faq" && (
+          <div className="flex justify-center font-medium mt-10 ">
+            <Link
+              to="/faq"
+              className="bg-customYellow gap-2 font-sf-pro w-[210px] rounded-full p-2 flex justify-center items-center"
+            >
+              <h1>Explore FAQ's Now</h1> <MdArrowOutward />
+            </Link>
+          </div>
+        )}
       </div>
-      <div className="flex justify-center mt-10">
-        <div className="bg-customYellow  text-black font-semibold xl:text-3xl gap-2 font-sf-pro xl:w-[360px] xl:p-3 w-[210px] rounded-full p-2 flex justify-center items-center">
-          <h1>Explore FAQ's Now</h1> <MdArrowOutward />
-        </div>
-      </div>
-    </div>
-  );
-}
+    );
+  }
+

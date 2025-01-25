@@ -21,14 +21,14 @@ function GrowthExamples() {
 
   const categories = ["Starter Edge", "Progressive Growth", "Pinnacle Growth"];
 
-  useEffect(() => {
-    // Smooth scroll to top
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
-  }, []);
+  // useEffect(() => {
+  //   // Smooth scroll to top
+  //   window.scrollTo({
+  //     top: 0,
+  //     left: 0,
+  //     behavior: "smooth",
+  //   });
+  // }, []);
 
   const investmentAmount = (activationAmount * 100000) / 1000;
   const estReturns = (totalYearlyGrowth * 100000) / 1000;
@@ -37,7 +37,6 @@ function GrowthExamples() {
   const total = investmentAmount + estReturns;
   const normalizedInvestment = (investmentAmount / total) * 1000;
   const normalizedReturns = (estReturns / total) * 1000;
-
 
   const computeStarterEdgeData = () => [
     {
@@ -112,11 +111,11 @@ function GrowthExamples() {
     };
   }, []);
   return (
-    <div className="md:px-10 mt-10 ">
-      <h1 className="font-meuthanies xl:text-6xl text-4xl px-5">
+    <div className="md:px-10 mt-10 min-h-screen overflow-hidden">
+      <h1 className="font-meuthanies xl:text-6xl text-4xl px-5 xl:mt-20">
         Boost Income In Action -<br /> Real Growth Examples
       </h1>
-      <div className="md:flex mt-12">
+      <div className="md:flex justify-between mt-12">
         <div className="px-5">
           <div className="md:flex bg-[#F6F6F6] md:h-10 gap-3 font-sf-pro md:rounded-full rounded-lg md:w-[432px] overflow-auto">
             {categories.map((category) => (
@@ -136,7 +135,7 @@ function GrowthExamples() {
 
           <div>
             <div>
-              <div className="flex mt-10 justify-between items-center mb-4">
+              <div className="flex mt-10 xl:mt-14  justify-between items-center mb-4">
                 <h1 className="font-sf-pro">Activation Amount</h1>
                 <div className="bg-[#F6F6F6] p-2 w-32">
                   <h1>₹ {activationAmount} Lakhs</h1>
@@ -150,11 +149,16 @@ function GrowthExamples() {
                 onChange={(e) =>
                   setActivationAmount(parseInt(e.target.value, 10))
                 }
-                className="w-full accent-customBlue"
+                className="w-full h-2 rounded-lg appearance-none cursor-pointer"
+                style={{
+                  background: `linear-gradient(to right, #0056E0 ${
+                    activationAmount * 2
+                  }%, #D9D9D9 ${activationAmount * 2}%)`,
+                }}
               />
 
               {/* Time Period Slider */}
-              <div className="flex justify-between items-center mt-6 mb-4">
+              <div className="flex justify-between items-center mt-6 xl:mt-10 mb-4">
                 <h1 className="font-sf-pro">Lock-In Period</h1>
                 <div className="bg-[#F6F6F6] w-32 p-2">
                   <h1>{lockInPeriod} Years</h1>
@@ -166,11 +170,16 @@ function GrowthExamples() {
                 max="20"
                 value={lockInPeriod}
                 onChange={(e) => setLockInPeriod(parseInt(e.target.value, 10))}
-                className="w-full accent-customBlue"
+                className="w-full h-2 rounded-lg appearance-none cursor-pointer"
+                style={{
+                  background: `linear-gradient(to right, #0056E0 ${
+                    (lockInPeriod - 1) * (100 / 19)
+                  }%, #D9D9D9 ${(lockInPeriod - 1) * (100 / 19)}%)`,
+                }}
               />
             </div>
 
-            <div className="bg-[#F4F8FF] border font-sf-pro border-customBlue rounded-xl  mt-10 p-4">
+            <div className="bg-[#F4F8FF] border font-sf-pro border-customBlue rounded-xl mt-10 xl:mt-20 p-4 w-auto md:w-[450px] lg:w-[500px] xl:w-[640px]">
               <h1 className="font-sf-pro xl:text-xl font-semibold">
                 Paxo Returns
               </h1>
@@ -201,7 +210,7 @@ function GrowthExamples() {
             </div>
           </div>
         </div>
-        <div className="md:ml-[200px] xl:ml-[400px] h-[500px] ">
+        <div className="h-[500px] md:px-20">
           <h1 className="font-meuthanies xl:text-2xl md:-mt-10 mt-5 md:-ml-16 text-center">
             Paxo Returns
           </h1>

@@ -45,16 +45,16 @@ function Combined() {
 
   return (
     <div>
-      <div className="hidden bg-white md:flex min-h-screen xl:mt-10 md:gap-10 xl:gap-32 px-10 items-center text-center justify-center ">
+      <div className="hidden bg-white md:flex h-screen xl:mt-10 md:gap-8 xl:gap-14 xl:px-14 md:px-8 items-center text-center justify-center ">
         {/* Boost Income Section */}
-        <div className=" bg-[#AED1FF] bg-opacity-20 p-8 w-[380px] ">
+        <div className=" bg-[#AED1FF] bg-opacity-20 p-8 md:w-[380px] xl:w-[400px] 2xl:w-[800px]">
           <motion.h1
-            className=" text-4xl xl:mt-10  font-meuthanies"
+            className="text-4xl md:text-3xl lg:text-4xl xl:mt-10  font-meuthanies"
             initial="hidden"
             animate="visible"
             variants={textVariants}
           >
-            Boost <span className="text-customGreen">Income</span>
+            Boost Income
           </motion.h1>
           <motion.h1
             initial="hidden"
@@ -78,21 +78,21 @@ function Combined() {
               className="border bg-customYellow rounded-full xl:mb-10 inline-flex items-center justify-center space-x-2 p-2 px-8 transition-all duration-300 ease-in-out"
               onClick={() => handleClick("/boost-income")}
             >
-              <p className=" text-xl font-semibold font-sf-pro">Unlock</p>
+              <p className=" text-xl font-medium font-sf-pro">Unlock</p>
               <RxArrowTopRight />
             </div>
           </motion.div>
         </div>
 
         {/* Rent Rise Section */}
-        <div className=" bg-[#89DDBF] bg-opacity-20 p-8 w-[380px]">
+        <div className=" bg-[#89DDBF] bg-opacity-20 p-8 md:w-[380px] xl:w-[400px] 2xl:w-[800px]">
           <motion.h1
-            className=" text-4xl xl:mt-10  font-meuthanies"
+            className=" text-4xl md:text-3xl lg:text-4xl xl:mt-10  font-meuthanies"
             initial="hidden"
             animate="visible"
             variants={textVariants}
           >
-            Rent <span className="text-customGreen">Rise</span>
+            Rent Rise
           </motion.h1>
           <motion.h1
             initial="hidden"
@@ -115,7 +115,7 @@ function Combined() {
               className="border bg-customYellow rounded-full xl:mb-10 inline-flex items-center justify-center space-x-2 p-2 px-8 transition-all duration-300 ease-in-out"
               onClick={() => handleClick("/rent-rise")}
             >
-              <p className=" text-xl font-semibold font-sf-pro">Unlock</p>
+              <p className=" text-xl font-medium font-sf-pro">Unlock</p>
               <RxArrowTopRight />
             </div>
           </motion.div>
@@ -126,15 +126,15 @@ function Combined() {
           initial="hidden"
           animate="visible"
           variants={videoVariants}
-          className="bg-[#CAB5F5] bg-opacity-20 p-8 w-[380px]"
+          className="bg-[#CAB5F5] bg-opacity-20 p-8 md:w-[380px] xl:w-[400px] 2xl:w-[800px]"
         >
           <motion.h1
-            className=" text-4xl xl:mt-10 font-meuthanies"
+            className=" text-4xl md:text-3xl lg:text-4xl xl:mt-10 font-meuthanies"
             initial="hidden"
             animate="visible"
             variants={textVariants}
           >
-            Direct <span className="text-customGreen">Save</span>
+            Direct Save
           </motion.h1>
           <motion.h1
             initial="hidden"
@@ -157,7 +157,7 @@ function Combined() {
               className="border bg-customYellow rounded-full xl:mb-10 inline-flex items-center justify-center space-x-2 p-2 px-8 transition-all duration-300 ease-in-out"
               onClick={() => handleClick("/direct-save")}
             >
-              <p className=" text-xl font-semibold font-sf-pro">Unlock</p>
+              <p className=" text-xl font-medium font-sf-pro">Unlock</p>
               <RxArrowTopRight />
             </div>
           </motion.div>

@@ -120,9 +120,9 @@ const plans = [
 
 function Unlock() {
   return (
-    <div className="px-5 xl:px-14 md:px-10 pb-10">
+    <div className="px-5 xl:px-14 md:px-10 pb-10 min-h-screen">
       <div>
-        <div className="md:flex ">
+        <div className="md:flex mt-10 ">
           <div className="relative inline-block">
             <span className="absolute inset-0 bg-customYellow transform rotate-[-2deg] w-full h-full"></span>
             <span className="relative z-10 font-meuthanies text-[30px] md:text-[45px]">
@@ -136,18 +136,18 @@ function Unlock() {
         <h1 className="md:text-[45px] text-[30px] font-meuthanies">
           Boost Your Income Instantly
         </h1>
-        <h1 className="text-[#303030] font-sf-pro opacity-50 mt-2 xl:text-xl text-sm">
+        <h1 className="text-[#303030] font-sf-pro opacity-50 mt-2 xl:mt-6 xl:text-xl text-sm">
           Select the Boost Income plan that suits your goals and start building
           your financial growth with flexible options.
         </h1>
       </div>
-      <div className="md:flex gap-4 mt-8">
+      <div className="md:flex gap-4 mt-8 xl:mt-12">
         {plans.map((plan, index) => {
           return (
             <div
               key={index}
               className="bg-[#ECF1F8] p-4 my-4 md:my-4 md:w-[400px] xl:w-[400px] rounded-lg flex flex-col justify-between
-                   h-[430px] md:h-[410px] xl:h-[520px]"
+                  md:h-auto"
             >
               <div>
                 <plan.icon className="mb-4" />
@@ -174,7 +174,7 @@ function Unlock() {
                 to="/boost-income/properties"
                 className="bottom-2 xl:mb-6 flex xl:text-xl justify-center items-center mt-4 rounded-full bg-customYellow p-2"
               >
-                <h1 className="font-sf-pro font-semibold">{plan.buttonText}</h1>
+                <h1 className="font-sf-pro font-medium">{plan.buttonText}</h1>
                 <MdArrowOutward />
               </Link>
             </div>

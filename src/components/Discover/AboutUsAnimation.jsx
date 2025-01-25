@@ -17,8 +17,8 @@ function AboutUsAnimation() {
 
   return (
     <div className="relative bg-transparent flex justify-center items-center w-screen md:w-40">
-      <div className="animate-spin-slow absolute border-black w-40 h-40 rounded-full border-dashed border-2"></div>
-      <div className="animate-spin-slow absolute border-black w-20 h-20 rounded-full border-dashed border-2"></div>
+      <div className="animate-spin-slow absolute border-black w-40 h-40 rounded-full border-dashed border-[1px]"></div>
+      <div className="animate-spin-slow absolute border-black w-20 h-20 rounded-full border-dashed border-[1px]"></div>
       <motion.div
         animate={{
           rotate: 360,

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Features.css";
-import HorizontalLine from "./HorizontalLine";
 
 const VerticalLine = ({ className, glow }) => (
   <svg
@@ -30,6 +29,32 @@ const VerticalLine = ({ className, glow }) => (
         <stop stopColor="#101010" stopOpacity="0" />
         <stop offset="0.5" stopColor="#006FFF" />
         <stop offset="1" stopColor="#101010" stopOpacity="0" />
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+const HorizontalLine = () => (
+  <svg
+    width="1260"
+    height="1"
+    viewBox="0 0 1760 1"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect width="1760" height="1" fill="url(#paint0_linear_310_856)" />
+    <defs>
+      <linearGradient
+        id="paint0_linear_310_856"
+        x1="0"
+        y1="0.5"
+        x2="1760"
+        y2="0.5"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stop-color="#101010" stop-opacity="0" />
+        <stop offset="0.5" stop-color="#006FFF" />
+        <stop offset="1" stop-color="#101010" stop-opacity="0" />
       </linearGradient>
     </defs>
   </svg>

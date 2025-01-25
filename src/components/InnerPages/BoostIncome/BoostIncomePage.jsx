@@ -19,19 +19,19 @@ function BoostIncomePage() {
   }, []);
   return (
     <div>
-      {/* <BoostIncomeHome />
+      <BoostIncomeHome />
       <ScrollingStrip />
-      <Unlock /> */}
+      <Unlock />
       {/* <div id="highlighted">
         <Highlighted />
       </div> */}
       <div id="HowItWork">
         <HowItWork />
       </div>
-      {/* <GrowthExamples />
+      <GrowthExamples />
       <WhyChoose />
       <FaqNew />
-      <GrowthJourney /> */}
+      <GrowthJourney />
     </div>
   );
 }

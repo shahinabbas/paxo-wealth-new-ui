@@ -477,7 +477,7 @@ function Premium() {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6, ease: "easeInOut" }}
             >
-              <p className="md:text-md xl:text-2xl md:font-semibold xl:font-semibold text-sm mr-2 font-sf-pro ">
+              <p className="md:text-md xl:text-2xl md:font-semibold xl:font-medium text-sm mr-2 font-sf-pro ">
                 <span className="block sm:hidden ">Join Paxo</span>
                 <span className="hidden sm:block">
                   Join Paxo Wealth Private

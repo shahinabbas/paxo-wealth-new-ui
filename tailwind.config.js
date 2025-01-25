@@ -21,8 +21,8 @@ module.exports = {
       screens: {
         xs: "640px", // Default small screens
         sm: "768px", // Medium screens (small tablets)
-        md: "1024px", // Larger tablets
-        lg: "1280px", // 1280x1024 resolution
+        md: "1024px", // 1024x768 Larger tablets
+        lg: "1280px", // 1280x720 resolution
         xl: "1440px", // 1440x900 (13-inch laptops)
         "2xl": "1792px", // 1792x1120 (16-inch laptops)
         "3xl": "1920px", // 1920x1080 (Full HD)

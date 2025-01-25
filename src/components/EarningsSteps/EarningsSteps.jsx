@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import Image from "/pwlogo.jpg"
+import Image from "/pwlogo.jpg";
 
 const Hand = () => (
   <motion.svg
@@ -446,7 +446,7 @@ function EarningsSteps() {
               <h1 className="mt-2">Made Simple in 4 Steps</h1>
             </h1>
           </div>
-          <p className=" md:mt-14 text-[16px] md:px-20 xl:px-80 font-sf-pro">
+          <p className=" md:mt-14 text-[16px] md:px-20 xl:pl-80 font-sf-pro">
             From exploring opportunities to enjoying <br />
             consistent payouts, Paxo Wealth makes it easy.
           </p>
@@ -506,7 +506,7 @@ function EarningsSteps() {
 
           <div
             ref={ref}
-            className="mt-16 justify-center items-center md:ml-[350px] xl:ml-[500px] hidden lg:block"
+            className="mt-16 justify-center items-center md:ml-[350px] xl:ml-[430px] hidden lg:block"
           >
             {inView && (
               <div className="relative h-96  rounded-lg shadow-lg">

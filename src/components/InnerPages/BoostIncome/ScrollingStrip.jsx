@@ -114,10 +114,10 @@ function ScrollingStrip() {
   ];
 
   return (
-    <div className="bg-transparent p-4 overflow-hidden font-meuthanies md:-mt-28 -mt-16  ">
+    <div className="bg-transparent p-4 overflow-hidden font-meuthanies lg:py-6 ">
       <div className="relative flex overflow-x-hidden">
         <div className="relative flex overflow-x-hidden">
-          <div className="md:py-14 py-6 animate-marquee whitespace-nowrap">
+          <div className="py-6 animate-marquee whitespace-nowrap">
             {items.map((item, index) => (
               <span key={index} className="text-2xl items-center">
                 {item.icon}
@@ -127,7 +127,7 @@ function ScrollingStrip() {
             ))}
           </div>
 
-          <div className="absolute top-0 md:py-12  py-6 animate-marquee2 whitespace-nowrap">
+          <div className="absolute  py-6 animate-marquee2 whitespace-nowrap">
             {items.map((item, index) => (
               <span key={index} className="text-2xl items-center">
                 {item.icon}
