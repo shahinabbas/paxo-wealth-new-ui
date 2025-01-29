@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { FaAddressCard } from "react-icons/fa6";
 import { MdQuestionAnswer, MdSupportAgent } from "react-icons/md";
 import { FaClipboardQuestion } from "react-icons/fa6";
+import emailjs from "emailjs-com";
+import Swal from "sweetalert2"; // Import SweetAlert2
 
 const ContactUs = () => {
   useEffect(() => {
@@ -12,6 +14,57 @@ const ContactUs = () => {
       behavior: "smooth",
     });
   }, []);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [status, setStatus] = useState(""); // To track form submission status
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Send email with EmailJS
+    emailjs
+      .sendForm(
+        "service_t4m1g8c", // Replace with your Service ID
+        "template_3apip26", // Replace with your Template ID
+        e.target,
+        "Z1IJRrV_TWABu9IJG" // Replace with your User ID
+      )
+      .then(
+        (result) => {
+          Swal.fire({
+            title: "Query Submitted!",
+            text: "We are reviewing your message. Please wait...",
+            icon: "success",
+            confirmButtonColor: "#0056E0",
+            confirmButtonText: "OK",
+          });
+          // setStatus("Message sent successfully!"); // Show success message
+          setFormData({ name: "", email: "", message: "" }); // Clear state
+        },
+        (error) => {
+          Swal.fire({
+            title: "Oops!",
+            text: "Something went wrong. Please try again.",
+            icon: "error",
+            confirmButtonColor: "#d33",
+            confirmButtonText: "OK",
+          });
+        }
+      );
+  };
   return (
     <div className="flex items-center mt-10 md:mt-0 justify-center min-h-screen  px-2 md:px-4 bg-white font-sf-pro">
       <section className="container mx-auto text-black mt-10">
@@ -34,6 +87,7 @@ const ContactUs = () => {
             style={{
               boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.1)",
             }}
+            onSubmit={handleSubmit}
           >
             <div className="mb-4">
               <h1 className="mb-4 font-semibold text-xl xl:text-2xl">
@@ -54,9 +108,12 @@ const ContactUs = () => {
               </label>
               <input
                 type="text"
+                name="name"
                 id="nameInput"
                 className="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter your name"
+                value={formData.name}
+                onChange={handleChange}
               />
             </div>
             {/* Email Input */}
@@ -70,8 +127,11 @@ const ContactUs = () => {
               <input
                 type="email"
                 id="emailInput"
+                name="email"
                 className="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter your email"
+                value={formData.email}
+                onChange={handleChange}
               />
             </div>
             {/* Message Input */}
@@ -84,8 +144,11 @@ const ContactUs = () => {
               </label>
               <textarea
                 id="messageInput"
+                name="message" // Name attribute required by EmailJS
                 className="w-full h-28 px-4 py-2 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Write your message here"
+                value={formData.message}
+                onChange={handleChange}
               ></textarea>
             </div>
             {/* Submit Button */}
@@ -95,6 +158,7 @@ const ContactUs = () => {
             >
               Send
             </button>
+            
           </form>
 
           <div className="w-full  mt-10 md:mt-0 lg:w-6/12">

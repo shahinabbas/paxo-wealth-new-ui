@@ -13,7 +13,7 @@ import {
   FaUser,
 } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
-import { MdCurrencyRupee } from "react-icons/md";
+import { MdArrowOutward, MdCurrencyRupee } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
@@ -53,7 +53,7 @@ const PaymentPage = () => {
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [profile, setProfile] = useState(null);
-
+  const orderId = Math.floor(100000 + Math.random() * 900000); // Generate random Order ID
   // Calculate values based on property details and quantity
   const calculateValues = (property, quantity) => {
     const totalArea = quantity * property.minimum_sqft;
@@ -168,52 +168,54 @@ const PaymentPage = () => {
   };
 
   const handleSubmitDetails = async () => {
-    if (!transactionId) {
-      setErrorMessage("Transaction ID is mandatory.");
-      return;
-    }
+    // if (!transactionId) {
+    //   setErrorMessage("Transaction ID is mandatory.");
+    //   return;
+    // }
 
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
 
-    if (!token) {
-      throw new Error("No token found. Please log in.");
-    }
+    // if (!token) {
+    //   throw new Error("No token found. Please log in.");
+    // }
 
-    try {
-      const formData = new FormData();
-      formData.append("propertyId", propertyDetails._id);
-      formData.append("units", orderSummary.quantity);
-      formData.append("paymentMethod", paymentMethod);
-      formData.append("paidAmount", amountPaid);
-      formData.append("transactionId", transactionId);
-      formData.append("paymentDate", paymentDate);
+    // try {
+    //   const formData = new FormData();
+    //   formData.append("propertyId", propertyDetails._id);
+    //   formData.append("units", orderSummary.quantity);
+    //   formData.append("paymentMethod", paymentMethod);
+    //   formData.append("paidAmount", amountPaid);
+    //   formData.append("transactionId", transactionId);
+    //   formData.append("paymentDate", paymentDate);
 
-      // Append the file if it exists
-      if (amountFile) {
-        formData.append("paymentProof", amountFile);
-      }
+    //   // Append the file if it exists
+    //   if (amountFile) {
+    //     formData.append("paymentProof", amountFile);
+    //   }
 
-      const response = await axios.post(
-        `${apiURL}/order/create-order`,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+    //   const response = await axios.post(
+    //     `${apiURL}/order/create-order`,
+    //     formData,
+    //     {
+    //       headers: {
+    //         Authorization: `Bearer ${token}`,
+    //         "Content-Type": "multipart/form-data",
+    //       },
+    //     }
+    //   );
 
-      if (response.data.success === "ok") {
-        setErrorMessage("");
-        setIsModalOpen(false);
-        setIsPaymentModalOpen(false);
-        setIsSuccessModalOpen(true);
-      }
-    } catch (error) {
-      setErrorMessage(error.response?.data?.message || "Error creating order");
-      console.log(error.message);
-    }
+    //   if (response.data.success === "ok") {
+    //     setErrorMessage("");
+    //     setIsModalOpen(false);
+    //     setIsPaymentModalOpen(false);
+    //     setIsSuccessModalOpen(true);
+    //   }
+    // } catch (error) {
+    //   setErrorMessage(error.response?.data?.message || "Error creating order");
+    //   console.log(error.message);
+    // }
+    setIsSuccessModalOpen(true);
+
   };
 
   const toggleAccordion = (index) => {
@@ -222,7 +224,7 @@ const PaymentPage = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-white flex items-center justify-center p-4">
         <div className="bg-gray-800 p-6 rounded-lg text-center">
           <p className="text-red-500 mb-2">{error}</p>
           <p className="text-gray-400">Redirecting to home page...</p>
@@ -233,7 +235,7 @@ const PaymentPage = () => {
 
   if (!orderSummary) {
     return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-customGreen"></div>
       </div>
     );
@@ -532,14 +534,13 @@ const PaymentPage = () => {
           </div>
 
           {/* Payment Modal */}
-          {isPaymentModalOpen && (
+          {/* {isPaymentModalOpen && (
             <div className="fixed inset-0 bg-black bg-opacity-50 md:p-0 p-5 flex justify-center items-center z-50">
               <div
                 className={`bg-white rounded-lg p-6 ${
                   paymentStep === 1 ? "w-96 md:w-[600px]" : "w-96"
                 } relative shadow-xl`}
               >
-                {/* Close Button */}
                 <button
                   onClick={() => setIsPaymentModalOpen(false)}
                   className="absolute top-2 right-2 text-gray-500 text-2xl font-bold hover:text-gray-700"
@@ -693,10 +694,57 @@ const PaymentPage = () => {
                 )}
               </div>
             </div>
-          )}
+          )} */}
+          {isPaymentModalOpen && (
+        <div className="fixed inset-0 bg-black px-4 bg-opacity-50 flex items-center justify-center font-sf-pro">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-md text-center">
+            <h2 className="text-xl font-meuthanies">Complete Your Order</h2>
+            <p className="mt-2">You're almost there!</p>
+            <p className="text-sm text-gray-600 mt-2 text-left">
+              Our account team will contact you shortly to guide you through
+              payment and account setup. Enjoy a seamless onboarding experience.
+              Start unlocking the unique benefits of PAXO Wealth right away.
+              Place your order now and take the first step toward your growth
+              journey!{" "}
+            </p>
+            <div onClick={handleSubmitDetails}  className="mx-auto flex justify-center items-center gap-2 w-40 mt-4 py-2 px-4  bg-customBlue text-white  rounded-full">
+              <button >
+                Place Order
+              </button>
+              <MdArrowOutward />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Thank You Modal */}
+      {isSuccessModalOpen && (
+        <div className="fixed inset-0 px-4 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-md text-center">
+            <h2 className="text-xl font-bold">Thank You!</h2>
+            <p className="mt-2">Your order has been successfully placed!</p>
+            <p className="text-sm text-gray-600 mt-2">Order ID: #{orderId}</p>
+            <p className="text-sm text-gray-600 mt-2 text-left">
+              Our account team will contact you shortly to guide you through the
+              next steps. You can now access your dashboard to track your
+              progress and manage your journey.
+            </p>
+            <Link
+              to="/dashboard/order"
+              className="mx-auto mt-4 bg-customYellow py-2 px-4 rounded flex justify-center items-center w-60 gap-2"
+            >
+              <button>Go to Dashboard</button>
+              <MdArrowOutward />
+            </Link>
+            <p className="mt-4">
+              We’re excited to have you onboard with PAXO Wealth!
+            </p>
+          </div>
+        </div>
+      )}
 
           {/* Success Modal */}
-          {isSuccessModalOpen && (
+          {/* {isSuccessModalOpen && (
             <motion.div
               className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
               initial={{ opacity: 0 }}
@@ -734,7 +782,7 @@ const PaymentPage = () => {
                 </div>
               </motion.div>
             </motion.div>
-          )}
+          )} */}
 
           {/* Security Section */}
           <div className="bg-white rounded-lg p-6 shadow-lg border border-gray-200">

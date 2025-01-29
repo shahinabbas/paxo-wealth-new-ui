@@ -7,8 +7,15 @@ import {
   FaCalculator,
   FaRegCircleCheck,
   FaArrowTrendUp,
+  FaFileInvoice,
 } from "react-icons/fa6";
-import { MdCurrencyRupee, MdInfoOutline } from "react-icons/md";
+import {
+  MdArrowForwardIos,
+  MdArrowOutward,
+  MdCurrencyRupee,
+  MdFileCopy,
+  MdInfoOutline,
+} from "react-icons/md";
 import { IoHomeOutline } from "react-icons/io5";
 import { BsGraphUp } from "react-icons/bs";
 import {
@@ -21,7 +28,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
 
 const PropertyDetail = () => {
   const { slug } = useParams();
@@ -30,7 +38,6 @@ const PropertyDetail = () => {
   const [activeTab, setActiveTab] = useState("overview");
   const [quantityInput, setQuantityInput] = useState("1");
 
-  const [showTermsModal, setShowTermsModal] = useState(false);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -74,6 +81,7 @@ const PropertyDetail = () => {
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked); // Toggle checkbox state
   };
+
   // Sample chart data with bull and bear trends
   const propertyGrowthData = [
     { month: "Jan", value: 4000, bullTrend: 4000, bearTrend: 4000 },
@@ -142,187 +150,37 @@ const PropertyDetail = () => {
     sessionStorage.setItem("orderSummary", JSON.stringify(orderSummary));
     navigate("/payment-page");
   };
-  return (
-    <div className="bg-gray-50 min-h-screen p-6 py-12">
-      {/* Property Header */}
-      <div className="max-w-7xl mx-auto bg-white rounded-lg p-6 mb-6 mt-20 shadow-lg border border-gray-200">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2 font-meuthanies">
-              {propertyDetails.property_name}
-            </h1>
-            <div className="grid grid-cols-2 gap-4 font-sf-pro">
-              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                <div className="text-gray-600 text-sm ">Property Type</div>
-                <div className="text-gray-900 font-semibold flex items-center capitalize ">
-                  <FaBuilding className="mr-2 text-customBlue " />
-                  {propertyDetails.property_type}
-                </div>
-              </div>
-              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                <div className="text-gray-600 text-sm">Growth Rate</div>
-                <div className="text-customBlue font-semibold flex items-center">
-                  <FaChartLine className="mr-2" />
-                  {propertyDetails.capital_appreciation}%
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="space-y-4 font-sf-pro">
-            <div className="flex gap-3">
-              {[
-                { value: "value", label: "Current", color: "#0056E0" },
-                { value: "bullTrend", label: "Bull Trend", color: "#22c55e" },
-                { value: "bearTrend", label: "Bear Trend", color: "#ef4444" },
-              ].map((trend) => (
-                <button
-                  key={trend.value}
-                  onClick={() => setSelectedTrend(trend.value)}
-                  className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
-                    selectedTrend === trend.value
-                      ? "bg-customBlue text-white"
-                      : "text-gray-600 hover:bg-gray-100"
-                  }`}
-                >
-                  {trend.label}
-                </button>
-              ))}
-            </div>
-            <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={propertyGrowthData}>
-                  <defs>
-                    <linearGradient
-                      id="customBlueGradient"
-                      x1="0"
-                      y1="0"
-                      x2="0"
-                      y2="1"
-                    >
-                      <stop offset="5%" stopColor="#0056E0" stopOpacity={0.2} />
-                      <stop offset="95%" stopColor="#0056E0" stopOpacity={0} />
-                    </linearGradient>
-                    <linearGradient
-                      id="bullGradient"
-                      x1="0"
-                      y1="0"
-                      x2="0"
-                      y2="1"
-                    >
-                      <stop offset="5%" stopColor="#22c55e" stopOpacity={0.2} />
-                      <stop offset="95%" stopColor="#22c55e" stopOpacity={0} />
-                    </linearGradient>
-                    <linearGradient
-                      id="bearGradient"
-                      x1="0"
-                      y1="0"
-                      x2="0"
-                      y2="1"
-                    >
-                      <stop offset="5%" stopColor="#ef4444" stopOpacity={0.2} />
-                      <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                  <XAxis dataKey="month" stroke="#6b7280" />
-                  <YAxis stroke="#6b7280" />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: "#ffffff",
-                      borderColor: "#e5e7eb",
-                      borderRadius: "0.5rem",
-                      color: "#111827",
-                    }}
-                  />
-                  {selectedTrend === "value" && (
-                    <Area
-                      type="monotone"
-                      dataKey="value"
-                      stroke="#0056E0"
-                      strokeWidth={2}
-                      fill="url(#customBlueGradient)"
-                      dot={{ stroke: "#0056E0", strokeWidth: 2 }}
-                      activeDot={{ r: 6, stroke: "#0056E0", strokeWidth: 2 }}
-                    />
-                  )}
-                  {selectedTrend === "bullTrend" && (
-                    <Area
-                      type="monotone"
-                      dataKey="bullTrend"
-                      stroke="#22c55e"
-                      strokeWidth={2}
-                      fill="url(#bullGradient)"
-                      dot={{ stroke: "#22c55e", strokeWidth: 2 }}
-                      activeDot={{ r: 6, stroke: "#22c55e", strokeWidth: 2 }}
-                    />
-                  )}
-                  {selectedTrend === "bearTrend" && (
-                    <Area
-                      type="monotone"
-                      dataKey="bearTrend"
-                      stroke="#ef4444"
-                      strokeWidth={2}
-                      fill="url(#bearGradient)"
-                      dot={{ stroke: "#ef4444", strokeWidth: 2 }}
-                      activeDot={{ r: 6, stroke: "#ef4444", strokeWidth: 2 }}
-                    />
-                  )}
-                </AreaChart>
-              </ResponsiveContainer>
-            </div>
-            <div className="flex justify-between px-4 py-2 bg-gray-50 rounded-lg border border-gray-200">
-              <div>
-                <p className="text-sm text-gray-600">Lowest</p>
-                <p className="font-semibold text-red-600">
-                  ₹
-                  {Math.min(...propertyGrowthData.map((d) => d[selectedTrend]))}
-                </p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-600">Highest</p>
-                <p className="font-semibold text-customBlue">
-                  ₹
-                  {Math.max(...propertyGrowthData.map((d) => d[selectedTrend]))}
-                </p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-600">Change</p>
-                <p className="font-semibold text-customBlue">
-                  {Math.round(
-                    ((propertyGrowthData[propertyGrowthData.length - 1][
-                      selectedTrend
-                    ] -
-                      propertyGrowthData[0][selectedTrend]) /
-                      propertyGrowthData[0][selectedTrend]) *
-                      100
-                  )}
-                  %
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
+  return (
+    <div className=" min-h-screen p-6 py-12">
       {/* Main Content */}
-      <div className="w-full  mx-auto">
+      <div className="w-full  font-sf-pro mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 font-sf-pro">
           {/* Left Column - Tabs Content */}
           <div className="lg:col-span-2">
             {/* Tabs */}
-            <div className="bg-white rounded-lg p-3 md:p-4 mb-4 md:mb-6 shadow-lg border border-gray-200">
+            <div className="bg-white rounded-lg p-3 md:p-4 mb-4 md:mb-6 ">
               {/* Tab Buttons */}
-              <div className="flex flex-wrap gap-2 border-b border-gray-200 pb-4">
+              <div className="flex flex-wrap gap-2 pb-4">
                 {[
-                  { id: "overview", label: "Overview", icon: FaChartLine },
                   {
-                    id: "legal",
-                    label: "Legal Documents",
-                    icon: FaFileContract,
+                    id: "overview",
+                    label: "Property Overview",
+                    icon: FaHome,
                   },
                   {
                     id: "calculator",
-                    label: "ROI Calculator",
+                    label: "Growth Trend",
+                    icon: FaFileContract,
+                  },
+                  {
+                    id: "legal",
+                    label: "Legal Documents",
+                    icon: FaCalculator,
+                  },
+                  {
+                    id: "location",
+                    label: "Location Highlights",
                     icon: FaCalculator,
                   },
                 ].map((tab) => (
@@ -332,60 +190,133 @@ const PropertyDetail = () => {
                     className={`flex items-center space-x-1 px-2 md:px-4 py-2 rounded-lg transition-colors text-sm md:text-base ${
                       activeTab === tab.id
                         ? "bg-customBlue text-white"
-                        : "text-gray-600 hover:bg-gray-100"
+                        : "bg-[#F6F6F6] text-[#666666]  "
                     }`}
                   >
-                    <tab.icon className="text-sm md:text-base" />
+                    <div
+                      className={`p-1 rounded-full ${
+                        activeTab === tab.id
+                          ? "bg-[#FFFFFF] bg-opacity-10 "
+                          : "bg-customBlue bg-opacity-10 "
+                      }`}
+                    >
+                      <tab.icon className="text-sm md:text-base" />
+                    </div>
                     <span>{tab.label}</span>
                   </button>
                 ))}
               </div>
 
               {/* Tab Content */}
-              <div className="mt-4 md:mt-6">
+              <div className="mt-10">
                 {activeTab === "overview" && (
                   <div className="space-y-4">
-                    <h3 className="text-lg md:text-xl font-semibold text-gray-900 font-meuthanies">
-                      Property Overview
+                    <h3 className="text-lg md:text-3xl font-semibold text-customBlue font-meuthanies">
+                      PAXO Capital Heights
                     </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-                      <div className="bg-gray-50 p-3 md:p-4 rounded-lg border border-gray-200">
-                        <div className="text-gray-600 text-sm">Total Area</div>
-                        <div className="text-gray-900 font-semibold">
-                          {propertyDetails.total_unit} sqft
+                    <h3 className="text-lg md:text-3xl font-semibold font-meuthanies">
+                      Your Gateway to High-Growth Investment
+                    </h3>
+                    <div className="flex pt-10">
+                      <div className=" space-y-8 w-4/5">
+                        <div>
+                          <div className="text-[#A6A6A6] text-sm">Category</div>
+                          <div className="text-[#101010]  text-sm font-semibold mt-1">
+                            {propertyDetails.property_location}
+                          </div>
+                        </div>
+
+                        <div>
+                          <div className="text-[#A6A6A6] text-sm">Location</div>
+                          <div className="text-[#101010]  text-sm font-semibold mt-1">
+                            {propertyDetails.property_location}
+                          </div>
+                        </div>
+
+                        <div>
+                          <div className="text-[#A6A6A6] text-sm">
+                            Total Area
+                          </div>
+                          <div className="text-[#101010]  text-sm font-semibold mt-1">
+                            {propertyDetails.total_unit} sqft
+                          </div>
                         </div>
                       </div>
-                      <div className="bg-gray-50 p-3 md:p-4 rounded-lg border border-gray-200">
-                        <div className="text-gray-600 text-sm">
-                          Available Area
+                      <div className="space-y-8  w-4/5">
+                        <div className=" ">
+                          <div className="text-[#A6A6A6] text-sm">
+                            Market Value
+                          </div>
+                          <div className="text-[#101010]  text-sm font-semibold mt-1">
+                            ₹ {propertyDetails.marketValue}
+                          </div>
                         </div>
-                        <div className="text-gray-900 font-semibold">
-                          {availableArea} sqft
+                        <div className=" ">
+                          <div className="text-[#A6A6A6] text-sm">
+                            Growth Potential
+                          </div>
+                          <div className="text-customBlue text-sm font-semibold mt-1">
+                            {propertyDetails.capital_appreciation} %
+                          </div>
+                        </div>
+
+                        <div className=" ">
+                          <div className="text-[#A6A6A6] text-sm">
+                            Available Area
+                          </div>
+                          <div className="text-customBlue text-sm font-semibold mt-1">
+                            {propertyDetails.available_unit} sqft
+                          </div>
                         </div>
                       </div>
-                      <div className="bg-gray-50 p-3 md:p-4 rounded-lg border border-gray-200">
-                        <div className="text-gray-600 text-sm">
-                          Minimum Participation
+                      <div className="space-y-8  w-4/5">
+                        <div className=" ">
+                          <div className="text-[#A6A6A6] text-sm">
+                            Property Type
+                          </div>
+                          <div className="text-[#101010]  text-sm font-semibold mt-1">
+                            {propertyDetails.property_type}
+                          </div>
                         </div>
-                        <div className="text-gray-900 font-semibold">
-                          {propertyDetails.minimum_sqft} sqft
+                        <div className=" ">
+                          <div className="text-[#A6A6A6] text-sm">
+                            Plots Available
+                          </div>
+                          <div className="text-[#101010]  text-sm font-semibold mt-1">
+                            {propertyDetails.minimum_sqft}
+                          </div>
+                        </div>
+                        <div className=" ">
+                          <div className="text-[#A6A6A6] text-sm">
+                            Minimum Participation
+                          </div>
+                          <div className="text-[#101010]  text-sm font-semibold mt-1">
+                            {propertyDetails.minimum_sqft} sqft
+                          </div>
                         </div>
                       </div>
-                      <div className="bg-gray-50 p-3 md:p-4 rounded-lg border border-gray-200">
-                        <div className="text-gray-600 text-sm">
-                          Monthly Yield
-                        </div>
-                        <div className="text-customBlue font-semibold">
-                          {propertyDetails.capital_appreciation}%
-                        </div>
-                      </div>
+                    </div>
+                    <div className="pt-10">
+                      <h1 className="text-[#666666] text-sm">
+                        PAXO Capital Heights offers premium plots in the heart
+                        of Bengaluru, surrounded by <br />
+                        lush greenery and seamless connectivity. Strategically
+                        located near major IT hubs,
+                        <br />
+                        educational institutions, and hospitals, this property
+                        is ideal for both investors and
+                        <br /> families looking to build their dream homes. The
+                        project comes with legal approvals, <br />
+                        ensuring secure and hassle-free ownership.
+                        {/* {propertyDetails.description} */}
+                      </h1>
                     </div>
                   </div>
                 )}
 
                 {activeTab === "legal" && (
                   <div className="space-y-4">
-                    <h3 className="text-lg md:text-xl font-semibold text-gray-900">
+                    <h3 className="text-lg md:text-xl font-semibold text-[#101010]">
                       Legal Documents
                     </h3>
                     <div className="space-y-3">
@@ -401,7 +332,7 @@ const PropertyDetail = () => {
                         >
                           <div className="flex items-center">
                             <FaRegCircleCheck className="text-customBlue mr-2" />
-                            <span className="text-gray-900 text-sm md:text-base">
+                            <span className="text-[#101010] text-sm md:text-base">
                               {doc}
                             </span>
                           </div>
@@ -416,7 +347,7 @@ const PropertyDetail = () => {
 
                 {activeTab === "calculator" && (
                   <div className="space-y-4">
-                    <h3 className="text-lg md:text-xl font-semibold text-gray-900">
+                    <h3 className="text-lg md:text-xl font-semibold text-[#101010]">
                       ROI Calculator
                     </h3>
                     <div className="rounded-md border border-customBlue p-3 md:p-5">
@@ -425,7 +356,7 @@ const PropertyDetail = () => {
                           <span className="text-gray-600 font-semibold text-sm md:text-base">
                             One Square Feet Price
                           </span>
-                          <span className="text-gray-900 flex items-center text-sm md:text-base">
+                          <span className="text-[#101010] flex items-center text-sm md:text-base">
                             <MdCurrencyRupee />
                             {propertyDetails.property_unit_price}
                           </span>
@@ -446,7 +377,7 @@ const PropertyDetail = () => {
                               type="number"
                               value={quantity}
                               onChange={handleQuantityChange}
-                              className="w-12 mx-2 pl-2 text-center bg-white text-gray-900 border border-gray-300 rounded-md font-semibold"
+                              className="w-12 mx-2 pl-2 text-center bg-white text-[#101010] border border-gray-300 rounded-md font-semibold"
                             />
                             <button
                               onClick={handleIncrease}
@@ -462,7 +393,7 @@ const PropertyDetail = () => {
                           <span className="text-gray-600 font-semibold text-sm md:text-base">
                             Area Per Quantity
                           </span>
-                          <span className="text-gray-900 flex items-center text-sm md:text-base">
+                          <span className="text-[#101010] flex items-center text-sm md:text-base">
                             {totalArea} sqft
                           </span>
                         </div>
@@ -471,7 +402,7 @@ const PropertyDetail = () => {
                           <span className="text-gray-600 font-semibold text-sm md:text-base">
                             Total Price
                           </span>
-                          <span className="text-gray-900 flex items-center text-sm md:text-base">
+                          <span className="text-[#101010] flex items-center text-sm md:text-base">
                             <MdCurrencyRupee /> {totalPrice}
                           </span>
                         </div>
@@ -497,44 +428,297 @@ const PropertyDetail = () => {
                 )}
               </div>
             </div>
+            <div className="max-w-7xl mx-auto rounded-lg p-6 mb-6 md:mt-20 border border-[#D9D9D9]">
+              <div className="">
+                <h1 className="font-meuthanies text-2xl text-customBlue">
+                  Growth Trend
+                </h1>
+                <div className="space-y-4 font-sf-pro mt-4">
+                  <div className="flex gap-3">
+                    {[
+                      { value: "value", label: "Current", color: "#0056E0" },
+                      {
+                        value: "bullTrend",
+                        label: "Bull Trend",
+                        color: "#22c55e",
+                      },
+                      {
+                        value: "bearTrend",
+                        label: "Bear Trend",
+                        color: "#ef4444",
+                      },
+                    ].map((trend) => (
+                      <button
+                        key={trend.value}
+                        onClick={() => setSelectedTrend(trend.value)}
+                        className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
+                          selectedTrend === trend.value
+                            ? "bg-customBlue text-white"
+                            : "text-gray-600 hover:bg-gray-100"
+                        }`}
+                      >
+                        {trend.label}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="h-96">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <AreaChart data={propertyGrowthData}>
+                        <defs>
+                          <linearGradient
+                            id="customBlueGradient"
+                            x1="0"
+                            y1="0"
+                            x2="0"
+                            y2="1"
+                          >
+                            <stop
+                              offset="5%"
+                              stopColor="#0056E0"
+                              stopOpacity={0.2}
+                            />
+                            <stop
+                              offset="95%"
+                              stopColor="#0056E0"
+                              stopOpacity={0}
+                            />
+                          </linearGradient>
+                          <linearGradient
+                            id="bullGradient"
+                            x1="0"
+                            y1="0"
+                            x2="0"
+                            y2="1"
+                          >
+                            <stop
+                              offset="5%"
+                              stopColor="#22c55e"
+                              stopOpacity={0.2}
+                            />
+                            <stop
+                              offset="95%"
+                              stopColor="#22c55e"
+                              stopOpacity={0}
+                            />
+                          </linearGradient>
+                          <linearGradient
+                            id="bearGradient"
+                            x1="0"
+                            y1="0"
+                            x2="0"
+                            y2="1"
+                          >
+                            <stop
+                              offset="5%"
+                              stopColor="#ef4444"
+                              stopOpacity={0.2}
+                            />
+                            <stop
+                              offset="95%"
+                              stopColor="#ef4444"
+                              stopOpacity={0}
+                            />
+                          </linearGradient>
+                        </defs>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                        <XAxis dataKey="month" stroke="#6b7280" />
+                        <YAxis stroke="#6b7280" />
+                        <Tooltip
+                          contentStyle={{
+                            backgroundColor: "#ffffff",
+                            borderColor: "#e5e7eb",
+                            borderRadius: "0.5rem",
+                            color: "#111827",
+                          }}
+                        />
+                        {selectedTrend === "value" && (
+                          <Area
+                            type="monotone"
+                            dataKey="value"
+                            stroke="#0056E0"
+                            strokeWidth={2}
+                            fill="url(#customBlueGradient)"
+                            dot={{ stroke: "#0056E0", strokeWidth: 2 }}
+                            activeDot={{
+                              r: 6,
+                              stroke: "#0056E0",
+                              strokeWidth: 2,
+                            }}
+                          />
+                        )}
+                        {selectedTrend === "bullTrend" && (
+                          <Area
+                            type="monotone"
+                            dataKey="bullTrend"
+                            stroke="#22c55e"
+                            strokeWidth={2}
+                            fill="url(#bullGradient)"
+                            dot={{ stroke: "#22c55e", strokeWidth: 2 }}
+                            activeDot={{
+                              r: 6,
+                              stroke: "#22c55e",
+                              strokeWidth: 2,
+                            }}
+                          />
+                        )}
+                        {selectedTrend === "bearTrend" && (
+                          <Area
+                            type="monotone"
+                            dataKey="bearTrend"
+                            stroke="#ef4444"
+                            strokeWidth={2}
+                            fill="url(#bearGradient)"
+                            dot={{ stroke: "#ef4444", strokeWidth: 2 }}
+                            activeDot={{
+                              r: 6,
+                              stroke: "#ef4444",
+                              strokeWidth: 2,
+                            }}
+                          />
+                        )}
+                      </AreaChart>
+                    </ResponsiveContainer>
+                  </div>
+                  <div className="flex text-center justify-between px-5 py-2 bg-[#F6F6F6] rounded-lg">
+                    <div>
+                      <p className="text-sm text-gray-600">Lowest</p>
+                      <p className="font-semibold text-red-600">
+                        ₹
+                        {Math.min(
+                          ...propertyGrowthData.map((d) => d[selectedTrend])
+                        )}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-600">Highest</p>
+                      <p className="font-semibold text-customBlue">
+                        ₹
+                        {Math.max(
+                          ...propertyGrowthData.map((d) => d[selectedTrend])
+                        )}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-600">Change</p>
+                      <p className="font-semibold text-customBlue">
+                        {Math.round(
+                          ((propertyGrowthData[propertyGrowthData.length - 1][
+                            selectedTrend
+                          ] -
+                            propertyGrowthData[0][selectedTrend]) /
+                            propertyGrowthData[0][selectedTrend]) *
+                            100
+                        )}
+                        %
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="max-w-7xl mx-auto rounded-lg p-6 mb-6 md:mt-20 border border-[#D9D9D9]">
+              <h1 className="text-customBlue font-meuthanies text-2xl">
+                Legal Documents
+              </h1>
+              <div className="mt-10 space-y-4">
+                <div className="bg-[#F6F6F6] p-6 flex justify-between rounded-xl">
+                  <div className="flex gap-2 items-center">
+                    <FaFileInvoice />
+                    <h1>Property Title</h1>
+                  </div>
+                  <div>
+                    <MdArrowForwardIos />
+                  </div>
+                </div>
+                <div className="bg-[#F6F6F6] p-6 flex justify-between  rounded-xl">
+                  <div className="flex gap-2 items-center">
+                    <FaFileInvoice />
+                    <h1>NOC Certificate</h1>
+                  </div>
+                  <div>
+                    <MdArrowForwardIos />
+                  </div>
+                </div>
+                <div className="bg-[#F6F6F6] p-6 flex justify-between  rounded-xl">
+                  <div className="flex gap-2 items-center">
+                    <FaFileInvoice />
+                    <h1>Building Approval</h1>
+                  </div>
+                  <div>
+                    <MdArrowForwardIos />
+                  </div>
+                </div>
+                <div className="bg-[#F6F6F6] p-6 flex justify-between  rounded-xl">
+                  <div className="flex gap-2 items-center">
+                    <FaFileInvoice />
+                    <h1>Tax Documents</h1>
+                  </div>
+                  <div>
+                    <MdArrowForwardIos />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="max-w-7xl mx-auto  rounded-lg p-6 mb-6 md:mt-20 border border-[#D9D9D9]">
+              <h1 className="font-meuthanies text-2xl text-customBlue">
+                Key Location Highlights
+              </h1>
+              <div>
+                <div className="md:flex gap-6 mt-4 md:space-y-0 space-y-4">
+                  <div className="bg-[#F4F8FF] flex items-center gap-2 p-2 px-4">
+                    <div className="w-2 h-2 bg-[#0CB184] rounded-full"></div>
+                    <h1>IT Park (5 km)</h1>
+                  </div>
+                  <div className="bg-[#F4F8FF] flex items-center gap-2 p-2 px-4">
+                    <div className="w-2 h-2 bg-[#0CB184] rounded-full"></div>
+                    <h1>School (2 km)</h1>
+                  </div>
+                  <div className="bg-[#F4F8FF] flex items-center gap-2 p-2 px-4">
+                    <div className="w-2 h-2 bg-[#0CB184] rounded-full"></div>
+                    <h1>Hospital (3 km)</h1>
+                  </div>
+                </div>
+                <div className="mt-10">
+                  <iframe
+                    title="Google Map"
+                    className="w-full h-80 rounded-lg shadow"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.9753412516534!2d72.85315777346183!3d19.15255664956802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b7b58e9e570f%3A0x6e6ed2e34fe4570c!2sNESCO%20IT%20Park%2C%20NH%208%2C%20NESCO%2C%20Goregaon%2C%20Mumbai%2C%20Maharashtra%20400063!5e0!3m2!1sen!2sin!4v1738143613499!5m2!1sen!2sin"
+                    allowfullscreen
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Right Column - Order Summary */}
-          {/* Right Column - Order Summary */}
-          <div className="bg-white rounded-lg shadow-lg border border-gray-200">
-            <div className="rounded-md border border-customBlue p-5">
-              <h1 className="text-xl font-semibold text-customBlue mb-4 font-meuthanies">
+          <div className="bg-white h-[620px] rounded-lg shadow-lg ">
+            <div className="rounded-md  p-5">
+              <h1 className="text-xl font-medium text-customBlue mb-4 font-meuthanies">
                 Order Summary
               </h1>
 
               {/* Property Details */}
               <div className="flex flex-col gap-y-4 mb-6">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600 font-semibold">
+                  <span className="text-sm text-[#101010] font-medium">
                     Property Name
                   </span>
-                  <span className="text-sm text-gray-900 flex items-center">
+                  <span className="text-sm text-[#101010] font-semibold flex items-center">
                     {propertyDetails.property_name}
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600 font-semibold">
+                  <span className="text-sm text-[#101010] font-medium">
                     One Square Feet Price
                   </span>
-                  <span className="text-sm text-gray-900 flex items-center">
+                  <span className="text-sm text-[#101010] font-semibold flex items-center">
                     <MdCurrencyRupee /> {propertyDetails.property_unit_price}
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600 font-semibold">
-                    Area Per Quantity
-                  </span>
-                  <span className="text-sm text-gray-900 flex items-center">
-                    <IoHomeOutline className="mr-1" /> {totalArea} sqft
-                  </span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600 font-semibold">
+                  <span className="text-sm text-[#101010] font-medium">
                     Quantity
                   </span>
                   <div className="flex items-center">
@@ -550,7 +734,7 @@ const PropertyDetail = () => {
                       value={quantityInput}
                       onChange={handleQuantityChange}
                       onBlur={handleBlur}
-                      className="w-12 pl-2 text-center bg-white text-gray-900 border border-gray-300 rounded-md font-semibold"
+                      className="w-12 pl-2 text-center bg-white text-[#101010] border border-gray-300 rounded-md font-semibold"
                     />
                     <button
                       onClick={handleIncrease}
@@ -562,26 +746,35 @@ const PropertyDetail = () => {
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600 font-semibold">
+                  <span className="text-sm text-[#101010] font-medium">
+                    Area Per Quantity
+                  </span>
+                  <span className="text-sm text-[#101010] font-semibold flex items-center">
+                    <IoHomeOutline className="mr-1" /> {totalArea} sqft
+                  </span>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-[#101010] font-medium">
                     Growth Rate
                   </span>
-                  <span className="text-sm text-customBlue flex items-center">
+                  <span className="text-sm text-customBlue font-semibold flex items-center">
                     <BsGraphUp className="mr-1" />
                     {propertyDetails.capital_appreciation}%
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600 font-semibold">
+                  <span className="text-sm text-[#101010] font-medium">
                     Total Investment
                   </span>
-                  <span className="text-sm text-gray-900 flex items-center font-bold">
+                  <span className="text-sm text-[#101010] font-semibold  flex items-center ">
                     <MdCurrencyRupee /> {totalPrice}
                   </span>
                 </div>
               </div>
 
               {/* Monthly Earnings Card */}
-              <div className="bg-blue-50 text-customBlue p-4 rounded-lg mb-6">
+              <div className="bg-blue-50  border-customBlue border p-4 rounded-lg mb-6 mt-24">
                 <div className="flex justify-between items-center">
                   <span className="font-semibold">Monthly Earnings</span>
                   <span className="flex items-center font-bold text-lg">
@@ -593,7 +786,7 @@ const PropertyDetail = () => {
                     )}
                   </span>
                 </div>
-                <div className="mt-2 text-xs text-customBlue/80">
+                <div className="mt-2 text-xs ">
                   Based on {propertyDetails.capital_appreciation}% annual
                   returns
                 </div>
@@ -608,14 +801,13 @@ const PropertyDetail = () => {
                     checked={isChecked}
                     onChange={handleCheckboxChange}
                   />
-                  <span className="text-sm text-gray-600">
+                  <span className="text-xs text-[#666666]">
                     I agree to the{" "}
-                    <button className="text-customBlue hover:text-blue-700">
+                    <button className="text-[#101010]">
                       Terms & Conditions
                     </button>{" "}
                     and
-                    <button className="text-customBlue hover:text-blue-700">
-                      {" "}
+                    <button className="text-[#101010] ml-1">
                       Privacy Policy
                     </button>{" "}
                     of Paxo Wealth
@@ -624,17 +816,24 @@ const PropertyDetail = () => {
               </div>
 
               {/* CTA Button */}
-              <button
-                className={`w-full py-3 rounded-lg font-bold transition-colors ${
+              <div
+                className={`flex rounded-full py-3 justify-center items-center gap-3 ${
                   isChecked
-                    ? "bg-customBlue hover:bg-blue-700 text-white"
+                    ? "bg-customYellow "
                     : "bg-gray-400 cursor-not-allowed text-gray-600"
                 }`}
-                onClick={handlePayment}
-                disabled={!isChecked} // Disable the button when not checked
               >
-                PROCEED TO PAYMENT
-              </button>
+                <button
+                  className="  font-medium"
+                  onClick={handlePayment}
+                  disabled={!isChecked}
+                >
+                  PROCEED TO PAYMENT
+                </button>
+                <div>
+                  <MdArrowOutward />
+                </div>
+              </div>
             </div>
           </div>
         </div>

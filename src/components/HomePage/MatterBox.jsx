@@ -122,7 +122,6 @@ const MatterBox = () => {
         wireframes: false,
       },
     });
-    
 
     Render.run(render);
 
@@ -150,32 +149,41 @@ const MatterBox = () => {
     ];
 
     positions.forEach((position) => {
-      const body = Bodies.rectangle(position.x, position.y, 110, 110, {
+      // const body = Bodies.rectangle(position.x, position.y, 110, 110, {
+      //   restitution: 0.7,
+      //   friction: 0.5,
+      //   render: {
+      //     sprite: {
+      //       texture: `data:image/svg+xml,${position.texture}`,
+      //       xScale: 1,
+      //       yScale: 1,
+      //     },
+      //   },
+      // });
+      const body = Bodies.rectangle(position.x, position.y, 110, 155, {
+        // Adjust width and height
         restitution: 0.7,
         friction: 0.5,
         render: {
           sprite: {
             texture: `data:image/svg+xml,${position.texture}`,
-            xScale: 1,
-            yScale: 1,
+            xScale: 1.2, // Scale up if necessary
+            yScale: 1.2,
           },
         },
       });
+
       Composite.add(world, body);
     });
 
-    // const coinPositions = [
-    //   { x: isMobile ? 200 : 1150, y: isMobile ? 150 : 350, texture: coinSVG },
-    //   { x: isMobile ? 400 : 700, y: isMobile ? 150 : 100, texture: coinSVG },
-    // ];
     const coinPositions = [
       {
-        x: isMobile ? 200 : is3xl ? 1000 : is2xl ? 900 : isXl ? 750 : 1150,
+        x: isMobile ? 200 : is3xl ? 1000 : is2xl ? 900 : isXl ? 150 : 1150,
         y: isMobile ? 150 : is3xl ? 150 : is2xl ? 130 : isXl ? 120 : 350,
         texture: coinSVG,
       },
       {
-        x: isMobile ? 400 : is3xl ? 1620 : is2xl ? 1550 : isXl ? 1320 : 400,
+        x: isMobile ? 400 : is3xl ? 1620 : is2xl ? 1550 : isXl ? 1320 : 600,
         y: isMobile ? 150 : is3xl ? 400 : is2xl ? 370 : isXl ? 360 : 100,
         texture: coinSVG,
       },
@@ -203,19 +211,19 @@ const MatterBox = () => {
     Composite.add(world, [
       Bodies.rectangle(width / 2, -thickness / 2, width, thickness, {
         isStatic: true,
-        render: { fillStyle: "white" }, // Top border
+        render: { fillStyle: "white" },
       }),
       Bodies.rectangle(width / 2, height + thickness / 2, width, thickness, {
         isStatic: true,
-        render: { fillStyle: "white" }, // Top border
+        render: { fillStyle: "white" },
       }),
       Bodies.rectangle(-thickness / 2, height / 2, thickness, height, {
         isStatic: true,
-        render: { fillStyle: "white" }, // Top border
+        render: { fillStyle: "white" },
       }),
       Bodies.rectangle(width + thickness / 2, height / 2, thickness, height, {
         isStatic: true,
-        render: { fillStyle: "white" }, // Top border
+        render: { fillStyle: "white" },
       }),
     ]);
 

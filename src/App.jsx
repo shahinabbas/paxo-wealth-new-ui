@@ -55,8 +55,6 @@ function App() {
 function AppWithNavigation() {
   const location = useLocation(); // This should now be inside the Router context
   const isAuthPage =
-    location.pathname === "/login" ||
-    location.pathname === "/signup" ||
     location.pathname === "/kyc"; // Check if the route is login or signup
   const token = localStorage.getItem("token");
   const kycStatus = localStorage.getItem("kycStatus");
