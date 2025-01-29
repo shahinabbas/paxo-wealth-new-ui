@@ -1,10 +1,11 @@
 import React from "react";
 import { RxArrowTopRight } from "react-icons/rx";
-import { motion } from "framer-motion"; // Import motion from framer-motion
+import { motion } from "framer-motion"; 
 import { useNavigate } from "react-router-dom";
 import IncomeGif from "/Income_2.gif";
 import DirectSaveGif from "/DirectSave.gif";
 import RentRiseGif from "/Rent.gif";
+import Image from "/home.png";
 
 function Combined() {
   const navigate = useNavigate();
@@ -45,9 +46,16 @@ function Combined() {
 
   return (
     <div>
-      <div className="hidden bg-white md:flex h-screen md:gap-8 xl:gap-14 xl:px-14 md:px-8 items-center text-center justify-center ">
-        {/* Boost Income Section */}
-        <div className=" bg-[#AED1FF] bg-opacity-20 p-8 md:w-[380px] xl:w-[400px] 2xl:w-[800px]">
+      <div
+        className="hidden bg-white md:flex min-h-screen md:gap-8 xl:gap-14 xl:px-14 items-center text-center justify-center"
+        style={{
+          backgroundImage: `url(${Image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className=" bg-[#FFFFFF] bg-clip-padding backdrop-filter backdrop-blur-[10px] bg-opacity-[40%]  p-8 md:w-[380px] xl:w-[400px] 2xl:w-[800px] transform transition-all duration-300 ease-in-out hover:scale-105">
           <motion.h1
             className="text-4xl md:text-3xl lg:text-4xl xl:mt-10  font-meuthanies"
             initial="hidden"
@@ -85,7 +93,7 @@ function Combined() {
         </div>
 
         {/* Rent Rise Section */}
-        <div className=" bg-[#89DDBF] bg-opacity-20 p-8 md:w-[380px] xl:w-[400px] 2xl:w-[800px]">
+        <div className="bg-[#FFFFFF] bg-clip-padding backdrop-filter backdrop-blur-[10px] bg-opacity-[40%]  p-8 md:w-[380px] xl:w-[400px] 2xl:w-[800px] transform transition-all duration-300 ease-in-out hover:scale-105">
           <motion.h1
             className=" text-4xl md:text-3xl lg:text-4xl xl:mt-10  font-meuthanies"
             initial="hidden"
@@ -126,7 +134,7 @@ function Combined() {
           initial="hidden"
           animate="visible"
           variants={videoVariants}
-          className="bg-[#CAB5F5] bg-opacity-20 p-8 md:w-[380px] xl:w-[400px] 2xl:w-[800px]"
+          className="bg-[#FFFFFF] bg-clip-padding backdrop-filter backdrop-blur-[10px] bg-opacity-[40%]  p-8 md:w-[380px] xl:w-[400px] 2xl:w-[800px] transform transition-all duration-300 ease-in-out hover:scale-105"
         >
           <motion.h1
             className=" text-4xl md:text-3xl lg:text-4xl xl:mt-10 font-meuthanies"
@@ -165,39 +173,47 @@ function Combined() {
       </div>
 
       {/* Mobile View */}
-      <div className="flex pt-8 mt-5 lg:hidden flex-col min-h-screen md:mt-14 md:gap-10 items-center text-center ">
+      <div className=" pt-10 mt-5 flex-col min-h-screen items-center text-center">
+        {" "}
         {[
           {
             title: "Boost Income",
             icon: IncomeGif,
             desc: "Experience immediate 48% growth with secure payouts",
             link: "/boost-income",
-            bgColor: "bg-[#AED1FF] bg-opacity-20",
+            bgColor:
+              "bg-[#FFFFFF] bg-clip-padding backdrop-filter backdrop-blur-[10px] bg-opacity-[40%] ",
           },
           {
             title: "Rent Rise",
             icon: RentRiseGif,
             desc: "Turn properties into a steady income source effortlessly.",
             link: "/rent-rise",
-            bgColor: "bg-[#89DDBF] bg-opacity-20",
+            bgColor:
+              "bg-[#FFFFFF] bg-clip-padding backdrop-filter backdrop-blur-[10px] bg-opacity-[40%] ",
           },
           {
             title: "Direct Save",
             icon: DirectSaveGif,
             desc: "Save big with exclusive discounts on premium properties",
             link: "/direct-save",
-            bgColor: "bg-[#CAB5F5] bg-opacity-20",
+            bgColor:
+              "bg-[#FFFFFF] bg-clip-padding backdrop-filter backdrop-blur-[10px] bg-opacity-[40%] ",
           },
         ].map((section, index) => (
           <div
             key={index}
-            className={`w-full flex flex-col items-center  pt-4 px-5 bg-white`}
+            className={`w-full flex flex-col items-center py-3 px-5 `}
+            style={{
+              backgroundImage: `url(${Image})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
           >
-            <div className={`py-10 ${section.bgColor}`}>
+            <div className={`pb-10  ${section.bgColor} p-5 `}>
               <div className="text-2xl font-meuthanies">{section.title}</div>
-              <p className="opacity-50 text-xs mt-2 -mb-10 font-sf-pro">
-                {section.desc}
-              </p>
+              <p className="opacity-50 text-xs  font-sf-pro">{section.desc}</p>
               <img
                 src={section.icon}
                 alt={`${section.title} GIF`}
@@ -214,7 +230,7 @@ function Combined() {
                   <RxArrowTopRight />
                 </div>
               </div>
-            </div>
+          </div>
           </div>
         ))}
       </div>

@@ -37,7 +37,9 @@ export const StickyScroll = ({ content }) => {
               key={index}
               onClick={() => handleButtonClick(index)}
               className={`w-full px-10 text-left py-2 rounded-lg font-meuthanies ${
-                activeCard === index ? "bg-white text-black" : "bg-transparent text-white"
+                activeCard === index
+                  ? "bg-white text-black"
+                  : "bg-transparent text-white"
               } font-semibold`}
             >
               {item.buttonLabel}
@@ -110,9 +112,9 @@ export const StickyScroll = ({ content }) => {
                 {/* Button */}
                 <div>
                   {activeCard === index && (
-                    <Link 
+                    <Link
                       to={item.path}
-                      className="bg-customYellow md:mb-0 px-8 rounded-full mt-6 text-black inline-flex items-center justify-center space-x-2 p-2 "
+                      className="bg-customYellow md:mb-0 mb-6 px-8 rounded-full mt-6 text-black inline-flex items-center justify-center space-x-2 p-2 "
                     >
                       <p className="text-black font-medium text-[10px] md:text-lg">
                         {item.button}

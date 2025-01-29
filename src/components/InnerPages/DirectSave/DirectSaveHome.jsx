@@ -1,6 +1,6 @@
 import React from "react";
 import { MdArrowOutward } from "react-icons/md";
-import DirectSaveIcon from "../../Home/RentRiseIcon";
+import DirectSaveIcon from "../../Home/DirectSaveIcon";
 function DirectSaveHome() {
   return (
     <div className="bg-white h-screen md:px-10 px-4">

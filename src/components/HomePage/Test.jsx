@@ -1,219 +1,241 @@
-import React, { useEffect, useRef, useState } from "react";
-// import { Engine, RenderClones, Walls, Circle } from "react-matter-js";
+import React from "react";
+import { RxArrowTopRight } from "react-icons/rx";
+import { motion } from "framer-motion"; // Import motion from framer-motion
+import { useNavigate } from "react-router-dom";
+import IncomeGif from "/Income_2.gif";
+import DirectSaveGif from "/DirectSave.gif";
+import RentRiseGif from "/Rent.gif";
+import Image from "/home.png";
 
-const Coin = () => (
-  <svg
-    width="165"
-    height="163"
-    viewBox="0 0 165 163"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M89.2191 31.4716C80.1203 29.2927 70.5417 30.0198 61.6945 33.5609C52.8474 37.102 45.129 43.298 39.5155 51.3655C33.902 59.433 30.6454 69.0095 30.1576 78.8842C29.6699 88.7588 31.9728 98.488 36.7752 106.841C41.5775 115.195 48.6637 121.797 57.1375 125.814C65.6114 129.831 75.0923 131.081 84.3814 129.407C93.6705 127.733 102.351 123.21 109.324 116.409C116.297 109.609 121.251 100.837 123.558 91.2019C126.637 78.2834 124.75 64.7399 118.313 53.5423C111.875 42.3446 101.412 34.4074 89.2191 31.4716ZM67.1845 123.487C59.0967 121.55 51.7987 117.117 46.2133 110.749C40.6279 104.38 37.0061 96.3624 35.8057 87.709C34.6054 79.0556 35.8805 70.1552 39.4697 62.1335C43.059 54.1117 48.8013 47.3288 55.9704 42.6425C63.1395 37.9563 71.4135 35.5771 79.7459 35.8059C88.0784 36.0346 96.0952 38.8611 102.783 43.9278C109.47 48.9945 114.527 56.0739 117.316 64.2707C120.104 72.4676 120.497 81.4137 118.446 89.9779C115.684 101.455 108.736 111.428 99.1265 117.71C89.5165 123.992 78.0292 126.069 67.1845 123.487Z"
-      fill="black"
-    />
-    <path
-      d="M92.6963 72.3652C92.9373 69.2252 92.3254 66.1011 90.9321 63.3581L105.094 66.7494L106.39 61.3367L62.9414 50.9323L61.6453 56.3449L79.5358 60.6291C81.7935 61.1792 83.7949 62.5061 85.2271 64.4022C86.6594 66.2984 87.4417 68.657 87.4518 71.1093L59.701 64.4639L58.4049 69.8765L86.1556 76.5219C85.0358 78.7036 83.27 80.452 81.1343 81.4938C78.9985 82.5355 76.6132 82.8119 74.3512 82.2797L59.0164 78.6075C58.4996 78.4839 57.9553 78.5291 57.4552 78.7372C56.9551 78.9452 56.5228 79.3063 56.2153 79.7729C55.9077 80.2394 55.7395 80.7894 55.7326 81.3504C55.7258 81.9114 55.8807 82.457 56.177 82.9152L75.9022 113.392L80.2849 110.19L64.3807 85.6151L73.055 87.6923C76.6771 88.5522 80.5048 88.0287 83.8617 86.2145C87.2186 84.4003 89.8887 81.4121 91.4001 77.7778L101.853 80.281L103.149 74.8684L92.6963 72.3652Z"
-      fill="black"
-    />
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M112.789 20.8104C115.581 22.1043 118.401 23.6004 121.231 25.3222C122.742 26.2412 124.18 27.2068 125.55 28.2133C128.386 30.358 131.051 32.7621 133.514 35.4068C136.38 38.4839 138.931 41.8434 141.14 45.4312C149.24 58.9756 151.29 74.0831 150.977 84.1973C150.898 85.9037 150.756 87.6085 150.552 89.3077C149.122 96.1721 145.929 109.615 143.676 112.964C143.542 113.017 143.408 113.07 143.273 113.123C136.516 126.23 125.878 136.722 113.023 142.958C100.167 149.193 85.8203 150.821 72.2261 147.585C70.4907 147.17 68.7652 146.668 67.0917 146.107C65.3961 145.852 63.7 145.544 62.003 145.137C48.816 141.985 37.0565 134.415 28.4691 123.551C19.8817 112.687 14.924 99.108 14.3313 84.8276C13.7387 70.5473 17.5428 56.3268 25.1792 44.276C32.8156 32.2251 43.8775 22.9859 56.7239 17.9291C56.7532 17.8716 56.7826 17.8142 56.8121 17.7568C58.7303 16.885 61.2755 16.0028 64.3339 15.2682C64.2825 15.349 64.2314 15.43 64.1804 15.5111C69.0679 14.2568 74.0653 13.6186 79.0661 13.6103L79.0406 13.5813C79.0695 13.551 79.0985 13.5207 79.1274 13.4905C81.5339 13.4594 84.057 13.5447 86.6757 13.7755C86.5744 13.8596 86.4735 13.9442 86.3729 14.0294C88.6408 14.3031 90.8899 14.7051 93.1106 15.2337C94.8 15.6382 96.4443 16.1293 98.0636 16.6687C99.8283 16.9282 101.598 17.2662 103.334 17.6818C106.578 18.4621 109.739 19.5102 112.789 20.8104ZM140.794 81.0212C140.654 84.7558 140.214 88.4794 139.48 92.1525L144.592 93.3765C145.307 89.6919 145.7 85.9544 145.765 82.2116L140.794 81.0212ZM131.826 44.5353L134.445 45.1626C131.664 41.2634 128.436 37.7445 124.832 34.6824C127.455 37.7232 129.796 41.0217 131.826 44.5353ZM142.647 61.4343C141.558 58.1241 140.197 54.9261 138.58 51.8758L135.11 51.0447C136.438 54.0723 137.544 57.2069 138.42 60.422L142.647 61.4343ZM145.61 76.4513C145.391 73.4513 144.959 70.4784 144.318 67.5575L139.767 66.4675C140.284 69.376 140.614 72.323 140.754 75.2884L145.61 76.4513ZM136.547 114.342L131.691 113.179C130.223 115.76 128.594 118.238 126.815 120.596L131.367 121.686C133.262 119.373 134.993 116.918 136.547 114.342ZM138.176 97.5633C137.167 101.17 135.872 104.689 134.306 108.083L139.277 109.273C140.914 105.907 142.257 102.397 143.288 98.7873L138.176 97.5633ZM38.7266 35.9118C30.2035 44.2234 24.1493 54.945 21.3294 66.7208C17.5662 82.5101 19.8716 99.0636 27.7397 112.75C35.6078 126.436 48.3962 136.137 63.2991 139.724C74.4198 142.388 86.127 141.499 96.9402 137.171C107.753 132.843 117.187 125.27 124.048 115.41C130.909 105.549 134.889 93.8448 135.485 81.7758C136.082 69.7068 133.267 57.8156 127.397 47.6058C121.528 37.3961 112.867 29.3264 102.51 24.4171C92.153 19.5079 80.5652 17.9797 69.2119 20.0258C57.8585 22.0718 47.2496 27.6002 38.7266 35.9118ZM112.411 137.178L109.791 136.55C106.39 138.763 102.809 140.644 99.0934 142.167C103.693 141.069 108.165 139.394 112.411 137.178ZM115.667 132.234L119.138 133.065C121.961 131.078 124.623 128.844 127.093 126.386L122.866 125.374C120.629 127.843 118.223 130.137 115.667 132.234Z"
-      fill="black"
-    />
-  </svg>
-);
-const Tick = () => (
-  <svg
-    width="110"
-    height="110"
-    viewBox="0 0 110 110"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M91.29 36.1473L83.8163 32.6631C82.0425 31.8359 80.0413 29.6538 79.3705 27.8107L76.5504 20.0625C75.2089 16.3768 71.102 14.4617 67.4165 15.8009L59.6652 18.6221C57.8242 19.2922 54.8626 19.161 53.0889 18.3349L45.6162 14.8503C42.0656 13.1946 37.8033 14.7459 36.1476 18.2966L32.6644 25.7732C31.8361 27.5475 29.6477 29.5498 27.8107 30.2184C27.8107 30.2184 23.7434 31.6988 20.0625 33.0385C16.3816 34.3783 14.4626 38.4866 15.8041 42.1724L18.6243 49.9207C19.2925 51.7566 19.1653 54.7225 18.3377 56.4956L14.8521 63.9687C13.1944 67.5201 14.7458 71.7824 18.2999 73.4415L25.7736 76.9257C27.5485 77.7525 29.5512 79.9421 30.2194 81.7781L33.0396 89.5265C34.3797 93.2083 38.492 95.1259 42.1728 93.7862L49.9212 90.966C51.7621 90.296 54.7229 90.425 56.4967 91.2513L63.9701 94.7378C67.5201 96.3916 71.7824 94.8402 73.4388 91.2915L76.9227 83.8169C77.751 82.0426 79.9355 80.0417 81.7764 79.3717L89.5277 76.5504C93.2125 75.2093 95.1262 71.0984 93.7861 67.4166L90.9659 59.6682C90.2948 57.8243 90.4259 54.8661 91.2525 53.0933L94.7381 45.6202C96.3902 42.0662 94.8387 37.8038 91.29 36.1473ZM54.9614 71.7931L34.8114 62.3954L37.823 55.9387L51.5163 62.324L64.6621 34.1413L71.1182 37.152L54.9614 71.7931Z"
-      fill="#006FFF"
-    />
-    <path
-      d="M54.9615 71.7931L34.8115 62.3954L37.8231 55.9388L51.5163 62.324L64.6622 34.1413L71.1183 37.152L54.9615 71.7931Z"
-      fill="white"
-    />
-  </svg>
-);
-const Vectors = () => (
-  <svg
-    width="90"
-    height="90"
-    viewBox="0 0 90 90"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M45 0C42.9938 41.3438 41.3438 42.9938 0 45C41.3438 47.0062 42.9938 48.6562 45 90C47.0062 48.6562 48.6562 47.0062 90 45C48.6562 42.9938 47.0062 41.3438 45 0Z"
-      fill="#0056E0"
-    />
-  </svg>
-);
-const Vector1 = () => (
-  <svg
-    width="111"
-    height="111"
-    viewBox="0 0 111 111"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M55.5 0C53.0256 50.9906 50.9906 53.0256 0 55.5C50.9906 57.9744 53.0256 60.0094 55.5 111C57.9744 60.0094 60.0094 57.9744 111 55.5C60.0094 53.0256 57.9744 50.9906 55.5 0Z"
-      fill="#FFCE3A"
-    />
-  </svg>
-);
+function Test() {
+  const navigate = useNavigate();
 
-const greenCoin = () => (
-  <svg
-    width="169"
-    height="144"
-    viewBox="0 0 169 144"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <g clip-path="url(#clip0_130_2531)">
-      <path
-        d="M115.512 61.0775C102.98 43.8289 78.7463 39.9883 61.495 52.522C44.2438 65.0558 40.4078 89.2904 52.9396 106.539C65.4714 123.788 89.7053 127.628 106.957 115.094C124.208 102.561 128.044 78.326 115.512 61.0775ZM108.779 87.6971L102.576 79.159C101.827 81.6004 100.511 83.8714 98.7264 85.8232L103.091 91.8299L97.4022 95.9628L93.0428 89.9627C86.6615 92.8622 79.096 91.6942 73.9237 86.9647L69.0163 106.868L62.1938 105.188L70.6054 71.0425L77.2487 80.1863C79.9392 83.8894 84.5964 85.2841 88.7558 84.0621L76.7378 67.5208L82.4262 63.3879L94.4442 79.9292C96.8917 76.3511 97.0044 71.4908 94.3139 67.7877L88.1146 59.2551L93.803 55.1222L114.467 83.5642L108.779 87.6971Z"
-        fill="#1DF6A7"
-      />
-      <path
-        d="M132.767 48.541C113.398 21.8821 75.6205 15.8964 48.959 35.2671C22.2974 54.6379 16.3163 92.4164 35.6851 119.075C55.0539 145.734 92.8317 151.72 119.493 132.349C146.155 112.978 152.136 75.1999 132.767 48.541ZM47.2515 110.672C32.4393 90.2845 36.9752 61.6457 57.3625 46.8335C77.7497 32.0213 106.389 36.5573 121.201 56.9445C136.013 77.3317 131.477 105.971 111.09 120.783C90.7025 135.595 62.0637 131.059 47.2515 110.672Z"
-        fill="#1DF6A7"
-      />
-    </g>
-    <path
-      d="M36.4219 42.0703C36.8906 41.5313 37.3594 41.0391 37.8281 40.5235C38.1094 40.2188 38.1094 39.7266 37.8047 39.4453C37.5 39.1641 37.0078 39.1641 36.7266 39.4688C36.2344 39.9844 35.7422 40.5235 35.2734 41.0625C34.9922 41.3907 35.0391 41.8594 35.3437 42.1407C35.6719 42.4219 36.1406 42.3985 36.4219 42.0703Z"
-      fill="#D9D9D9"
-    />
-    <path
-      d="M40.6641 37.7109C43.4766 35.0625 46.5703 32.6719 49.8281 30.5859C50.1797 30.3516 50.2969 29.8828 50.0625 29.5312C49.8281 29.1797 49.3594 29.0625 49.0078 29.2969C45.6797 31.4297 42.5156 33.8906 39.6328 36.5859C39.3281 36.8672 39.3047 37.3594 39.5859 37.6641C39.8906 37.9687 40.3594 37.9922 40.6641 37.7109Z"
-      fill="#D9D9D9"
-    />
-    <path
-      d="M132.891 124.125C132.446 124.664 131.977 125.203 131.531 125.742C131.25 126.07 131.297 126.539 131.602 126.82C131.93 127.102 132.399 127.055 132.68 126.75C133.149 126.211 133.617 125.649 134.086 125.109C134.344 124.781 134.297 124.313 133.992 124.031C133.641 123.75 133.149 123.797 132.891 124.125Z"
-      fill="#D9D9D9"
-    />
-    <path
-      d="M128.789 128.648C126.07 131.391 123.07 133.898 119.93 136.078C119.578 136.313 119.508 136.805 119.742 137.133C119.977 137.484 120.469 137.555 120.797 137.32C124.031 135.094 127.078 132.516 129.867 129.727C130.172 129.422 130.172 128.953 129.867 128.648C129.562 128.344 129.094 128.344 128.789 128.648Z"
-      fill="#D9D9D9"
-    />
-    <defs>
-      <clipPath id="clip0_130_2531">
-        <rect
-          width="120"
-          height="120"
-          fill="white"
-          transform="translate(97.5) rotate(54)"
-        />
-      </clipPath>
-    </defs>
-  </svg>
-);
-const whiteCoin = () => (
-  <svg
-    width="169"
-    height="144"
-    viewBox="0 0 169 144"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <g clip-path="url(#clip0_130_2531)">
-      <path
-        d="M115.512 61.0775C102.98 43.8289 78.7463 39.9883 61.495 52.522C44.2438 65.0558 40.4078 89.2904 52.9396 106.539C65.4714 123.788 89.7053 127.628 106.957 115.094C124.208 102.561 128.044 78.326 115.512 61.0775ZM108.779 87.6971L102.576 79.159C101.827 81.6004 100.511 83.8714 98.7264 85.8232L103.091 91.8299L97.4022 95.9628L93.0428 89.9627C86.6615 92.8622 79.096 91.6942 73.9237 86.9647L69.0163 106.868L62.1938 105.188L70.6054 71.0425L77.2487 80.1863C79.9392 83.8894 84.5964 85.2841 88.7558 84.0621L76.7378 67.5208L82.4262 63.3879L94.4442 79.9292C96.8917 76.3511 97.0044 71.4908 94.3139 67.7877L88.1146 59.2551L93.803 55.1222L114.467 83.5642L108.779 87.6971Z"
-        fill="#1DF6A7"
-      />
-      <path
-        d="M132.767 48.541C113.398 21.8821 75.6205 15.8964 48.959 35.2671C22.2974 54.6379 16.3163 92.4164 35.6851 119.075C55.0539 145.734 92.8317 151.72 119.493 132.349C146.155 112.978 152.136 75.1999 132.767 48.541ZM47.2515 110.672C32.4393 90.2845 36.9752 61.6457 57.3625 46.8335C77.7497 32.0213 106.389 36.5573 121.201 56.9445C136.013 77.3317 131.477 105.971 111.09 120.783C90.7025 135.595 62.0637 131.059 47.2515 110.672Z"
-        fill="#1DF6A7"
-      />
-    </g>
-    <path
-      d="M36.4219 42.0703C36.8906 41.5313 37.3594 41.0391 37.8281 40.5235C38.1094 40.2188 38.1094 39.7266 37.8047 39.4453C37.5 39.1641 37.0078 39.1641 36.7266 39.4688C36.2344 39.9844 35.7422 40.5235 35.2734 41.0625C34.9922 41.3907 35.0391 41.8594 35.3437 42.1407C35.6719 42.4219 36.1406 42.3985 36.4219 42.0703Z"
-      fill="#D9D9D9"
-    />
-    <path
-      d="M40.6641 37.7109C43.4766 35.0625 46.5703 32.6719 49.8281 30.5859C50.1797 30.3516 50.2969 29.8828 50.0625 29.5312C49.8281 29.1797 49.3594 29.0625 49.0078 29.2969C45.6797 31.4297 42.5156 33.8906 39.6328 36.5859C39.3281 36.8672 39.3047 37.3594 39.5859 37.6641C39.8906 37.9687 40.3594 37.9922 40.6641 37.7109Z"
-      fill="#D9D9D9"
-    />
-    <path
-      d="M132.891 124.125C132.446 124.664 131.977 125.203 131.531 125.742C131.25 126.07 131.297 126.539 131.602 126.82C131.93 127.102 132.399 127.055 132.68 126.75C133.149 126.211 133.617 125.649 134.086 125.109C134.344 124.781 134.297 124.313 133.992 124.031C133.641 123.75 133.149 123.797 132.891 124.125Z"
-      fill="#D9D9D9"
-    />
-    <path
-      d="M128.789 128.648C126.07 131.391 123.07 133.898 119.93 136.078C119.578 136.313 119.508 136.805 119.742 137.133C119.977 137.484 120.469 137.555 120.797 137.32C124.031 135.094 127.078 132.516 129.867 129.727C130.172 129.422 130.172 128.953 129.867 128.648C129.562 128.344 129.094 128.344 128.789 128.648Z"
-      fill="#D9D9D9"
-    />
-    <defs>
-      <clipPath id="clip0_130_2531">
-        <rect
-          width="120"
-          height="120"
-          fill="white"
-          transform="translate(97.5) rotate(54)"
-        />
-      </clipPath>
-    </defs>
-  </svg>
-);
-const tick = () => (
-  <svg
-    width="110"
-    height="110"
-    viewBox="0 0 110 110"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M91.29 36.1476L83.8163 32.6634C82.0425 31.8362 80.0413 29.654 79.3705 27.811L76.5504 20.0628C75.2089 16.377 71.102 14.4619 67.4165 15.8011L59.6652 18.6224C57.8242 19.2924 54.8626 19.1612 53.0889 18.3351L45.6162 14.8505C42.0656 13.1948 37.8033 14.7462 36.1476 18.2968L32.6644 25.7735C31.8361 27.5478 29.6477 29.55 27.8107 30.2187C27.8107 30.2187 23.7434 31.699 20.0625 33.0388C16.3816 34.3785 14.4626 38.4868 15.8041 42.1726L18.6243 49.921C19.2925 51.7568 19.1653 54.7227 18.3377 56.4959L14.8521 63.9689C13.1944 67.5203 14.7458 71.7826 18.2999 73.4417L25.7736 76.9259C27.5485 77.7527 29.5512 79.9423 30.2194 81.7783L33.0396 89.5267C34.3797 93.2086 38.492 95.1261 42.1728 93.7864L49.9212 90.9662C51.7621 90.2962 54.7229 90.4252 56.4967 91.2515L63.9701 94.7381C67.5201 96.3918 71.7824 94.8405 73.4388 91.2918L76.9227 83.8171C77.751 82.0428 79.9355 80.0419 81.7764 79.3719L89.5277 76.5507C93.2125 75.2095 95.1262 71.0987 93.7861 67.4168L90.9659 59.6684C90.2948 57.8246 90.4259 54.8664 91.2525 53.0936L94.7381 45.6205C96.3902 42.0665 94.8387 37.804 91.29 36.1476ZM54.9614 71.7934L34.8114 62.3956L37.823 55.939L51.5163 62.3243L64.6621 34.1416L71.1182 37.1523L54.9614 71.7934Z"
-      fill="#006FFF"
-    />
-    <path
-      d="M54.9614 71.7934L34.8114 62.3956L37.823 55.939L51.5163 62.3243L64.6622 34.1416L71.1182 37.1523L54.9614 71.7934Z"
-      fill="white"
-    />
-  </svg>
-);
+  const handleClick = (link) => {
+    if (link) {
+      navigate(link); // Navigate to the provided link
+    }
+  };
 
-const Test = () => {
-  // const width = window.innerWidth;
-  // const height = window.innerHeight;
-  // const circleCount = 10;
-  // const cirlceSize = height * 0.1;
+  // Define the fade-in animation variants for text
+  const textVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 2,
+        ease: "easeInOut",
+        delay: 1,
+      },
+    },
+  };
 
-  // const renderCircles = () => {
-  //   return [...Array(circleCount).keys()].map((num) => (
-  //     <Circle key={num} clone x={300} y={100} radius={cirlceSize} />
-  //   ));
-  // };
+  // Define animation variants for the video
+  const videoVariants = {
+    hidden: { opacity: 0, x: "-100%", y: "-5%" },
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: {
+        duration: 2,
+        ease: "easeInOut",
+        delay: 10.5,
+      },
+    },
+  };
 
   return (
-    <>
-      {/* <Engine options={{}}>
-        <RenderClones
-          enableMouse
-          options={{
-            width,
-            height,
-            background: "transparent",
-            wireframeBackground: "transparent",
-            visible: false
-          }}
+    <div>
+      <div
+        className="hidden bg-white md:flex min-h-screen md:gap-8 xl:gap-14 xl:px-14 items-center text-center justify-center"
+        style={{
+          backgroundImage: `url(${Image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className=" bg-[#FFFFFF] bg-clip-padding backdrop-filter backdrop-blur-[10px] bg-opacity-[40%]  p-8 md:w-[380px] xl:w-[400px] 2xl:w-[800px] transform transition-all duration-300 ease-in-out hover:scale-105">
+          <motion.h1
+            className="text-4xl md:text-3xl lg:text-4xl xl:mt-10  font-meuthanies"
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+          >
+            Boost Income
+          </motion.h1>
+          <motion.h1
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+            className="opacity-50 text-sm mt-4 font-sf-pro"
+          >
+            Experience immediate 48% growth with <br />
+            secure payouts
+          </motion.h1>
+
+          <img src={IncomeGif} alt="Boost Income" className="w-full" />
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+            className="bottom-5  cursor-pointer"
+          >
+            {" "}
+            <div
+              className="border bg-customYellow rounded-full xl:mb-10 inline-flex items-center justify-center space-x-2 p-2 px-8 transition-all duration-300 ease-in-out"
+              onClick={() => handleClick("/boost-income")}
+            >
+              <p className=" text-xl font-medium font-sf-pro">Unlock</p>
+              <RxArrowTopRight />
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Rent Rise Section */}
+        <div className="bg-[#FFFFFF] bg-clip-padding backdrop-filter backdrop-blur-[10px] bg-opacity-[40%]  p-8 md:w-[380px] xl:w-[400px] 2xl:w-[800px] transform transition-all duration-300 ease-in-out hover:scale-105">
+          <motion.h1
+            className=" text-4xl md:text-3xl lg:text-4xl xl:mt-10  font-meuthanies"
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+          >
+            Rent Rise
+          </motion.h1>
+          <motion.h1
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+            className="opacity-50 text-sm mt-4 font-sf-pro"
+          >
+            Turn properties into a steady income <br />
+            source effortlessly.
+          </motion.h1>
+
+          <img src={RentRiseGif} alt="Rent Rise" className="w-full" />
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+            className="bottom-5  cursor-pointer"
+          >
+            <div
+              className="border bg-customYellow rounded-full xl:mb-10 inline-flex items-center justify-center space-x-2 p-2 px-8 transition-all duration-300 ease-in-out"
+              onClick={() => handleClick("/rent-rise")}
+            >
+              <p className=" text-xl font-medium font-sf-pro">Unlock</p>
+              <RxArrowTopRight />
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Direct Save Section */}
+        <div
+          initial="hidden"
+          animate="visible"
+          variants={videoVariants}
+          className="bg-[#FFFFFF] bg-clip-padding backdrop-filter backdrop-blur-[10px] bg-opacity-[40%]  p-8 md:w-[380px] xl:w-[400px] 2xl:w-[800px] transform transition-all duration-300 ease-in-out hover:scale-105"
         >
-          <Walls x={0} y={0} width={width} height={height} wallWidth={1} />
-          {renderCircles()}
-        </RenderClones>
-      </Engine> */}
-    </>
+          <motion.h1
+            className=" text-4xl md:text-3xl lg:text-4xl xl:mt-10 font-meuthanies"
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+          >
+            Direct Save
+          </motion.h1>
+          <motion.h1
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+            className="opacity-50 text-sm mt-4 font-sf-pro"
+          >
+            Save big with exclusive discounts <br />
+            on premium properties
+          </motion.h1>
+
+          <img src={DirectSaveGif} alt="" />
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+            className="bottom-5  cursor-pointer"
+          >
+            <div
+              className="border bg-customYellow rounded-full xl:mb-10 inline-flex items-center justify-center space-x-2 p-2 px-8 transition-all duration-300 ease-in-out"
+              onClick={() => handleClick("/direct-save")}
+            >
+              <p className=" text-xl font-medium font-sf-pro">Unlock</p>
+              <RxArrowTopRight />
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Mobile View */}
+      <div className="flex pt-10 mt-5 lg:hidden flex-col min-h-screen items-center text-center">
+        {" "}
+        {[
+          {
+            title: "Boost Income",
+            icon: IncomeGif,
+            desc: "Experience immediate 48% growth with secure payouts",
+            link: "/boost-income",
+            bgColor:
+              "bg-[#FFFFFF] bg-clip-padding backdrop-filter backdrop-blur-[10px] bg-opacity-[40%] ",
+          },
+          {
+            title: "Rent Rise",
+            icon: RentRiseGif,
+            desc: "Turn properties into a steady income source effortlessly.",
+            link: "/rent-rise",
+            bgColor:
+              "bg-[#FFFFFF] bg-clip-padding backdrop-filter backdrop-blur-[10px] bg-opacity-[40%] ",
+          },
+          {
+            title: "Direct Save",
+            icon: DirectSaveGif,
+            desc: "Save big with exclusive discounts on premium properties",
+            link: "/direct-save",
+            bgColor:
+              "bg-[#FFFFFF] bg-clip-padding backdrop-filter backdrop-blur-[10px] bg-opacity-[40%] ",
+          },
+        ].map((section, index) => (
+          <div
+            key={index}
+            className={`w-full flex flex-col items-center py-3 px-5 `}
+            style={{
+              backgroundImage: `url(${Image})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            <div className={`py-10 ${section.bgColor}`}>
+              <div className="text-2xl font-meuthanies">{section.title}</div>
+              <p className="opacity-50 text-xs  font-sf-pro">{section.desc}</p>
+              <img
+                src={section.icon}
+                alt={`${section.title} GIF`}
+                className="w-full h-full"
+              />
+              <div className="cursor-pointer -mt-8">
+                <div
+                  className="border rounded-full inline-flex items-center justify-center space-x-2 py-1 px-5 bg-customYellow"
+                  onClick={() => handleClick(section.link)}
+                >
+                  <p className="text-xl font-sf-pro font-medium md:text-[10px]">
+                    Unlock
+                  </p>
+                  <RxArrowTopRight />
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
-};
+}
 
 export default Test;

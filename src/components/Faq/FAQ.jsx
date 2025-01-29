@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { RxArrowTopRight } from "react-icons/rx";
 import { Link, useLocation } from "react-router-dom";
-import image from "/explore.png";
 import { MdArrowOutward } from "react-icons/md";
 
 const faqData = [

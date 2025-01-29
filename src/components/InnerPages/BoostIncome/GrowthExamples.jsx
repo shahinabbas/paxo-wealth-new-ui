@@ -34,13 +34,16 @@ function GrowthExamples() {
   const estReturns = (totalYearlyGrowth * 100000) / 1000;
 
   // Normalize the values so their sum equals 1000
+  // const total = investmentAmount + estReturns;
+  // const normalizedInvestment = (investmentAmount / total) * 1000;
+  // const normalizedReturns = (estReturns / total) * 1000;
   const total = investmentAmount + estReturns;
-  const normalizedInvestment = (investmentAmount / total) * 1000;
-  const normalizedReturns = (estReturns / total) * 1000;
+  const normalizedInvestment = estReturns
+  const normalizedReturns = investmentAmount
 
   const computeStarterEdgeData = () => [
     {
-      name: "Investment Amount",
+      name: "Activation Amount",
       value: normalizedInvestment,
       fill: "#0056E0",
     },
@@ -53,7 +56,7 @@ function GrowthExamples() {
 
   const computeProgressiveGrowthData = () => [
     {
-      name: "Investment Amount",
+      name: "Activation Amount",
       value: activationAmount,
       fill: "#1DF6A7",
     },
@@ -66,7 +69,7 @@ function GrowthExamples() {
 
   const computePinnacleGrowthData = () => [
     {
-      name: "Investment Amount",
+      name: "Activation Amount",
       value: activationAmount,
       fill: "#1DF6A7",
     },
@@ -232,6 +235,8 @@ function GrowthExamples() {
                 fill="#8884d8"
                 paddingAngle={0}
                 dataKey="value"
+                startAngle={90} 
+                endAngle={450}
               >
                 {currentData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.fill} />

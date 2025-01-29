@@ -53,6 +53,9 @@ module.exports = {
         customGreen: {
           DEFAULT: "#1DF6A7",
         },
+        customGreen1: {
+          DEFAULT: "#0CB184",
+        },
         customBlue: {
           DEFAULT: "#0056E0",
         },

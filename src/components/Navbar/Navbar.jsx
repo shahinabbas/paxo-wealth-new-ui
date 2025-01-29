@@ -7,10 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 // import PW from "/paxowealth.png";
-import PW from "/pwlogo.png";
+import PW from "/PaxoRed.png";
 import axios from "axios";
-
-import { FaSignOutAlt } from "react-icons/fa";
 
 function Navbar({ setIsSidebarOpen }) {
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -235,7 +233,7 @@ function Navbar({ setIsSidebarOpen }) {
                 >
                   <IoMdClose />
                 </div>
-                <img src={PW} alt="Logo" className="w-28 h-28 bg-cover" />
+                <img src={PW} alt="Logo" className="w-40 p-5 bg-cover" />
                 {/* Mobile menu items */}
                 <div className="px-5">
                   <div className="py-2 text-sm cursor-pointer">

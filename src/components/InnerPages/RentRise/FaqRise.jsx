@@ -56,7 +56,7 @@ const faqData = [
   },
 ];
 
-export default function FaqNew() {
+export default function Faqrise() {
   const [expanded, setExpanded] = useState(null);
   const location = useLocation();
 
@@ -77,7 +77,7 @@ export default function FaqNew() {
                 Got Questions?
               </h2>
               <h1 className="text-[40px] xl:text-6xl xl:mt-2 font-meuthanies">
-                We've Got <span className="text-customBlue">Answers</span>
+                We've Got <span className="text-[#0CB184]">Answers</span>
               </h1>
             </div>
           </div>
@@ -114,7 +114,7 @@ export default function FaqNew() {
                         duration: 0.7,
                         ease: "easeInOut",
                       }}
-                      className="px-4 py-2 text-sm border-l-2 border-customBlue  font-medium text-left bg-[#F1F1F1] "
+                      className="px-4 py-2 text-sm border-l-2 border-customBlue  font-medium text-left bg-[#F6F6F6] "
                     >
                       <p>{faq.answer}</p>
                     </motion.div>

@@ -323,6 +323,8 @@ const BoostIncomeProperties = () => {
   const onClick = (slug) => {
     navigate(`/property-detail/${slug}`);
   };
+  console.log(properties);
+  
   return (
     <div className="mt-10 md:mt-20 ">
       <h1 className="font-meuthanies text-center text-4xl md:text-5xl xl:text-5xl text-black">
@@ -371,7 +373,7 @@ const BoostIncomeProperties = () => {
               </div>
               <div className="p-4">
                 <h2 className="text-lg xl:text-xl font-bold text-[#101010">
-                  {property.property_subName}
+                  {property.category.name}
                 </h2>
                 <p className="text-sm text-[#666666] line-clamp-2">
                   {property.description}

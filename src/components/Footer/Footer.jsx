@@ -97,10 +97,10 @@ function Footer() {
           </div>
         </div>
         <div className="justify-between mt-2 md:flex md:px-40 text-sm font-light">
-          <div className="cursor-pointer">
+          <div className="cursor-pointer text-[#dc0606]">
             <p>Copyright2025@paxowealth.all rights reserved.</p>
           </div>
-          <div className="md:flex hidden gap-10">
+          <div className="md:flex hidden gap-10 text-[#dc0606]">
             <Link to="/privacy-policy">Privacy Policy</Link>
             <Link to="/terms">Terms & Conditions</Link>
           </div>

@@ -42,6 +42,7 @@ import GrowthExamples from "./components/InnerPages/BoostIncome/GrowthExamples";
 import Calc from "./components/Calc"
 import Matter from "./components/HomePage/MatterBox"
 import RefundPolicy from "./components/Refund/RefundPolicy";
+import Test from "./components/HomePage/Test";
 
 function App() {
   return (
@@ -76,6 +77,7 @@ function AppWithNavigation() {
 
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/test" element={<Test />} />
           <Route path="/properties" element={<Properties />} />
           <Route path="/login" element={<Login />} />
           <Route path="/kyc-tracking" element={<KycTrackingPage />} />
@@ -92,8 +94,8 @@ function AppWithNavigation() {
             element={<BoostIncomePropertiesHome />}
           />
           <Route path="/boost" element={<Boost />} />
-          {/* <Route path="/rent-rise" element={<RentRise />} /> */}
-          <Route path="/rent-rise" element={<ComingSoon />} />
+          <Route path="/rent-rise" element={<RentRise />} />
+          {/* <Route path="/rent-rise" element={<ComingSoon />} /> */}
           <Route path="/direct-save" element={<DirectSave />} />
           <Route
             path="/property-detail/:slug"

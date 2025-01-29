@@ -1,8 +1,11 @@
-import { motion } from "framer-motion";
+import { inView, motion } from "framer-motion";
 import React, { useRef, useState, useEffect } from "react";
 import Matter from "matter-js";
 import Dot from "/Dot1.png"; // Your background image
 import "./MatterBox.css";
+import { Link } from "react-router-dom";
+import { useInView } from "react-intersection-observer";
+
 // Convert the Tick SVG to a string for texture
 const tickSVG = encodeURIComponent(`
   <svg
@@ -71,6 +74,7 @@ const boostSVG = encodeURIComponent(`
 const MatterBox = () => {
   const canvasRef = useRef(null);
   const [texts] = useState(["Direct Save", "Rent Rise", "BoostIncome"]);
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   const textVariants = {
     hidden: { opacity: 0, scale: 0.5 },
@@ -85,6 +89,8 @@ const MatterBox = () => {
     visible: { opacity: 0.3, y: 0, transition: { duration: 1 } },
   };
   useEffect(() => {
+    if (!inView) return;
+
     const Engine = Matter.Engine;
     const Render = Matter.Render;
     const Runner = Matter.Runner;
@@ -92,37 +98,57 @@ const MatterBox = () => {
     const Composite = Matter.Composite;
     const Mouse = Matter.Mouse;
     const MouseConstraint = Matter.MouseConstraint;
-  
+
     const width = window.innerWidth;
     const height = window.innerHeight;
-  
-    const isMobile = width < 768; // Mobile screen condition
-  
+
+    const isMobile = width < 768;
+    const isXl = width >= 1440;
+    const is2xl = width >= 1792;
+    const is3xl = width >= 1920;
+
     const engine = Engine.create();
     const world = engine.world;
-  
+
     const render = Render.create({
       canvas: canvasRef.current,
       engine: engine,
       options: {
-        width,
-        height,
+        width: window.innerWidth, // Set to screen width
+        height, // Set your desired height
         background: `url(${Dot})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         wireframes: false,
       },
     });
-  
+    
+
     Render.run(render);
-  
+
     const positions = [
-      { x: isMobile ? 150 : 200, y: isMobile ? 50 : 100, texture: tickSVG },
-      { x: isMobile ? 200 : 200, y: isMobile ? 100 : 350, texture: rentSVG },
-      { x: isMobile ? 100 : 1150, y: isMobile ? 150 : 200, texture: boostSVG },
-      { x: isMobile ? 150 : 800, y: isMobile ? 200 : 390, texture: directSVG },
+      {
+        x: isMobile ? 150 : is3xl ? 300 : is2xl ? 250 : isXl ? 220 : 200,
+        y: isMobile ? 50 : is3xl ? 150 : is2xl ? 130 : isXl ? 120 : 100,
+        texture: tickSVG,
+      },
+      {
+        x: isMobile ? 350 : is3xl ? 350 : is2xl ? 300 : isXl ? 250 : 200,
+        y: isMobile ? 100 : is3xl ? 400 : is2xl ? 370 : isXl ? 360 : 350,
+        texture: rentSVG,
+      },
+      {
+        x: isMobile ? 100 : is3xl ? 1700 : is2xl ? 1600 : isXl ? 1250 : 1150,
+        y: isMobile ? 150 : is3xl ? 250 : is2xl ? 230 : isXl ? 220 : 200,
+        texture: boostSVG,
+      },
+      {
+        x: isMobile ? 150 : is3xl ? 1000 : is2xl ? 850 : isXl ? 820 : 800,
+        y: isMobile ? 400 : is3xl ? 450 : is2xl ? 420 : isXl ? 400 : 390,
+        texture: directSVG,
+      },
     ];
-  
+
     positions.forEach((position) => {
       const body = Bodies.rectangle(position.x, position.y, 110, 110, {
         restitution: 0.7,
@@ -137,13 +163,28 @@ const MatterBox = () => {
       });
       Composite.add(world, body);
     });
-  
+
+    // const coinPositions = [
+    //   { x: isMobile ? 200 : 1150, y: isMobile ? 150 : 350, texture: coinSVG },
+    //   { x: isMobile ? 400 : 700, y: isMobile ? 150 : 100, texture: coinSVG },
+    // ];
     const coinPositions = [
-      { x: isMobile ? 200 : 1150, y: isMobile ? 150 : 350, texture: coinSVG },
-      { x: isMobile ? 400 : 700, y: isMobile ? 150 : 100, texture: coinSVG },
+      {
+        x: isMobile ? 200 : is3xl ? 1000 : is2xl ? 900 : isXl ? 750 : 1150,
+        y: isMobile ? 150 : is3xl ? 150 : is2xl ? 130 : isXl ? 120 : 350,
+        texture: coinSVG,
+      },
+      {
+        x: isMobile ? 400 : is3xl ? 1620 : is2xl ? 1550 : isXl ? 1320 : 400,
+        y: isMobile ? 150 : is3xl ? 400 : is2xl ? 370 : isXl ? 360 : 100,
+        texture: coinSVG,
+      },
     ];
-  
-    coinPositions.forEach((coinPosition) => {
+    const filteredCoinPositions = isMobile
+      ? coinPositions.slice(0, 1) // Only keep the first position on mobile
+      : coinPositions;
+
+    filteredCoinPositions.forEach((coinPosition) => {
       const body = Bodies.rectangle(coinPosition.x, coinPosition.y, 110, 110, {
         restitution: 0.7,
         friction: 0.5,
@@ -157,81 +198,110 @@ const MatterBox = () => {
       });
       Composite.add(world, body);
     });
-  
+
     const thickness = 50;
     Composite.add(world, [
       Bodies.rectangle(width / 2, -thickness / 2, width, thickness, {
         isStatic: true,
+        render: { fillStyle: "white" }, // Top border
       }),
       Bodies.rectangle(width / 2, height + thickness / 2, width, thickness, {
         isStatic: true,
+        render: { fillStyle: "white" }, // Top border
       }),
       Bodies.rectangle(-thickness / 2, height / 2, thickness, height, {
         isStatic: true,
+        render: { fillStyle: "white" }, // Top border
       }),
       Bodies.rectangle(width + thickness / 2, height / 2, thickness, height, {
         isStatic: true,
+        render: { fillStyle: "white" }, // Top border
       }),
     ]);
-  
+
     const mouse = Mouse.create(render.canvas);
     const mouseConstraint = MouseConstraint.create(engine, {
       mouse: mouse,
       constraint: { stiffness: 0.2, render: { visible: false } },
     });
-  
+
     Composite.add(world, mouseConstraint);
     render.mouse = mouse;
-  
+
     Render.lookAt(render, {
       min: { x: 0, y: 0 },
       max: { x: width, y: height },
     });
-  
+
     const runner = Runner.create();
-  
+
     // Add delay before starting the runner
     const delay = 2000; // 2 seconds
     setTimeout(() => {
       Runner.run(runner, engine);
     }, delay);
-  
+
     return () => {
       Render.stop(render);
       Runner.stop(runner);
       Composite.clear(world);
       Engine.clear(engine);
     };
-  }, []);
-  
+  }, [inView]);
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center relative">
-      <canvas ref={canvasRef} className="absolute top-0 left-0" />
-      <motion.h1
-        initial="hidden"
-        animate="visible"
-        variants={textVariant}
-        className="font-meuthanies absolute mb-24 opacity-30 text-customBlue text-8xl select-none"
-      >
-        Start Earning
-      </motion.h1>
-      <motion.h1
-        className="font-meuthanies absolute text-customBlue text-8xl select-none"
-        initial="hidden"
-        animate="visible"
-        variants={textVariants}
-      >
-        Start Earning
-      </motion.h1>
-      <motion.h1
-        initial="hidden"
-        animate="visible"
-        variants={textVariant}
-        className="font-meuthanies absolute mt-24 opacity-30 text-customBlue text-8xl select-none"
-      >
-        Start Earning
-      </motion.h1>
+    <div
+      ref={ref}
+      className="bg-white w-full h-[1050px] md:h-[950px] xl:h-[1100px] 2xl:h-[1300px]"
+    >
+      <div className=" w-full h-screen flex justify-center items-center relative">
+        <canvas
+          ref={canvasRef}
+          className="absolute top-0 left-0 pointer-events-none w-full h-full object-cover"
+        />
+        <motion.h1
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={textVariant}
+          className="font-meuthanies absolute mb-24 opacity-30 text-customBlue text-8xl select-none hidden md:block"
+        >
+          Start Earning
+        </motion.h1>
+        <motion.h1
+          className="font-meuthanies absolute text-customBlue text-5xl md:text-8xl select-none "
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={textVariants}
+        >
+          Start Earning
+        </motion.h1>
+        <motion.h1
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={textVariant}
+          className="font-meuthanies absolute mt-24 opacity-30 text-customBlue text-8xl select-none hidden md:block"
+        >
+          Start Earning
+        </motion.h1>
+
+        <div className="justify-center text-center mb-10 p-4 flex mt-[1100px] md:mt-[900px] xl:mt-[1100px] 2xl:mt-[1300px] font-sf-pro">
+          <div>
+            <h1 className="font-sf-pro text-2xl md:text-3xl xl:text-4xl">
+              Guaranteed Growth, Hassle-Free <br />
+              Income, and Exclusive Deals.
+            </h1>
+            <div className="mt-6 mb-4">
+              <Link to="/boost-income" className="hover:underline">
+                <div className="bg-customYellow rounded-full inline-flex items-center justify-center space-x-2 p-2 px-8">
+                  <p className="text-black font-medium text-xl xl:text-2xl">
+                    Start Earning
+                  </p>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

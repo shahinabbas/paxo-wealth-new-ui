@@ -14,6 +14,7 @@ import RentRise from "../Home/RentRise";
 import BoostIncome from "../Home/BoostIncome";
 import Introduction from "../Home/Introduction";
 import Combined from "../Home/Combined";
+import MatterBox from "./MatterBox";
 
 const HomePage = () => {
   return (
@@ -23,7 +24,8 @@ const HomePage = () => {
       <HeroScrollDemo />
       <Explore />
       <EarningsSteps />
-      <Earnings />
+      {/* <Earnings /> */}
+      <MatterBox/>
       <Premium />
       <Properties />
       <FaqCombined />

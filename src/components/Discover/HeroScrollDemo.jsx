@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { ContainerScroll } from "./ContainerScroll";
-import Image from "/discover.jpg";
 import Video from "/Paxo_Wealth_Explainer.mp4";
 import AboutUsAnimation from "./AboutUsAnimation";
 import { FaPlay, FaPause } from "react-icons/fa";
